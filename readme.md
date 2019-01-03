@@ -31,7 +31,7 @@ Dont forget to create the blank database if you want to initialize from blank CM
 
 ##### 2. Install CMS Maxsol
 ```sh
-composer require maxsol/cms:dev-master
+composer require tianrosandhy/cms:dev-master
 ```
 
 If you still use Laravel 5.4, you need to manually add the service provider to the "config/app.php" first. You can skip this step if you are using Laravel newer than version 5.5.

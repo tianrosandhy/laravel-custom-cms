@@ -1,5 +1,5 @@
 {
-    "name": "maxsol/cms",
+    "name": "tianrosandhy/cms",
     "description": "Admin panel CMS based on Laravel",
     "type": "library",
     "require": {
