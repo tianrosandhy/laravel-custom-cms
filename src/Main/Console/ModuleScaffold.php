@@ -51,11 +51,11 @@ class ModuleScaffold extends Command
 
 
         //bikin module dir dulu kalau blm ada
-        if(!is_dir(base_path('packages/maxsol/src'))){
-            mkdir(base_path('packages/maxsol/src', 0755, true));
+        if(!is_dir(base_path('modules'))){
+            mkdir(base_path('modules', 0755, true));
         }
 
-        $base_dir = base_path('packages/maxsol/src');
+        $base_dir = base_path('modules');
         $path = realpath($base_dir . '/'.$name);
         if($path){
             $this->error('Directory ' . $path . ' is exists. Please try using another module name');

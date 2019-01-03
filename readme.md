@@ -104,7 +104,21 @@ protected $routeMiddleware = [
 ]
 ```
 
-##### 8. Now You can test log in to the admin panel
+##### 8. Register New Autoload PSR4 Namespace
+All new self-created modules will be placed in modules directory. Register it namespace first.
+```json
+...
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Module\\" : "modules"
+        },
+    },
+...
+
+```
+
+##### 9. Now You can test log in to the admin panel
 By default, admin panel URL will be base_url/__p4n3lb04rd__. You can change it later from the config __cms.admin.prefix__.
 
 
