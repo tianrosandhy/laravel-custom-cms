@@ -54,10 +54,6 @@ return [
 						'route' => 'admin.log.index',
 						'icon' => '',
 					],
-					'Maintenance' => [
-						'route' => 'admin.maintenance.index',
-						'icon' => '',
-					],
 				],
 			],
 

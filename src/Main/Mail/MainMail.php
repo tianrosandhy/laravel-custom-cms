@@ -5,7 +5,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Module\Main\Http\Repository\CrudRepository;
 
 class MainMail extends Mailable
 {
@@ -144,43 +143,6 @@ class MainMail extends Mailable
         }
 
         return $output;
-    }
-
-    public function getViewContent(){
-        $out = [];
-        if(!empty($this->precontent)){
-            $out['precontent'] = $this->precontent;
-        }
-        if(!empty($this->banner)){
-            $out['banner'] = $this->banner;
-        }
-        if(!empty($this->title)){
-            $out['title'] = $this->title;
-        }
-        if(!empty($this->content)){
-            $out['content'] = $this->content;
-        }
-        if(!empty($this->button)){
-            $out['button'] = $this->button;
-        }
-        if(!empty($this->reason)){
-            $out['reason'] = $this->reason;
-        }
-        if(!empty($this->unsubscribeUrl)){
-            $out['unsubscribeUrl'] = $this->unsubscribeUrl;
-        }
-
-        return view("main::mail.index", $out)->render();
-    }
-
-    public function storeToQueue($send_to=''){
-        $repo = (new CrudRepository('mail_process'))->insert([
-            'send_to' => $send_to,
-            'subject' => $this->subject,
-            'reply_to' => $this->rep,
-            'mail_content' => $this->getViewContent(),
-            'status' => 0,
-        ]);
     }
 
 }

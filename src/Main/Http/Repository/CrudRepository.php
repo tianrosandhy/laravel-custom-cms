@@ -94,13 +94,6 @@ class CrudRepository{
 		return $this->model->where($field, $val)->delete();
 	}
 
-	public function deleteWithFilter($param=[]){
-		$filtered = $this->filter($param);
-		foreach($filtered as $data){
-			$this->delete($data->id);
-		}
-	}
-
 
 
 	public function search($keyword='', $field=['title'], $isactive=false, $isactive_field='is_active'){

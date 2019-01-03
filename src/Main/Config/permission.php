@@ -10,13 +10,6 @@ return [
 			'admin.setting.delete'
 		],
 
-		'Maintenance' => [
-			'admin.maintenance.index',
-			'admin.maintenance.maintenance',
-			'admin.maintenance.artisan',
-			'admin.maintenance.file-clean',
-		],
-
 		'Log' => [
 			'admin.log.index',
 			'admin.log.delete',

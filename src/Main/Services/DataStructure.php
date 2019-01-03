@@ -46,14 +46,14 @@ class DataStructure
 		return $this;
 	}
 
-    public function checker($name='id'){
-        $this->field = $name;
-        $this->orderable(false);
-        $this->searchable(false);
-        $this->name('<input type="checkbox" name="checker_all" id="checker_all_datatable">');
-        $this->hideForm();
-        return $this;
-    }
+	public function checker($name='id'){
+		$this->field = $name;
+		$this->orderable(false);
+		$this->searchable(false);
+		$this->name('<input type="checkbox" name="checker_all" id="checker_all_datatable">');
+		$this->hideForm();
+		return $this;
+	}
 
 	public function name($name=''){
 		$this->name = $name;

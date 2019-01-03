@@ -30,12 +30,7 @@ trait Resizeable
 		$data = $this->getThumbnails($field, $thumb);
 		$out = [];
 		if(!$data){
-			if($fallback){
-				$out['origin'] = asset('maxsol/img/broken-image.jpg');
-			}
-			else{
-				return false;
-			}
+			$out[$key] = asset('maxsol/img/broken-image.jpg');
 			return $out;
 		}
 		foreach($data as $key => $row){

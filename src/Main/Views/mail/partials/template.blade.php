@@ -35,7 +35,7 @@
 	        <!-- Email Header : BEGIN -->
             <tr>
                 <td style="padding: 20px 0; text-align: center">
-                    <img src="{{ asset('assets/img/icon/apple-icon-120x120.png') }}" width='100' alt="alt_text" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
+                    <img src="{{ url(setting('admin.logo', config('cms.admin.logo'))) }}" width='100' alt="alt_text" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
                 </td>
             </tr>
 	        <!-- Email Header : END -->

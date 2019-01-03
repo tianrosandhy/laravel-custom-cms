@@ -12,7 +12,7 @@
 		overflow-x:scroll!important;
 	}
 
-    .batchbox{display:none;}
+	.batchbox{display:none;}
 </style>
 @endpush
 
@@ -29,7 +29,7 @@
 	@if(Route::has('admin.'.$hint.'.store'))
 	<div class="pull-left">
 		<a href="{{ url()->route('admin.'.$hint.'.store') }}" class="btn btn-primary">Add Data</a>
-        <a href="{{ url()->route('admin.'.$hint.'.delete', ['id' => 0]) }}" class="btn btn-danger batchbox multi-delete">Delete All Selected</a>
+		<a href="{{ url()->route('admin.'.$hint.'.delete', ['id' => 0]) }}" class="btn btn-danger batchbox multi-delete">Delete All Selected</a>
 	</div>
 	@endif
 
@@ -43,12 +43,12 @@
 
 
 
-
 <div class="panel">
 	<div class="panel-body ov">
 		{!! $datatable->view() !!}
 	</div>
 </div>
+
 
 @stop
 

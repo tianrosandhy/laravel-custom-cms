@@ -10,6 +10,5 @@ return [
 	'setting_structure' => 'Module\Main\Models\SettingStructure',
 	'setting' => 'Module\Main\Models\Setting',
 	'translator' => 'Module\Main\Models\Translator',
-	'download' => 'Module\Main\Models\Download',
-	'mail_process' => 'Module\Main\Models\MailProcess'
+
 ];

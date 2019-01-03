@@ -63,7 +63,7 @@ class ModuleScaffold extends Command
         else{
             $module_dir = $base_dir .'/'.$name;
             mkdir($module_dir, 0755);
-            copy_directory(__DIR__ .'/../../Blank', $module_dir);
+            copy_directory(__DIR__ .'/StubModule', $module_dir);
             $this->info('Scaffolding file copied successfully');
 
             
@@ -71,24 +71,24 @@ class ModuleScaffold extends Command
             rename($module_dir .'/BlankServiceProvider.php', $module_dir .'/'.$name.'ServiceProvider.php');
 
             if($this->dual){
-                unlink($module_dir .'/Models/Blank.php');
-                unlink($module_dir .'/Http/Skeleton/BlankSkeleton.php');
-                unlink($module_dir .'/Http/Controllers/BlankController.php');
+                unlink($module_dir .'/Models/Blank');
+                unlink($module_dir .'/Http/Skeleton/BlankSkeleton');
+                unlink($module_dir .'/Http/Controllers/BlankController');
 
                 //rename dual name
-                rename($module_dir .'/Http/Skeleton/BlankSkeletonDual.php', $module_dir .'/Http/Skeleton/'.$name.'Skeleton.php');
-                rename($module_dir .'/Models/BlankDual.php', $module_dir .'/Models/Blank.php');
-                rename($module_dir .'/Http/Controllers/BlankControllerDual.php', $module_dir .'/Http/Controllers/'.$name.'Controller.php');
+                rename($module_dir .'/Http/Skeleton/BlankSkeletonDual', $module_dir .'/Http/Skeleton/'.$name.'Skeleton.php');
+                rename($module_dir .'/Models/BlankDual', $module_dir .'/Models/Blank.php');
+                rename($module_dir .'/Http/Controllers/BlankControllerDual', $module_dir .'/Http/Controllers/'.$name.'Controller.php');
             }
             else{
-                unlink($module_dir .'/Models/BlankDual.php');
-                unlink($module_dir .'/Http/Skeleton/BlankSkeletonDual.php');
-                unlink($module_dir .'/Http/Controllers/BlankControllerDual.php');
+                unlink($module_dir .'/Models/BlankDual');
+                unlink($module_dir .'/Http/Skeleton/BlankSkeletonDual');
+                unlink($module_dir .'/Http/Controllers/BlankControllerDual');
 
                 //rename dual name
-                rename($module_dir .'/Http/Skeleton/BlankSkeleton.php', $module_dir .'/Http/Skeleton/'.$name.'Skeleton.php');
-                rename($module_dir .'/Models/Blank.php', $module_dir .'/Models/Blank.php');
-                rename($module_dir .'/Http/Controllers/BlankController.php', $module_dir .'/Http/Controllers/'.$name.'Controller.php');
+                rename($module_dir .'/Http/Skeleton/BlankSkeleton', $module_dir .'/Http/Skeleton/'.$name.'Skeleton.php');
+                rename($module_dir .'/Models/Blank', $module_dir .'/Models/Blank.php');
+                rename($module_dir .'/Http/Controllers/BlankController', $module_dir .'/Http/Controllers/'.$name.'Controller.php');
             }
 
             rename($module_dir .'/Migrations/2018_08_25_000000_blank.php', $module_dir .'/Migrations/2018_08_25_000000_'.$hint.'.php');

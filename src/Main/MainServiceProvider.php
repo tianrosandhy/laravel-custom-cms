@@ -79,7 +79,7 @@ class MainServiceProvider extends ServiceProvider
 		Validator::extend('honeytime', function($attr, $value, $param, $validator){
 			$decrypted = decrypt($value);
 			if($decrypted){
-				if(($decrypted+intval($param)) > time()){
+				if(($decrypted+intval($param)) < time()){
 					return false;
 				}
 				return true;
