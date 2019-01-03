@@ -52,7 +52,7 @@ class ModuleScaffold extends Command
 
         //bikin module dir dulu kalau blm ada
         if(!is_dir(base_path('packages/maxsol/src'))){
-            mkdir(base_path('packages/maxsol/src'));
+            mkdir(base_path('packages/maxsol/src', 0755, true));
         }
 
         $base_dir = base_path('packages/maxsol/src');
