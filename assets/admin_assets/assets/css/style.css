@@ -197,6 +197,10 @@ body.klorofil .userinfo-holder{
 	padding:1.5em;
 }
 
+.panel-body.ov{
+	overflow-x:hidden;
+}
+
 @media (max-width:991px){
 	body.pages .userinfo-holder{
 		position: absolute;
@@ -207,13 +211,14 @@ body.klorofil .userinfo-holder{
 		display:none;
 	}
 
-	.panel-body.ov{
-		overflow-x:scroll;
-	}
 }
 
 @media (max-width:767px){
 	.userinfo-holder{
 		top:-65px;
+	}
+
+	.panel-body.ov{
+		overflow-x:scroll;
 	}
 }

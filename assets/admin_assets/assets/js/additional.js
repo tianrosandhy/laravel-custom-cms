@@ -66,6 +66,17 @@ $(function(){
 		});
 	});
 
+    //timepicker
+    $('[data-timepicker]').timepicker({
+        timeFormat: 'HH:mm',
+        interval : 5,
+        startTime: '06:00',
+        dynamic: false,
+        dropdown: false,
+        scrollbar: true
+    });
+	
+
 
 	//lang switcher
 	$("body").on('click', '.btn-lang-switcher', function(){
