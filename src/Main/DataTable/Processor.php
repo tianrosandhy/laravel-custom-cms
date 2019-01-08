@@ -42,7 +42,6 @@ class Processor
             if(!empty($rf)){
                 $out[] = $rf;
             }
-			$out[] = $this->rowFormat($row);
 		}
 
 		$this->output = $out;
