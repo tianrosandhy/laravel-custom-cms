@@ -16,9 +16,16 @@
 </div>
 
 @if($file_log)
+
 <div class="panel">
+	<div style="padding:1em 1.5em">
+		<a href="{{ url()->route('admin.log.export') }}?active_log={{ $active_log }}" class="btn btn-primary">Export Log</a>
+	</div>
 	<div class="panel-body">
 		<textarea style="width:100%; height:500px;">{!! $file_log !!}</textarea>
+	</div>
+	<div style="padding:1em 1.5em">
+		<a href="{{ url()->route('admin.log.export') }}?active_log={{ $active_log }}" class="btn btn-primary">Export Log</a>
 	</div>
 </div>
 @endif

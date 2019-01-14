@@ -46,5 +46,5 @@ Route::post('setting/user/{id}', 'UserManagementController@update')->name('admin
 Route::post('setting/user/delete/{id}', 'UserManagementController@delete')->name('admin.user.delete');
 
 Route::get('log', 'LogController@index')->name('admin.log.index');
-Route::post('log/export', 'LogController@export')->name('admin.log.export');
+Route::get('log/export', 'LogController@export')->name('admin.log.export');
 Route::post('setting/log/delete/{id}', 'LogController@delete')->name('admin.log.delete');

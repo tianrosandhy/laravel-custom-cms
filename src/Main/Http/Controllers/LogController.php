@@ -77,79 +77,15 @@ class LogController extends AdminBaseController
 
 
     public function export(){
-        \Validator::make($this->request->all(), [
-            'date_a' => 'required|date',
-            'date_b' => 'required|date',
-        ])->validate();
+        $active_log = $this->request->active_log;
+        $file_log = $this->getFileLog($active_log);
+        if(strlen($file_log) > 0){
+            header('Content-Type: text/plain');
+            header('Content-Disposition: attachment; filename="'.$active_log.'"');
 
-        $tgl_a = date('Y-m-d', strtotime($this->request->date_a));
-        $tgl_b = date('Y-m-d', strtotime($this->request->date_b));
-        if(strtotime($tgl_a) > strtotime($tgl_b)){
-            //harus dituker
-            $tgl_c = $tgl_a;
-            $tgl_a = $tgl_b; 
-            $tgl_b = $tgl_c;
+            echo $file_log;
+            exit();
         }
-
-        if($tgl_a <> $tgl_b){
-            $filename = setting('site.title').' Log '.$tgl_a.'-'.$tgl_b.'.txt';
-        }
-        else{
-            $filename = setting('site.title').' Log '.$tgl_a.'.txt';
-        }
-        $tgl_a .= ' 00:00:00';
-        $tgl_b .= ' 23:59:59';
-
-
-        //kalo ga ada request->clear_log artinya export
-        $model = (new CrudRepository('log'))->model;
-        if($this->request->clear_log){
-            $model
-                ->whereBetween('created_at', [$tgl_a, $tgl_b])
-                ->delete();
-
-            return back()->with('success', 'Log data has been deleted');
-        }
-        else{
-            //search log data by date range
-            $data = $model
-                ->whereBetween('created_at', [$tgl_a, $tgl_b])
-                ->orderBy('created_at', 'ASC')
-                ->get();
-
-            if($data->count() == 0){
-                return back()->withErrors(['error' => 'No log data in range ' . $tgl_a .' - '.$tgl_b]);
-            }
-            else{
-                $output = '';
-
-                foreach($data as $row){
-                    $output.= date('Y-m-d H:i:s', strtotime($row->created_at))."\r\n";
-                    $output.= "URL = ".$row->url."\r\n";
-                    $output.= "LABEL = ".$row->label."\r\n";
-                    $output.= "JSON DATA = ".$row->data."\r\n";
-                    $output.= "=================\r\n\r\n";
-                }
-
-                //output as log text document
-                $headers = [
-                  'Content-type' => 'text/plain', 
-                  'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
-                  'Content-Length' => strlen($output)
-                ];
-
-
-                $response = new StreamedResponse();
-                $response->setCallBack(function () use($output) {
-                    echo $output;
-                });
-
-                $disposition = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $filename);
-                $response->headers->set('Content-Disposition', $disposition);
-                return $response;
-            }
-        }
-
     }
 
 	public function languageData(){
