@@ -115,6 +115,11 @@ class MainServiceProvider extends ServiceProvider
 				require realpath(__DIR__."/Routes/api.php");
 			});
 		});
+
+		//installable route
+		$router->group(['namespace' => $this->namespace], function($router){
+			require realpath(__DIR__."/Routes/install.php");
+		});
 	}
 
 	protected function mergeMainConfig(){
