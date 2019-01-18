@@ -4,7 +4,7 @@
 
   <!-- BEGIN SIDEBAR MENU HEADER-->
   <div class="sidebar-header">
-    <img src="{{ Storage::url(setting('admin.logo', config('cms.admin.logo'))) }}" alt="logo" class="brand" height="35">
+    @include ('main::template.components.logo')
   </div>
   <!-- END SIDEBAR MENU HEADER-->
   <!-- START SIDEBAR MENU -->

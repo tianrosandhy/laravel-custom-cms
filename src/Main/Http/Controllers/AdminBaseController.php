@@ -44,6 +44,12 @@ class AdminBaseController extends Controller
 		$this->repo = new CrudRepository($this->repo());
 	}
 
+	public function languageData(){
+		//grab data bahasa langsung dari config aja sekalian skrg
+		return config('module-setting.blank.lang_data');
+	}
+
+
 	public function hint($var=''){
 		if(strlen($var) > 0)
 			return $var;

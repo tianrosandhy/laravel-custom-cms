@@ -51,7 +51,7 @@ class DefaultSetting extends Command
                 'param' => 'logo',
                 'name' => 'Admin Image Logo',
                 'description' => 'Image logo used for admin page',
-                'default_value' => 'maxsol/img/logo_maxsol.png',
+                'default_value' => null,
                 'type' => 'image',
                 'group' => 'admin',
             ],

@@ -16,7 +16,7 @@
     <div class="pull-center hidden-md hidden-lg">
       <div class="header-inner">
         <div class="brand inline">
-          <img src="{{ Storage::url(setting('admin.logo', config('cms.admin.logo'))) }}" alt="logo" height=35>
+          @include ('main::template.components.logo')
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
   <div class="pull-left sm-table hidden-xs hidden-sm">
     <div class="header-inner">
       <div class="brand inline">
-        <img src="{{ Storage::url(setting('admin.logo', config('cms.admin.logo'))) }}" alt="logo" height=35>
+          @include ('main::template.components.logo')
       </div>
       @if(config('cms.admin.components.notification'))
         @include ('main::template.components.notification')

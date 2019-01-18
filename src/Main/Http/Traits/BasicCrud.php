@@ -34,8 +34,7 @@ trait BasicCrud
 		$this->skeleton->formValidation($this->multi_language, 'create');
 
 		//multiple values / relational type input is not processed here
-		$inputData = self::getUsedField();
-		$instance = $this->repo->insert($inputData);
+		$instance = $this->storeQuery();
 
 		//multiple values / relational type can be freely managed here
 		$this->afterCrud($instance);
@@ -46,6 +45,13 @@ trait BasicCrud
 		\CMS::log($instance, 'ADMIN STORE DATA');
 
 		return redirect()->route('admin.'. $this->hint() .'.index')->with('success', self::usedLang('store.success'));
+	}
+
+	//store process dipisah biar bisa dioverwrite
+	public function storeQuery(){
+		$inputData = self::getUsedField();
+		$instance = $this->repo->insert($inputData);
+		return $instance;
 	}
 
 	public function edit($id){
@@ -73,8 +79,8 @@ trait BasicCrud
 		}
 
 		//multiple values / relational type input is not processed here
-		$inputData = self::getUsedField();
-		$instance = $this->repo->update($id, $inputData);
+		$instance = $this->updateQuery($id);
+
 		//multiple values / relational type can be freely managed here
 		$this->afterCrud($instance);
 
@@ -85,6 +91,13 @@ trait BasicCrud
 		\CMS::log($instance, 'ADMIN UPDATE DATA');
 
 		return redirect()->route('admin.'. $this->hint() .'.index')->with('success', self::usedLang('update.success'));
+	}
+
+	//update process dipisah biar bisa dioverwrite
+	public function updateQuery($id){
+		$inputData = self::getUsedField();
+		$instance = $this->repo->update($id, $inputData);
+		return $instance;
 	}
 
 
@@ -106,15 +119,19 @@ trait BasicCrud
 			}
 
 			//delete loop process 
+			$deleted_ids = [];
 			foreach($datas as $row){
 				foreach($this->image_field() as $fld){
 					$this->removeImage($row, $fld);
 				}
 				\CMS::log($row, 'ADMIN DELETE DATA');
-				$this->repo->delete($row->id);
+				$deleted_ids[] = $row->id;
 				if($this->multi_language){
 					$this->removeLanguage($row);
 				}
+			}
+			if(count($deleted_ids) > 0){
+				$this->repo->delete($deleted_ids);
 			}
 
 		}
