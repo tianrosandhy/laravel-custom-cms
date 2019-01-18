@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Module\Main\Http\Repository\CrudRepository;
 use ImageService;
 use Module\Main\Http\Traits\BasicCrud;
+use Module\Main\Http\Middleware\AdminAuth;
 
 class AdminBaseController extends Controller
 {
@@ -23,7 +24,7 @@ class AdminBaseController extends Controller
 
 	public function __construct(Request $req){
 		$this->request = $req;
-		$this->middleware('admin-auth');
+		$this->middleware(AdminAuth::class);
 
 		//register repository globally
 		if(method_exists($this, 'repo')){

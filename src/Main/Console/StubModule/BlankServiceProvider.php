@@ -14,7 +14,13 @@ class BlankServiceProvider extends BaseServiceProvider
 	}
 
 	protected function mapping(Router $router){
-		$router->group(['namespace' => $this->namespace, 'middleware' => 'web'], function($router){
+		$router->group([
+			'namespace' => $this->namespace, 
+			'middleware' => [
+				'web',
+				\Module\Main\Http\Middleware\PermissionManagement::class,				
+			]
+		], function($router){
 			$router->group(['prefix' => admin_prefix()], function(){
 				require realpath(__DIR__."/Routes/api.php");
 				require realpath(__DIR__."/Routes/web.php");
