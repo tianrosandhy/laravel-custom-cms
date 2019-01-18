@@ -23,12 +23,14 @@ class InstallController extends Controller{
 		$db = $this->checkDatabaseConnection();
 		$symlink = $this->checkSymlink();
 		$module = $this->checkModuleNamespace();
+		$publish = $this->checkVendorPublish();
 
 		return view('main::install', compact(
 			'db',
 			'symlink',
 			'module',
-			'has_install'
+			'has_install',
+			'publish'
 		));
 	}
 
@@ -93,6 +95,16 @@ class InstallController extends Controller{
 			return true;
 		}
 		return false;
+	}
+
+	protected function checkVendorPublish(){
+		//ketauan ato nggaknya dari folder maxsol di public aja
+		if(is_dir('maxsol')){
+			if(count(scandir('maxsol')) > 3){
+				return false;
+			}
+		}
+		return 'Assets still not published';
 	}
 
 

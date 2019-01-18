@@ -3,15 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Maxsol CMS Installer</title>
+	@if(!$publish)
 	<link rel="stylesheet" href="{{ asset('maxsol/css/backend.css') }}">
 	<link href="{!! admin_asset('assets/plugins/pace/pace-theme-flash.css') !!}" rel="stylesheet" type="text/css" />
 	<link class="main-stylesheet" href="{!! admin_asset('assets/css/style.css') !!}" rel="stylesheet" type="text/css" />
+	@else
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	@endif
 </head>
 <body>
 
 <div class="container">
 	<center style="padding-top:2em;">
+		@if(!$publish)
 		<img src="{{ asset('maxsol/img/logo_maxsol.png') }}" alt="CMS Maxsol" style="height:40px">
+		@endif
 		<h2>CMS Install</h2>
 	</center>
 
@@ -23,6 +30,7 @@
 		<div class="panel panel-body">
 			<ul class="list-group">
 				<li class="list-group-item"><strong>Database Connection</strong> : {!! $db ? '<span class="label label-danger">Failed : '.$db.'</span>' : '<span class="label label-success">OK</span>' !!}</li>
+				<li class="list-group-item"><strong>CMS Vendor Publish</strong> : {!! $publish ? '<span class="label label-danger">Failed : '.$publish.'</span>' : '<span class="label label-success">OK</span>' !!}</li>
 				<li class="list-group-item"><strong>Module Namespace</strong> : {!! $module ? '<span class="label label-danger">Failed : '.$module.'</span>' : '<span class="label label-success">OK</span>' !!}</li>
 				<li class="list-group-item"><strong>Symlink</strong> : {!! $symlink ? '<span class="label label-danger">Failed : '.$symlink.'</span>' : '<span class="label label-success">OK</span>' !!}</li>
 			</ul>
@@ -51,9 +59,21 @@
 		<div class="alert alert-warning">
 			<strong class="text-uppercase">Symlink Debug</strong>
 			<br>
-			<p>Run command : "php artisan storage:link" in terminal</p>
+			<p>It's okay, we'll run them for you..</p>
 		</div>
 		@endif
+
+		@if($publish)
+		<div class="alert alert-warning">
+			<strong class="text-uppercase">CMS Vendor Publish Debug</strong>
+			<br>
+			<p>It's okay, we'll publish the assets for you..</p>
+		</div>
+		@endif
+
+		<br>
+		<br>
+		<br>
 
 
 		@if(!$db)
@@ -104,8 +124,9 @@
 
 </div>
 
-
+@if(!$publish)
 <script src="{!! admin_asset('assets/plugins/jquery/jquery-1.11.1.min.js') !!}" type="text/javascript"></script>
 <script src="{{ asset('maxsol/js/backend.js') }}"></script>
+@endif
 </body>
 </html>
