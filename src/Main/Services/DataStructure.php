@@ -2,6 +2,7 @@
 namespace Module\Main\Services;
 
 use Illuminate\Contracts\Foundation\Application;
+use DataSource;
 
 class DataStructure
 {
@@ -46,14 +47,32 @@ class DataStructure
 		return $this;
 	}
 
+	//quick skeleton
 	public function checker($name='id'){
-		$this->field = $name;
+		$this->field($name);
 		$this->orderable(false);
 		$this->searchable(false);
 		$this->name('<input type="checkbox" name="checker_all" id="checker_all_datatable">');
 		$this->hideForm();
 		return $this;
 	}
+
+	public function switcher($field='is_active', $name='Is Active', $col=6, $value=[]){
+		if(empty($value)){
+			$value = [
+				0 => 'Draft',
+				1 => 'Live'
+			];
+		}
+
+		$this->field($field);
+		$this->formColumn($col);
+		$this->name($name);
+		$this->inputType('radio');
+		$this->dataSource($value);
+		return $this;
+	}
+
 
 	public function name($name=''){
 		$this->name = $name;
@@ -75,8 +94,13 @@ class DataStructure
 		return $this;
 	}
 
-	public function dataSource(DataSource $data){
-		$this->data_source = $data->output();
+	public function dataSource($data){
+		if($data instanceof DataSource){
+			$this->data_source = $data->output();
+		}
+		else{
+			$this->data_source = $data;
+		}
 		return $this;
 	}
 

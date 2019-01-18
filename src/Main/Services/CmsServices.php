@@ -378,11 +378,13 @@ DATA =>
 
     public function combineAttribute($attribute){
         $attr = '';
-        foreach($attribute as $atname => $val){
-            if(is_array($val)){
-                $val = implode(' ', $val);
+        if($attribute){
+            foreach($attribute as $atname => $val){
+                if(is_array($val)){
+                    $val = implode(' ', $val);
+                }
+                $attr .= $atname.'="'.$val.'" ';
             }
-            $attr .= $atname.'="'.$val.'" ';
         }
         return $attr;
     }

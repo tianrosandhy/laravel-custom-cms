@@ -51,6 +51,15 @@ class Processor
 		return []; //default use kalo pake format lama : ga mengembalikan nilai apa2
 	}
 
+	public function switcher($row, $field='is_active', $url='post/switch'){
+		return view('main::inc.switchery', [
+			'id' => $row->id, 
+			'field' => $field,
+			'url' => admin_url($url),
+			'value' => $row->{$field}
+		])->render();
+	}
+
 	public function checkerFormat($row, $pk='id'){
 		return '<input type="checkbox" data-id="'.$row->{$pk}.'" name="multi_check['.$row->{$pk}.']" class="multichecker_datatable">';
 	}

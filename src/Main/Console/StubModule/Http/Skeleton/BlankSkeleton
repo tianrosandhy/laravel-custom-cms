@@ -25,6 +25,8 @@ class BlankSkeleton extends DataTable
 			->name('Description')
 			->formColumn(12)
 			->inputType('richtext');
+
+		$this->structure[] = DataStructure::switcher('is_active', 'Is Active', 12);
 		
 	}
 
@@ -37,6 +39,7 @@ class BlankSkeleton extends DataTable
             'id' => $this->checkerFormat($row),
 			'title' => $row->title,
 			'description' => $row->description,
+			'is_active' => $this->switcher($row, 'is_active', 'blank/switch'),
 			'action' => self::editButton($row) . self::deleteButton($row)
 		];
 	}
