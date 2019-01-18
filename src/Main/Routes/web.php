@@ -1,5 +1,5 @@
 <?php
-Route::get('/', 'MainController@index');
+Route::get('/', 'MainController@index')->name('admin.splash');
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@login');
 Route::match(['get', 'post'], 'logout', 'Auth\LoginController@logout');

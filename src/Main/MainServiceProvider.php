@@ -36,7 +36,7 @@ class MainServiceProvider extends ServiceProvider
 			__DIR__.'/Config/image.php' => config_path('image.php'),
 			__DIR__.'/Config/modules.php' => config_path('modules.php'),
 			__DIR__.'/../../assets' => public_path('maxsol'),
-		], 'cms-maxsol');
+		], 'tianrosandhy-cms');
 	}
 
 	protected function registerValidator(){
@@ -114,12 +114,10 @@ class MainServiceProvider extends ServiceProvider
 				require realpath(__DIR__."/Routes/web.php");
 				require realpath(__DIR__."/Routes/api.php");
 			});
-		});
-
-		//installable route
-		$router->group(['namespace' => $this->namespace], function($router){
+			//installable route
 			require realpath(__DIR__."/Routes/install.php");
 		});
+
 	}
 
 	protected function mergeMainConfig(){

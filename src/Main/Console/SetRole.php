@@ -38,6 +38,11 @@ class SetRole extends Command
      */
     public function handle()
     {
+        $this->actionRunner();
+        $this->info('Administrator full permission has been created');
+    }
+
+    public function actionRunner(){
         //
         $lists = config('permission');
         $out = [];
@@ -59,8 +64,6 @@ class SetRole extends Command
             $cek->update([
                 'priviledge_list' => $out
             ]);
-        }
-
-        $this->info('Administrator full permission has been created');
+        }        
     }
 }
