@@ -30,7 +30,7 @@ trait Resizeable
 		$data = $this->getThumbnails($field, $thumb);
 		$out = [];
 		if(!$data){
-			$out[$key] = asset('maxsol/img/broken-image.jpg');
+			$out[$key] = admin_asset('img/broken-image.jpg');
 			return $out;
 		}
 		foreach($data as $key => $row){
@@ -39,7 +39,7 @@ trait Resizeable
 			}
 			else{
 				if($fallback){
-					$out[$key] = asset('maxsol/img/broken-image.jpg');
+					$out[$key] = admin_asset('img/broken-image.jpg');
 				}
 				else{
 					$out[$key] = false;
@@ -73,7 +73,7 @@ trait Resizeable
 		}
 		else{
 			if($fallback){
-				return asset('maxsol/img/broken-image.jpg');
+				return admin_asset('img/broken-image.jpg');
 			}
 		}
 		return false;

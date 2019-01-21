@@ -1,5 +1,5 @@
-@if(setting('admin.theme') == 'klorofil')
-  @include ('main::template.footer-klorofil')
-@else
-  @include ('main::template.footer-pages')
-@endif
+<footer class="footer footer-static footer-light navbar-border">
+  <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">
+    {!! setting('admin.copyright', '&copy; '.date('Y').' CMS Maxsol') !!}
+  </p>
+</footer>

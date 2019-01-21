@@ -1,0 +1,238 @@
+/*
+
+* Override Pages default styles or create your own styles here
+
+*/
+textarea{
+	min-height:100px!important;
+}
+.padd{
+	padding:1em 0;
+}
+.box{
+	padding:.5em;
+	border:1px solid #ccc;
+}
+.box label{
+	margin-bottom:0;
+}
+
+
+/*Uploaded Holder*/
+.uploaded-holder .uploaded{
+	position:relative;
+	display:inline-block;
+}
+
+.uploaded-holder strong{
+	display:block;
+}
+
+
+.file-alias{
+	max-width:200px;
+	display:inline-block;
+	overflow:hidden;
+	background:#eee;
+	padding:.5em 2em .5em 1em;
+	border-radius:30px;
+}
+
+.remove-asset, 
+.remove-asset-multiple,
+.remove-asset-file,
+.remove-asset-file-multiple
+{
+	position:absolute;
+	top:0;
+	right:0;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	background:#d00;
+	color:#fff;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+
+.pos-rel{
+	position:relative;
+}
+.pos-abs{
+	position:absolute;
+}
+
+.close-btn{
+	position:absolute;
+	right:0;
+	padding:0;
+	width:20px;
+	height:20px;
+	line-height: 20px;
+	text-align: center;
+	border-radius:50%;
+}
+
+
+
+
+
+
+.priviledge-check label{
+	padding:.2em 1em;
+	background:#ddd;
+	color:#000;
+	border-radius:20px;
+	cursor:pointer;
+	transition:.3s ease;
+	-moz-transition:.3s ease;
+	-o-transition:.3s ease;
+	-webkit-transition:.3s ease;
+	-ms-transition:.3s ease;
+}
+
+.priviledge-check label input{
+	margin-right:.5em;
+}
+
+.priviledge-check.active label{
+	background:#25ba68;
+	color:#fff;
+}
+
+
+
+/*datatable tambahan*/
+table.dataTable thead tr th{
+	position:relative;
+}
+table.dataTable thead .sorting::after, table.dataTable thead .sorting_asc::after, table.dataTable thead .sorting_desc::after{
+	display:block;
+	position:absolute;
+	top:14px;
+	right:0;
+}
+
+
+.dataTables_wrapper{
+	position:relative;
+}
+
+.dataTables_processing{
+	position:absolute;
+	width:100%;
+	height:100%;
+	background:#f3f5f8;
+	color:#000;
+	text-align:center;
+	z-index:1;
+	display:flex;
+	display:-moz-flex;
+	display:-webkit-flex;
+	align-items:center;
+	justify-content: center;
+}
+
+.dataTables_paginate{
+	text-align:right;
+}
+
+.dataTables_paginate .paginate_button{
+	padding:.5em;
+	cursor:pointer;
+}
+
+.dataTables_paginate .paginate_button.disabled{
+	cursor:not-allowed;
+	color:#ddd;
+}
+
+.dataTables_paginate .paginate_button.current{
+	cursor:auto;
+	color:#000;
+}
+
+
+/*nestable*/
+.ctrl-holder{
+	float:right;
+}
+
+.ctrl-holder .btn{
+	padding:0 .5em;
+	line-height:16px;
+	height:16px;
+}
+
+.bootstrap-tagsinput .tag{
+	background:#999;
+}
+
+.label{
+	font-size:80%;
+	padding:.15em 1em;
+	background:#d7d7d7;
+	border:1px solid #fff;
+	color:#000;
+	border-radius:10px;
+}
+
+.label.label-primary{
+	background:#00AAFF;
+	color:#fff;
+}
+.label.label-danger{
+	background:#d00;
+	color:#fff;
+}
+.label.label-success{
+	background:#00A67D;
+	color:#fff;
+}
+
+
+body.klorofil .userinfo-holder{
+	padding:1.5em;
+}
+
+.panel-body.ov{
+	overflow-x:hidden;
+	overflow-y:hidden;
+}
+
+@media (max-width:991px){
+	body.pages .userinfo-holder{
+		position: absolute;
+		top:-70px;
+		right:0;
+	}	
+	.userinfo-holder .semi-bold{
+		display:none;
+	}
+
+}
+
+@media (max-width:767px){
+	.userinfo-holder{
+		top:-65px;
+	}
+
+	.panel-body.ov{
+		overflow-x:scroll;
+	}
+}
+
+
+table th{
+	white-space:nowrap;
+	padding-right:1.75em!important;
+	cursor:pointer;
+}
+
+.ov{
+	overflow-x:scroll!important;
+}
+
+.batchbox{display:none;}

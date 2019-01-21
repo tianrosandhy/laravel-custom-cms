@@ -99,8 +99,8 @@ class InstallController extends Controller{
 
 	protected function checkVendorPublish(){
 		//ketauan ato nggaknya dari folder maxsol di public aja
-		if(is_dir('maxsol')){
-			if(count(scandir('maxsol')) > 3){
+		if(is_dir(config('cms.admin.assets'))){
+			if(count(scandir(config('cms.admin.assets'))) > 3){
 				return false;
 			}
 		}

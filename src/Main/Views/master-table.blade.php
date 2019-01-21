@@ -1,21 +1,5 @@
 @extends ('main::master')
 
-@push ('style')
-<style>
-	table th{
-		white-space:nowrap;
-		padding-right:1.75em!important;
-		cursor:pointer;
-	}
-
-	.ov{
-		overflow-x:scroll!important;
-	}
-
-	.batchbox{display:none;}
-</style>
-@endpush
-
 @section ('content')
 
 <h3>{!! $title !!}</h3>
@@ -27,14 +11,14 @@
 
 <div class="padd">
 	@if(Route::has('admin.'.$hint.'.store'))
-	<div class="pull-left">
+	<div class="pull-left float-xs-left">
 		<a href="{{ url()->route('admin.'.$hint.'.store') }}" class="btn btn-primary">Add Data</a>
 		<a href="{{ url()->route('admin.'.$hint.'.delete', ['id' => 0]) }}" class="btn btn-danger batchbox multi-delete">Delete All Selected</a>
 	</div>
 	@endif
 
 	@if(Route::has('admin.'.$hint.'.export') && config('module-setting.'.$hint.'.export_excel'))
-	<div class="pull-right">
+	<div class="pull-right float-xs-right">
 		<a href="{{ url()->route('admin.'.$hint.'.export') }}" class="btn btn-info">Export to Excel</a>
 	</div>
 	@endif

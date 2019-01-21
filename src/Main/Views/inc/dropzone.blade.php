@@ -27,7 +27,7 @@ if(!isset($name)){
 					@else
 					<strong>Uploaded Image : </strong>
 					<div class="uploaded">
-						<img src="{{ asset('maxsol/img/broken-image.jpg') }}" style="height:60px;">
+						<img src="{{ admin_asset('img/broken-image.jpg') }}" style="height:60px;">
 						<span class="remove-asset" data-hash="{{ $hash }}">&times;</span>
 					</div>
 					@endif

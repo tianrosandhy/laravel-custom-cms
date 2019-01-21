@@ -1,9 +1,9 @@
 @push ('style')
-    <link rel="stylesheet" href="{{ admin_asset('assets/plugins/dropzone/css/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ admin_asset('vendor/dropzone/css/dropzone.css') }}">
 @endpush
 
 @push ('script')
-<script src="{{ admin_asset('assets/plugins/dropzone/dropzone.js') }}"></script>
+<script src="{{ admin_asset('vendor/dropzone/dropzone.js') }}"></script>
 <script>
 //dropzone instance
 Dropzone.autoDiscover = false;

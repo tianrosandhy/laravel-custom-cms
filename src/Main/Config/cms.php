@@ -21,10 +21,10 @@ return [
 
 	'admin' => [
 		'prefix' => 'p4n3lb04rd',
-		'assets' => 'maxsol/admin_assets',
+		'assets' => 'admin_theme',
 		'minified' => true,
 		'jquery_version' => 1, //1 or 3 only
-		'logo' => 'maxsol/img/logo_maxsol.png',
+		'logo' => 'theme/img/logo_maxsol.png',
 		'register' => true,
 		'components' => [
 			'notification' => false,

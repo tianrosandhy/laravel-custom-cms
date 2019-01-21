@@ -3,14 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Maxsol CMS Installer</title>
-	@if(!$publish)
-	<link rel="stylesheet" href="{{ asset('maxsol/css/backend.css') }}">
-	<link href="{!! admin_asset('assets/plugins/pace/pace-theme-flash.css') !!}" rel="stylesheet" type="text/css" />
-	<link class="main-stylesheet" href="{!! admin_asset('assets/css/style.css') !!}" rel="stylesheet" type="text/css" />
-	@else
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	@endif
+
 </head>
 <body>
 
@@ -124,9 +120,5 @@
 
 </div>
 
-@if(!$publish)
-<script src="{!! admin_asset('assets/plugins/jquery/jquery-1.11.1.min.js') !!}" type="text/javascript"></script>
-<script src="{{ asset('maxsol/js/backend.js') }}"></script>
-@endif
 </body>
 </html>

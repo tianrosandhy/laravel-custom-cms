@@ -26,7 +26,7 @@ if(!isset($name)){
 						</div>
 						@else
 						<div class="uploaded">
-							<img src="{{ asset('maxsol/img/broken-image.jpg') }}" alt="Broken Image" style="height:60px;">
+							<img src="{{ admin_asset('img/broken-image.jpg') }}" alt="Broken Image" style="height:60px;">
 							<span class="remove-asset-multiple" data-hash="{{ $hash }}" data-value="{{ $val }}">&times;</span>
 						</div>
 						@endif

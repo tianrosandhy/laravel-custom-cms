@@ -8,38 +8,28 @@
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta content="tianrosandhy" name="author" />
-<link href="{!! admin_asset('assets/plugins/pace/pace-theme-flash.css') !!}" rel="stylesheet" type="text/css" />
-@if(setting('admin.theme') != 'klorofil')
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-	@if(!config('cms.admin.minified'))
-	<link href="{!! admin_asset('assets/plugins/bootstrapv3/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css" />
-	<link href="{!! admin_asset('assets/plugins/font-awesome/css/font-awesome.css') !!}" rel="stylesheet" type="text/css" />
-	<link href="{!! admin_asset('assets/plugins/jquery-scrollbar/jquery.scrollbar.css') !!}" rel="stylesheet" type="text/css" media="screen" />
-	<link href="{!! admin_asset('assets/plugins/select2/css/select2.min.css') !!}" rel="stylesheet" type="text/css" media="screen" />
-	<link href="{!! admin_asset('assets/plugins/switchery/css/switchery.min.css') !!}" rel="stylesheet" type="text/css" media="screen" />
-	<link href="{!! admin_asset('pages/css/pages-icons.css') !!}" rel="stylesheet" type="text/css">
-	<link class="main-stylesheet" href="{!! admin_asset('pages/css/pages.css') !!}" rel="stylesheet" type="text/css" />
-	@else
-	<link rel="stylesheet" href="{!! asset('maxsol/css/backend.css') !!}">
-	@endif
-@elseif(setting('admin.theme') == 'klorofil')
-	@if(!config('cms.admin.minified'))
-	<link rel="stylesheet" href="{!! admin_asset('assets/plugins/bootstrapv3/css/bootstrap.min.css') !!}">
-	<link rel="stylesheet" href="{!! admin_asset('assets/plugins/font-awesome/css/font-awesome.css') !!}">
-	<link rel="stylesheet" href="{!! admin_asset('assets/plugins/select2/css/select2.min.css') !!}">
-	<link rel="stylesheet" href="{!! admin_asset('assets/plugins/switchery/css/switchery.min.css') !!}">
-	<link rel="stylesheet" href="{!! admin_asset('assets/plugins/bootstrap-tag/bootstrap-tagsinput.css') !!}">
-	<link rel="stylesheet" href="{!! admin_asset('assets/plugins/bootstrap-datepicker/css/datepicker.css') !!}">
-	<link rel="stylesheet" href="{{ admin_asset('klorofil/assets/vendor/linearicons/style.css') }}">
-	<link rel="stylesheet" href="{!! admin_asset('klorofil/assets/css/main.css') !!}">
 
-	@else
-	<link rel="stylesheet" href="{{ asset('maxsol/css/backend-klorofil.css') }}">
-	@endif
-@endif
-<link rel="stylesheet" href="{{ admin_asset('assets/plugins/tinymce/skins/lightgray/skin.min.css') }}">
-<link rel="stylesheet" href="{{ admin_asset('assets/plugins/timepicker/jquery.timepicker.min.css') }}">
-<link class="main-stylesheet" href="{!! admin_asset('assets/css/style.css') !!}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('vendor/pace/pace.css') }}">
+<!-- Vendor CSS -->
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('css/bootstrap.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('fonts/icomoon.css') }}">
+<link href="{!! admin_asset('vendor/font-awesome/css/font-awesome.css') !!}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('fonts/flag-icon-css/css/flag-icon.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('css/bootstrap-extended.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('css/app.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('css/colors.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('css/core/menu/menu-types/vertical-menu.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('css/core/menu/menu-types/vertical-overlay-menu.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ admin_asset('css/core/colors/palette-gradient.css') }}">
+<!-- END Vendor CSS-->
+
+<link rel="stylesheet" href="{!! admin_asset('vendor/select2/css/select2.min.css') !!}">
+<link rel="stylesheet" href="{!! admin_asset('vendor/switchery/css/switchery.min.css') !!}">
+<link rel="stylesheet" href="{!! admin_asset('vendor/bootstrap-tag/bootstrap-tagsinput.css') !!}">
+<link rel="stylesheet" href="{!! admin_asset('vendor/bootstrap-datepicker/css/datepicker.css') !!}">
+<link rel="stylesheet" href="{{ admin_asset('vendor/tinymce/skins/lightgray/skin.min.css') }}">
+<link rel="stylesheet" href="{{ admin_asset('vendor/timepicker/jquery.timepicker.min.css') }}">
+<link class="main-stylesheet" href="{!! admin_asset('css/additional.css') !!}" rel="stylesheet" type="text/css" />
 <link rel="icon" type="image/png" href="{{ Storage::url(thumbnail(setting('admin.favicon'), 'small')) }}" />
 @stack ('style')
 @stack ('styles')

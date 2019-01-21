@@ -282,7 +282,9 @@ DATA =>
                         $oldVal = [];
                     }
                 }
-                foreach($input->data_source as $idd => $vall){
+
+                $source = isset($input->data_source->output) ? $input->data_source->output : $input->data_source;
+                foreach($source as $idd => $vall){
                     $out .= '<option value="'.$idd.'" '. (in_array($idd, $oldVal) ? 'selected' : '') .'>'.$vall.'</option>';
                 }
                 $out .='</select>';

@@ -7,7 +7,7 @@
   <div class="dropdown pull-right">
     <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span class="thumbnail-wrapper d32 circular inline m-t-5">
-      <img src="{{ (strlen(admin_data('image')) == 0) ? asset('maxsol/img/default-user.png') : (ImageService::pathExists(admin_data('image')) ? Storage::url(ImageService::getName(admin_data('image'), 'cropped')) : asset('maxsol/img/default-user.png')) }}" alt="" data-src="{{ (strlen(admin_data('image')) == 0) ? asset('maxsol/img/default-user.png') : (ImageService::pathExists(admin_data('image')) ? Storage::url(ImageService::getName(admin_data('image'), 'cropped')) : asset('maxsol/img/default-user.png')) }}" width="32" height="32">
+      <img src="{{ (strlen(admin_data('image')) == 0) ? admin_asset('img/default-user.png') : (ImageService::pathExists(admin_data('image')) ? Storage::url(ImageService::getName(admin_data('image'), 'cropped')) : admin_asset('img/default-user.png')) }}" alt="" data-src="{{ (strlen(admin_data('image')) == 0) ? admin_asset('img/default-user.png') : (ImageService::pathExists(admin_data('image')) ? Storage::url(ImageService::getName(admin_data('image'), 'cropped')) : admin_asset('img/default-user.png')) }}" width="32" height="32">
   </span>
     </button>
     <ul class="dropdown-menu profile-dropdown" role="menu">

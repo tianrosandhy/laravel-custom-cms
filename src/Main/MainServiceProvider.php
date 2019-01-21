@@ -35,7 +35,7 @@ class MainServiceProvider extends ServiceProvider
 			__DIR__.'/Config/model.php' => config_path('model.php'),
 			__DIR__.'/Config/image.php' => config_path('image.php'),
 			__DIR__.'/Config/modules.php' => config_path('modules.php'),
-			__DIR__.'/../../assets' => public_path('maxsol'),
+			__DIR__.'/../../assets' => public_path(config('cms.admin.assets', 'theme')),
 		], 'tianrosandhy-cms');
 	}
 

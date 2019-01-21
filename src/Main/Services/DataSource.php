@@ -37,7 +37,7 @@ class DataSource
 
 	public function setList($array=[]){
 		$this->output = $array;
-		return $this;
+		return $this->output;
 	}
 
 	public function output(){

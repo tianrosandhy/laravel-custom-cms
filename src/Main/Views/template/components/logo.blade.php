@@ -1,5 +1,5 @@
 <?php
-$logo_image = asset('maxsol/img/logo_maxsol.png');
+$logo_image = admin_asset('img/logo_maxsol.png');
 if(strlen(setting('admin.logo')) > 0){
 	if(Storage::exists(setting('admin.logo'))){
 		$logo_image = Storage::url(setting('admin.logo'));

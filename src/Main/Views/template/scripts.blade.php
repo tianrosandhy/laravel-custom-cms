@@ -1,63 +1,28 @@
-@if(config('cms.admin.jquery_version') == 1)
-<script src="{!! admin_asset('assets/plugins/jquery/jquery-1.11.1.min.js') !!}" type="text/javascript"></script>
-@else
-<script src="{!! admin_asset('assets/plugins/jquery/jquery-3.3.1.min.js') !!}" type="text/javascript"></script>
-<script src="{!! admin_asset('assets/plugins/jquery/jquery-migrate-3.0.0.min.js') !!}" type="text/javascript"></script>
-@endif
+<!-- BEGIN VENDOR JS-->
+<script src="{{ admin_asset('vendor/pace/pace.min.js') }}" type="text/javascript"></script>
 
-@if(setting('admin.theme') != 'klorofil')
-	@if(!config('cms.admin.minified'))
-	<!-- BEGIN VENDOR JS -->
-	<script src="{!! admin_asset('assets/plugins/feather-icons/feather.min.js') !!}" type="text/javascript"></script>
-	    <!-- BEGIN VENDOR JS -->
-	<script src="{!! admin_asset('assets/plugins/pace/pace.min.js') !!}" type="text/javascript"></script>
-	<script src="{!! admin_asset('assets/js/jquery-debounce.js') !!}" type="text/javascript"></script>
-	<script src="{!! admin_asset('assets/plugins/modernizr.custom.js') !!}" type="text/javascript"></script>
-	<script src="{!! admin_asset('assets/plugins/jquery-ui/jquery-ui.min.js') !!}" type="text/javascript"></script>
-	<script src="{!! admin_asset('assets/plugins/bootstrapv3/js/bootstrap.min.js') !!}" type="text/javascript"></script>
-	<script src="{!! admin_asset('assets/plugins/jquery/jquery-easy.js') !!}" type="text/javascript"></script>
-	<script src="{!! admin_asset('assets/plugins/jquery-unveil/jquery.unveil.min.js') !!}" type="text/javascript"></script>
-	<script src="{!! admin_asset('assets/plugins/select2/js/select2.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/jquery-bez/jquery.bez.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/jquery-ios-list/jquery.ioslist.min.js') !!}" type="text/javascript"></script>
-	<script src="{!! admin_asset('assets/plugins/switchery/js/switchery.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/imagesloaded/imagesloaded.pkgd.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/jquery-actual/jquery.actual.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/sweetalert/sweetalert.min.js') !!}"></script>
-	<!-- END VENDOR JS -->
-	<!-- BEGIN CORE TEMPLATE JS -->
-	<script src="{!! admin_asset('pages/js/pages.js') !!}" type="text/javascript"></script>
-	<!-- END CORE TEMPLATE JS -->
-	<!-- BEGIN PAGE LEVEL JS -->
-	<script src="{!! admin_asset('assets/js/scripts.js') !!}" type="text/javascript"></script>
-	<!-- END PAGE LEVEL JS -->
-	@else
-	<script src="{{ asset('maxsol/js/backend.js') }}"></script>
-	@endif
-@else
-	@if(!config('cms.admin.minified'))
-	<script src="{!! admin_asset('assets/plugins/pace/pace.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/js/jquery-debounce.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/modernizr.custom.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/bootstrapv3/js/bootstrap.min.js') !!}"></script>
-	<script src="{!! admin_asset('klorofil/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js') !!}"></script>
-	<script src="{!! admin_asset('klorofil/assets/scripts/klorofil-common.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/sweetalert/sweetalert.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/select2/js/select2.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/switchery/js/switchery.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/bootstrap-tag/bootstrap-tagsinput.min.js') !!}"></script>
-	<script src="{!! admin_asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}"></script>
+<script src="{{ admin_asset('js/core/libraries/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ admin_asset('js/tether.min.js') }}" type="text/javascript"></script>
+<script src="{{ admin_asset('js/core/libraries/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ admin_asset('js/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ admin_asset('js/unison.min.js') }}" type="text/javascript"></script>
+<script src="{{ admin_asset('js/core/app.js') }}" type="text/javascript"></script>
+<script src="{{ admin_asset('js/core/app-menu.js') }}" type="text/javascript"></script>
 
-	@else
-	<script src="{{ asset('maxsol/js/backend-klorofil.js') }}"></script>
-	@endif
-@endif
-<script src="{{ admin_asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
-<script src="{{ admin_asset('assets/plugins/tinymce/jquery.tinymce.min.js') }}"></script>
-<script src="{{ admin_asset('assets/plugins/timepicker/jquery.timepicker.min.js') }}"></script>
-<script src="{{ admin_asset('assets/plugins/tinymce/themes/modern/theme.min.js') }}"></script>
-<script src="{{ admin_asset('assets/js/additional.js') }}"></script>
+
+<script src="{!! admin_asset('js/jquery-debounce.js') !!}" type="text/javascript"></script>
+<script src="{!! admin_asset('js/modernizr.custom.js') !!}" type="text/javascript"></script>
+<script src="{!! admin_asset('vendor/select2/js/select2.min.js') !!}"></script>
+<script src="{!! admin_asset('vendor/switchery/js/switchery.min.js') !!}"></script>
+<script src="{!! admin_asset('vendor/sweetalert/sweetalert.min.js') !!}"></script>
+<script src="{!! admin_asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}"></script>
+<script src="{!! admin_asset('vendor/bootstrap-tag/bootstrap-tagsinput.min.js') !!}"></script>
+
+<script src="{{ admin_asset('vendor/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ admin_asset('vendor/tinymce/jquery.tinymce.min.js') }}"></script>
+<script src="{{ admin_asset('vendor/timepicker/jquery.timepicker.min.js') }}"></script>
+<script src="{{ admin_asset('vendor/tinymce/themes/modern/theme.min.js') }}"></script>
+<script src="{{ admin_asset('js/additional.js') }}"></script>
 
 <script>
 	var CSRF_TOKEN = '{{ csrf_token() }}';

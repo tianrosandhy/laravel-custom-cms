@@ -21,9 +21,14 @@
 						@if($row->data_source == 'text')
 						<input type="text" name="datatable_filter[{{ $rfield }}]" id="datatable-search-{{ $rfield }}" placeholder="Search {{ $row->name }}" class="form-control {{ $row->input_type == 'date' ? 'datepicker' : '' }}">
 						@else
+							@if(isset($row->data_source->output))
+								<?php $source = $row->data_source->output; ?>
+							@else
+								<?php $source = $row->data_source; ?>
+							@endif
 						<select name="datatable_filter[{{ $rfield }}]" id="datatable-search-{{ $rfield }}" class="form-control">
 							<option value="">Search {{ $row->name }}</option>
-							@foreach($row->data_source as $ids => $datas)
+							@foreach($source as $ids => $datas)
 							<option value="{{ $ids }}">{{ $datas }}</option>
 							@endforeach
 						</select>
