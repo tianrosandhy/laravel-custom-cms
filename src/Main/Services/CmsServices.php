@@ -265,7 +265,8 @@ DATA =>
                 $out = '<select '.$attr.'>';
                 //ambil nilai dari data source
                 $out .= '<option value=""></option>';
-                foreach($input->data_source as $idd => $vall){
+                $source = isset($input->data_source->output) ? $input->data_source->output : $input->data_source;
+                foreach($source as $idd => $vall){
                     $out .= '<option value="'.$idd.'" '. ($oldVal == $idd ? 'selected' : '') .'>'.$vall.'</option>';
                 }
                 $out .='</select>';
