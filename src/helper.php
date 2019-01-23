@@ -32,7 +32,11 @@ function fe_asset_mix($path){
 }
 
 function admin_url($url=''){
-	return url(admin_prefix() . '/'. $url);
+	$prefix = admin_prefix();
+	if(strlen($prefix) <= 1){
+		return url($url);
+	}
+	return url($prefix . '/'. $url);
 }
 
 function admin_prefix($path=''){
