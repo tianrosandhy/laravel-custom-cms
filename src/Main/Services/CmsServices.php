@@ -24,8 +24,7 @@ class CmsServices
                 unset($data[$prm]);
             }
         }
-        if(config('logging.default') == 'custom'){
-            //store via laravel file log
+
             \Log::info('
 URL => '.url()->current().'
 LABEL => '.$label.'
@@ -35,16 +34,6 @@ DATA =>
 
 =====
 ');
-        }
-        else{
-            //store log data via database
-            $db = new Log();
-            $db->url = url()->current();
-            $db->label = $label;
-            $db->user_id = isset(\Auth::user()->id) ? \Auth::user()->id : null;
-            $db->data = json_encode($data);
-            $db->save();
-        }
 
     }
 

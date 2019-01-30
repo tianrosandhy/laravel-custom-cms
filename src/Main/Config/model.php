@@ -5,7 +5,6 @@
 return [
 	'user' => 'Module\Main\Models\User',
 	'role' => 'Module\Main\Models\Role',
-	'log' => 'Module\Main\Models\Log',
 
 	'setting_structure' => 'Module\Main\Models\SettingStructure',
 	'setting' => 'Module\Main\Models\Setting',
