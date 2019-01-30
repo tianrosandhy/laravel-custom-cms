@@ -47,7 +47,7 @@ class AdminBaseController extends Controller
 
 	public function languageData(){
 		//grab data bahasa langsung dari config aja sekalian skrg
-		return config('module-setting.blank.lang_data');
+		return config('module-setting.'.$this->hint.'.lang_data');
 	}
 
 
