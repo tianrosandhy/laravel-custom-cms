@@ -39,46 +39,44 @@
 <h3>Settings</h3>
 
 @if(has_access('admin.setting.update'))
-<div class="panel">
-	<div class="panel-body">
+<div class="card">
+	<div class="card-block">
 
 		<form action="{{ url()->route('admin.setting.update') }}" method="post">
 			{{ csrf_field() }}
-			<div class="panel panel-default">
-				<ul class="nav nav-tabs nav-tabs-fillup d-none d-md-flex d-lg-flex d-xl-flex" data-init-reponsive-tabs="dropdownfx">
-					@foreach($settings as $group => $data)
-					<li class="nav-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-						<a href="#" class="{{ $loop->iteration == 1 ? 'active' : '' }}" data-toggle="tab" data-target="#slide-{{ $group }}"><span>{{ $group }}</span></a>
-					</li>
-					@endforeach
-				</ul>
+			<ul class="nav nav-tabs nav-tabs-fillup d-none d-md-flex d-lg-flex d-xl-flex" role="tablist">
+				@foreach($settings as $group => $data)
+				<li class="nav-item">
+					<a href="#" class="nav-link {{ $loop->iteration == 1 ? 'active' : '' }}" data-toggle="tab" data-target="#slide-{{ $group }}"><span>{{ strtoupper($group) }}</span></a>
+				</li>
+				@endforeach
+			</ul>
 
 
-				<div class="tab-content">
-					@foreach($settings as $group => $data)
-					<div class="tab-pane slide-left {{ $loop->iteration == 1 ? 'active' : '' }}" id="slide-{{ $group }}">
-						@foreach($data as $row)
-						<div class="form-group pos-rel close-target">
-							@if(has_access('admin.setting.delete'))
-							<span class="btn btn-danger close-btn delete-button" data-id="{{ $row->id }}" data-target="{{ url()->route('admin.setting.delete', ['id' => $row->id]) }}">&times;</span>
-							@endif
-							<label>{{ ucwords($row->name) }} - <small><mark>setting('{{ $row->group }}.{{ $row->param }}')</mark></small></label>
-							@if($row->type == 'text')
-							<input type="text" name="value[{{ $row->id }}]" value="{{ $row->default_value }}" class="form-control">
-							@elseif($row->type == 'textarea')
-							<textarea name="value[{{ $row->id }}]" class="form-control">{!! $row->default_value !!}</textarea>
-							@elseif($row->type == 'image')
-								@include ('main::inc.dropzone', [
-									'name' => 'value['.$row->id.']',
-									'value' => $row->default_value,
-									'horizontal' => true
-								])
-							@endif
-						</div>
-						@endforeach
+			<div class="tab-content">
+				@foreach($settings as $group => $data)
+				<div class="tab-pane slide-left {{ $loop->iteration == 1 ? 'show active' : '' }}" id="slide-{{ $group }}">
+					@foreach($data as $row)
+					<div class="form-group pos-rel close-target mt-2">
+						@if(has_access('admin.setting.delete'))
+						<span class="btn btn-danger close-btn delete-button" data-id="{{ $row->id }}" data-target="{{ url()->route('admin.setting.delete', ['id' => $row->id]) }}">&times;</span>
+						@endif
+						<label>{{ ucwords($row->name) }} - <small><mark>setting('{{ $row->group }}.{{ $row->param }}')</mark></small></label>
+						@if($row->type == 'text')
+						<input type="text" name="value[{{ $row->id }}]" value="{{ $row->default_value }}" class="form-control">
+						@elseif($row->type == 'textarea')
+						<textarea name="value[{{ $row->id }}]" class="form-control">{!! $row->default_value !!}</textarea>
+						@elseif($row->type == 'image')
+							@include ('main::inc.dropzone', [
+								'name' => 'value['.$row->id.']',
+								'value' => $row->default_value,
+								'horizontal' => true
+							])
+						@endif
 					</div>
 					@endforeach
 				</div>
+				@endforeach
 			</div>
 
 			<div>
