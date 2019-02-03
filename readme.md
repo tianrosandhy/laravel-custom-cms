@@ -1,10 +1,10 @@
-# CMS Maxsol
+# Tianrosandhy Custom CMS
 
-CMS Maxsol is Laravel admin panel content management system created for website.
+Tianrosandhy Custom CMS is Laravel admin panel content management system created for website.
 
 ### Requirement
 - PHP 7.1.3
-- At least 100MB disk space (better 200MB+ if you need to install node packages)
+- At least 200MB disk space (better 200MB+ if you need to install node packages)
 
 ----
 
@@ -31,16 +31,16 @@ Dont forget to create the blank database if you want to initialize from blank CM
 
 ##### 2. Install CMS Maxsol
 ```sh
-composer require tianrosandhy/cms:dev-master
+composer require tianrosandhy/cms
 ```
 
 
 ##### 3. Manage permission in some directory
-By default, laravel will need proper permission (owner) in directory "storage", and "bootstrap".
+By default, laravel will need proper read and write permission (owner) in directory "storage", and "bootstrap". 
 
 
 ##### 4. Register New Autoload PSR4 Namespace
-All new self-created modules will be placed in modules directory. Register it namespace first.
+All new self-created modules will be placed in modules directory. Register it namespace first. Make sure your autoload psr-4 config in composer.json will be like below.
 ```json
 ...
     "autoload": {
