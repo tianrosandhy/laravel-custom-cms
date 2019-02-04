@@ -30,7 +30,7 @@ trait Resizeable
 		$data = $this->getThumbnails($field, $thumb);
 		$out = [];
 		if(!$data){
-			$out[$key] = admin_asset('img/broken-image.jpg');
+			$out[$thumb] = admin_asset('img/broken-image.jpg');
 			return $out;
 		}
 		foreach($data as $key => $row){
