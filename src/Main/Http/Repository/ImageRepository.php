@@ -71,7 +71,7 @@ class ImageRepository
 		//save file asli
         Storage::put($finalpath, (string)$image);
         //save thumbnail
-        self::generateThumbnail($file, $finalpath);
+        self::generateThumbnail($file, $path.$filename);
 
         return $finalpath;
 	}
