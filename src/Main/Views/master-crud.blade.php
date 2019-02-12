@@ -54,6 +54,10 @@ if(!isset($multi_language)){
 				@endforeach
 			</div>
 
+			@if(isset($additional_field))
+			{!! $additional_field !!}
+			@endif
+
 			<div class="padd">
 				<button class="btn btn-primary">Save</button>
 			</div>

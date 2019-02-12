@@ -17,16 +17,23 @@ trait BasicCrud
 		));
 	}
 
+	public function additionalField($data=null){
+		//return html additional form data
+		return '';
+	}
+
 	public function create(){
 		$title = self::usedLang('create.title');
 		$forms = $this->skeleton;
 		$back = 'admin.'.$this->hint().'.index'; //back url
 		$multi_language = isset($this->multi_language) ? $this->multi_language : false;
+		$additional_field = $this->additionalField();
 		return view('main::master-crud', compact(
 			'title',
 			'forms',
 			'back',
-			'multi_language'
+			'multi_language',
+			'additional_field'
 		));
 	}
 
@@ -61,13 +68,15 @@ trait BasicCrud
 
 		$data = $this->repo->show($id);
 		$multi_language = isset($this->multi_language) ? $this->multi_language : false;
+		$additional_field = $this->additionalField($data);
 
 		return view('main::master-crud', compact(
 			'title',
 			'forms',
 			'back',
 			'data',
-			'multi_language'
+			'multi_language',
+			'additional_field'
 		));
 	}
 
