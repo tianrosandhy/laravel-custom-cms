@@ -16,6 +16,7 @@
           <li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5">         </i></a></li>
         </ul>
         <ul class="nav navbar-nav float-xs-right">
+          @if(config('cms.lang'))
           <li class="dropdown dropdown-language nav-item"><a id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link">
             @if(current_lang() == 'en')
             <i class="flag-icon flag-icon-gb"></i>
@@ -27,6 +28,7 @@
               <a href="#" data-lang="en" class="dropdown-item btn-lang-switcher reload"><i class="flag-icon flag-icon-gb"></i> English</a>
               <a href="#" data-lang="id" class="dropdown-item btn-lang-switcher reload "><i class="flag-icon flag-icon-id"></i> Indonesian</a>
           </li>
+          @endif
 
 
           @if(config('cms.admin.components.userinfo'))
