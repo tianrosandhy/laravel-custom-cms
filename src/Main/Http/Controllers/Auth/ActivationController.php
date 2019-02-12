@@ -37,7 +37,7 @@ class ActivationController extends Controller
 
     		//send email notif ke admin
     		$mail = new MainMail();
-    		$mail->setSubject('New admin register in admin panel '. config('cms.site_title'));
+    		$mail->setSubject('New admin register in admin panel '. setting('cms.site_title'));
     		$mail->setTitle('New User Registration Notification');
     		$mail->setContent('Hi admin, we just need to inform you that we just have a new admin registered to our site. Please manage the user priviledge before the user can sign in too. If you dont want this user to be registered, feel free to just delete that account.');
     		$mail->setReason('You receive this email because you are the admin of this site');
@@ -72,7 +72,7 @@ class ActivationController extends Controller
 
 
         $mail = new MainMail();
-        $mail->setSubject('Validation Request for ' . config('cms.site_title'));
+        $mail->setSubject('Validation Request for ' . setting('site.title'));
         $mail->setTitle('User Registration confirmation');
         $mail->setContent('Hi, '.$data->name.'. We just receive registration request for this email account. Please click the activation link below to activate your account now.');
         $mail->addButton([

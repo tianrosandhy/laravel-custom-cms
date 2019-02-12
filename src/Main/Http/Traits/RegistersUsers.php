@@ -48,7 +48,7 @@ trait RegistersUsers
 
     protected function sendActivationMail($instance){
         $mail = new MainMail();
-        $mail->setSubject('Validation Request for ' . config('cms.site_title'));
+        $mail->setSubject('Validation Request for ' . setting('site.title'));
         $mail->setTitle('User Registration confirmation');
         $mail->setContent('Hi, '.$instance->name.'. We just receive registration request for this email account. Please click the activation link below to activate your account now.');
         $mail->addButton([
