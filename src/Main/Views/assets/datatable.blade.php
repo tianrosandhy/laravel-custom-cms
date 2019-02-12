@@ -53,10 +53,10 @@ $(function(){
 	}, 500);
 
 
-	$(document).on('keyup change', 'th[data-searchable] input', $.debounce(300, function(){
+	$(document).on('keyup change', '.searchable input', $.debounce(300, function(){
 		tb_data.ajax.reload();
 	}));
-	$(document).on('change', 'th[data-searchable] select', function(){
+	$(document).on('change', '.searchable select', function(){
 		tb_data.ajax.reload();
 	});	
 

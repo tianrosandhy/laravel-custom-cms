@@ -108,11 +108,55 @@ textarea{
 table.dataTable thead tr th{
 	position:relative;
 }
-table.dataTable thead .sorting::after, table.dataTable thead .sorting_asc::after, table.dataTable thead .sorting_desc::after{
+table.dataTable thead .sorting::before, table.dataTable thead .sorting_asc::before, table.dataTable thead .sorting_desc::before{
 	display:block;
 	position:absolute;
 	top:14px;
 	right:0;
+}
+
+
+table.table th{
+	text-transform:uppercase;
+	font-size:.9rem;
+	padding-left:.5em;
+}
+table.table td{
+	padding:.1em .5em;
+}
+
+/*table datatable sorting class*/
+table.table th.sorting, table.table th.sorting_asc, table.table th.sorting_desc{
+	padding-left:1.5em;
+}
+
+table.table th:first-child{
+	padding-left:.5em!important;
+}
+table.table th:first-child:before{
+	display:none!important;
+}
+table.table th.sorting::before, table.table th.sorting_asc::before, table.table th.sorting_desc::before{
+	position:absolute;
+	left:.5em;
+	top:38%;
+
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+table.table th.sorting::before{
+	content:"\f0dc";
+}
+table.table th.sorting_asc::before{
+	content : "\f0de";
+}
+table.table th.sorting_desc::before{
+	content : "\f0dd";
 }
 
 
@@ -236,3 +280,28 @@ table th{
 }
 
 .batchbox{display:none;}
+
+.custom-form-group.searchable{
+	margin-top:.5em;
+	margin-bottom:1em;
+	background:#fff;
+	padding:0;
+	border-radius:5px;
+	border:1px solid #ddd;
+}
+.custom-form-group.searchable label{
+	margin:0;
+	padding:0 1em;
+	font-size:.75rem;
+	line-height:.5em;
+	font-weight:bold;
+}
+
+.custom-form-group.searchable input, .custom-form-group.searchable select{
+	border:none;
+}
+
+#checker_all_datatable{
+	position:relative;
+	z-index:2;
+}

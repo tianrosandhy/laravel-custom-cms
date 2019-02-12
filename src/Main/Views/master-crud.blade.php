@@ -9,7 +9,7 @@ if(!isset($multi_language)){
 
 <h3>{{ $title }}</h3>
 <div class="padd">
-	<a href="{{ url()->route($back) }}" class="btn btn-sm btn-default">&laquo; Back</a>
+	<a href="{{ url()->route($back) }}" class="btn btn-sm btn-default btn-secondary">&laquo; Back</a>
 </div>
 
 @include ('main::inc.lang-switcher', [
@@ -20,7 +20,7 @@ if(!isset($multi_language)){
 <form action="" method="post">
 	{{ csrf_field() }}
 	<div class="panel panel-default">
-		<div class="panel-body ov">
+		<div class="panel-body">
 
 			<div class="row">
 				<?php $width = 0; ?>

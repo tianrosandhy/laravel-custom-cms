@@ -1,20 +1,12 @@
-<table class="table data-table">
-	<thead>
-		<tr>
-			@foreach($structure as $row)
-				@if($row->hide_table == false)
-					<th data-field="{{ $row->field }}" data-orderable="{{ $row->orderable }}"  id="datatable-{{ $row->field }}">{!! $row->name !!}</th>
-				@endif
-			@endforeach
-			<th>Action</th>
-		</tr>
-	</thead>
-	<thead>
-		<tr>
-			@foreach($structure as $row)
-				@if($row->hide_table == false)
-				<th data-searchable="{{ $row->searchable }}">
-					@if($row->searchable)
+<div class="container-fluid">
+	<div class="row">
+	@foreach($structure as $row)
+		@if($row->hide_table == false)
+			@if($row->searchable)
+			<div class="col-sm-4">
+				<div class="form-group custom-form-group searchable">
+					<label class="text-uppercase">Search {{ $row->name }}</label>
+					<div>
 						<?php
 						$rfield = str_replace('[]', '', $row->field);
 						?>
@@ -33,11 +25,25 @@
 							@endforeach
 						</select>
 						@endif
-					@endif
-				</th>
+					</div>
+				</div>
+			</div>
+			@endif
+		@endif
+	@endforeach
+	</div>
+</div>
+
+
+<table class="table data-table">
+	<thead>
+		<tr>
+			@foreach($structure as $row)
+				@if($row->hide_table == false)
+					<th data-field="{{ $row->field }}" data-orderable="{{ $row->orderable }}"  id="datatable-{{ $row->field }}">{!! $row->name !!}</th>
 				@endif
 			@endforeach
-			<th></th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
