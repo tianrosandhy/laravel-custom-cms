@@ -22,6 +22,15 @@ trait BasicCrud
 		return '';
 	}
 
+	protected function modelTableListing(){
+		$model = $this->repo->model;
+        return $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
+	}
+
+	protected function setMode($mode='view'){
+		$this->mode = $mode;
+	}
+
 	public function create(){
 		$title = self::usedLang('create.title');
 		$forms = $this->skeleton;
@@ -38,6 +47,7 @@ trait BasicCrud
 	}
 
 	public function store(){
+		$this->setMode('store');
 		$this->skeleton->formValidation($this->multi_language, 'create');
 
 		//multiple values / relational type input is not processed here
@@ -57,6 +67,15 @@ trait BasicCrud
 	//store process dipisah biar bisa dioverwrite
 	public function storeQuery(){
 		$inputData = self::getUsedField();
+
+		//masing-masing input data difilter, apakah nama fieldnya exists atau tidak
+		$listingColumn = $this->modelTableListing();
+		foreach($inputData as $fld => $value){
+			if(!in_array($fld, $listingColumn)){
+				unset($inputData[$fld]);
+			}
+		}
+
 		$instance = $this->repo->insert($inputData);
 		return $instance;
 	}
@@ -81,6 +100,7 @@ trait BasicCrud
 	}
 
 	public function update($id=0){
+		$this->setMode('update');
 		$this->skeleton->formValidation($this->multi_language, 'update', $id);
 		$show = $this->repo->show($id);
 		if(empty($show)){
@@ -105,6 +125,15 @@ trait BasicCrud
 	//update process dipisah biar bisa dioverwrite
 	public function updateQuery($id){
 		$inputData = self::getUsedField();
+
+		//masing-masing input data difilter, apakah nama fieldnya exists atau tidak
+		$listingColumn = $this->modelTableListing();
+		foreach($inputData as $fld => $value){
+			if(!in_array($fld, $listingColumn)){
+				unset($inputData[$fld]);
+			}
+		}
+		
 		$instance = $this->repo->update($id, $inputData);
 		return $instance;
 	}
