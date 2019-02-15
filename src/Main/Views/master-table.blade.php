@@ -27,11 +27,7 @@
 
 
 
-<div class="panel">
-	<div class="panel-body ov">
-		{!! $datatable->view() !!}
-	</div>
-</div>
+{!! $datatable->view() !!}
 
 
 @stop

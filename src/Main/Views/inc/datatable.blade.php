@@ -1,5 +1,8 @@
 <div class="container-fluid">
 	<div class="row">
+	<?php
+	$lp = 0;
+	?>
 	@foreach($structure as $row)
 		@if($row->hide_table == false)
 			@if($row->searchable)
@@ -28,25 +31,32 @@
 					</div>
 				</div>
 			</div>
+			<?php
+			$lp++;
+			if($lp % 3 == 0){
+				echo '</div><div class="row">';
+			}
+			?>
 			@endif
 		@endif
 	@endforeach
 	</div>
 </div>
 
-
-<table class="table data-table">
-	<thead>
-		<tr>
-			@foreach($structure as $row)
-				@if($row->hide_table == false)
-					<th data-field="{{ $row->field }}" data-orderable="{{ $row->orderable }}"  id="datatable-{{ $row->field }}">{!! $row->name !!}</th>
-				@endif
-			@endforeach
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		
-	</tbody>
-</table>
+<div class="card card-block ov">
+	<table class="table data-table">
+		<thead>
+			<tr>
+				@foreach($structure as $row)
+					@if($row->hide_table == false)
+						<th data-field="{{ $row->field }}" data-orderable="{{ $row->orderable }}"  id="datatable-{{ $row->field }}">{!! $row->name !!}</th>
+					@endif
+				@endforeach
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>	
+</div>

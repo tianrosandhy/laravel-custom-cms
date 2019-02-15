@@ -305,3 +305,7 @@ table th{
 	position:relative;
 	z-index:2;
 }
+
+.datepicker{
+	padding:.5rem .75rem;
+}
