@@ -8,7 +8,7 @@
 <script src="{{ admin_asset('js/unison.min.js') }}" type="text/javascript"></script>
 <script src="{{ admin_asset('js/core/app.js') }}" type="text/javascript"></script>
 <script src="{{ admin_asset('js/core/app-menu.js') }}" type="text/javascript"></script>
-
+<script src="{{ admin_asset('js/jquery.mask.min.js') }}"></script>
 
 <script src="{!! admin_asset('js/jquery-debounce.js') !!}" type="text/javascript"></script>
 <script src="{!! admin_asset('js/modernizr.custom.js') !!}" type="text/javascript"></script>

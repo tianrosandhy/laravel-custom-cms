@@ -14,7 +14,18 @@
 						$rfield = str_replace('[]', '', $row->field);
 						?>
 						@if($row->data_source == 'text')
-						<input type="text" name="datatable_filter[{{ $rfield }}]" id="datatable-search-{{ $rfield }}" placeholder="Search {{ $row->name }}" class="form-control {{ $row->input_type == 'date' ? 'datepicker' : '' }}">
+						<input type="text" name="datatable_filter[{{ $rfield }}]" id="datatable-search-{{ $rfield }}" placeholder="Search {{ $row->name }}" class="form-control {{ $row->input_type == 'date' ? 'datepicker' : '' }}" <?php 
+							//manage data-mask if available
+							if($row->input_type == 'date'){
+								echo 'data-mask="0000-00-00"';
+							}
+							if($row->input_type == 'time'){
+								echo 'data-mask="00:00"';
+							}
+							if($row->input_type == 'tel'){
+								echo 'data-mask="00000000000000"';
+							}
+						 ?>>
 						@else
 							@if(isset($row->data_source->output))
 								<?php $source = $row->data_source->output; ?>

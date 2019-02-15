@@ -38,28 +38,28 @@ DATA =>
     }
 
     public function navigation(){
-    	$navigation = config('cms.admin.menu');
+        $navigation = config('cms.admin.menu');
         $navigation = collect($navigation);
 
         //sorting menu sesuai index sort
         $navigation = $navigation->sortBy('sort')->toArray();
 
-    	$out = [];
+        $out = [];
 
-    	//generate array data
-    	foreach($navigation as $group => $data){
-			//pemilihan URL
-			$url = self::manageUrl($data);
-			if(!$url){
-				//artinya ga punya akses
-				continue;
-			}
+        //generate array data
+        foreach($navigation as $group => $data){
+            //pemilihan URL
+            $url = self::manageUrl($data);
+            if(!$url){
+                //artinya ga punya akses
+                continue;
+            }
 
-    		$out[$group] = [
-    			'url' => $url['url'],
-    			'active' => $url['active'],
-    			'icon' => isset($data['icon']) ? $data['icon'] : ''
-    		];
+            $out[$group] = [
+                'url' => $url['url'],
+                'active' => $url['active'],
+                'icon' => isset($data['icon']) ? $data['icon'] : ''
+            ];
 
             if(isset($data['submenu'])){
                 $out[$group]['submenu'] = [];
@@ -93,52 +93,52 @@ DATA =>
                     
                 }
             }
-    	}
+        }
 
 
-    	//buang group yg submenunya kosong
-    	foreach($out as $group => $data){
-    		if(isset($data['submenu']) && $data['submenu'] == []){
-    			unset($out[$group]);
-    		}
-    	}
+        //buang group yg submenunya kosong
+        foreach($out as $group => $data){
+            if(isset($data['submenu']) && $data['submenu'] == []){
+                unset($out[$group]);
+            }
+        }
 
-    	return $out;
+        return $out;
     }
 
     protected function manageUrl($data){
-		$url = '#';
+        $url = '#';
         $active = false;
 
-		if(isset($data['url'])){
-			if(strlen($data['url']) > 0){
-				if($data['url'] <> '#'){
-					$url = admin_url($data['url']);
-				}
-				else{
-					$url = '#';
-				}
-			}
-			else{
-				$url = admin_url();
-			}
+        if(isset($data['url'])){
+            if(strlen($data['url']) > 0){
+                if($data['url'] <> '#'){
+                    $url = admin_url($data['url']);
+                }
+                else{
+                    $url = '#';
+                }
+            }
+            else{
+                $url = admin_url();
+            }
 
             if($url == url()->current()){
                 $active = true;
             }
-		}
-		if(isset($data['route'])){
+        }
+        if(isset($data['route'])){
             $current_route_name = \Request::route()->getName();
 
-			if(\Route::has($data['route'])){
-				//tapi kalo user ga punya akses ke route ini, skip aja
-				if(has_access($data['route'])){
-					$url = url()->route($data['route']);
-				}
-				else{
-					return false;
-				}
-			}
+            if(\Route::has($data['route'])){
+                //tapi kalo user ga punya akses ke route ini, skip aja
+                if(has_access($data['route'])){
+                    $url = url()->route($data['route']);
+                }
+                else{
+                    return false;
+                }
+            }
 
             //buang nama route terakhir
             $trim = explode('.', $data['route']);
@@ -147,9 +147,9 @@ DATA =>
             if(strpos($current_route_name, $trimmed) !== false){
                 $active = true;
             }
-		}
+        }
 
-		return [
+        return [
             'url' => $url,
             'active' => $active
         ];
@@ -231,7 +231,7 @@ DATA =>
             $lang = config('cms.lang.default');
         }
 
-        if(in_array($input->input_type, ['text', 'email', 'number', 'tel'])){
+        if(in_array($input->input_type, ['text', 'email', 'number'])){
             $out = '<input type="'.$input->input_type.'" '.$attr.' value="'.$oldVal.'">';
         }
         else{
@@ -240,6 +240,9 @@ DATA =>
             }
             if($input->input_type == "tags"){
                 $out = '<input type="text" '.$attr.' data-role="tagsinput" value="'.$oldVal.'">';
+            }
+            if($input->input_type == 'tel'){
+                $out = '<input type="'.$input->input_type.'" '.$attr.' data-mask="00000000000000" value="'.$oldVal.'">';
             }
             if($input->input_type == 'password'){
                 $out = '<input type="'.$input->input_type.'" '.$attr.'>';
@@ -329,11 +332,11 @@ DATA =>
             }
 
             if($input->input_type == 'date'){
-                $out = '<input type="text" value="'.(strlen($oldVal) > 0 ? date('Y-m-d', strtotime($oldVal)) : '') .'" '.$attr.' data-datepicker>';
+                $out = '<input type="text" data-mask="0000-00-00" value="'.(strlen($oldVal) > 0 ? date('Y-m-d', strtotime($oldVal)) : '') .'" '.$attr.' data-datepicker>';
             }
 
             if($input->input_type == 'time'){
-                $out = '<input type="text" value="'.(strlen($oldVal) > 0 ? date('H:i', strtotime($oldVal)) : '') .'" '.$attr.' data-timepicker>';
+                $out = '<input type="text" data-mask="00:00" value="'.(strlen($oldVal) > 0 ? date('H:i', strtotime($oldVal)) : '') .'" '.$attr.' data-timepicker>';
             }
         }
 
