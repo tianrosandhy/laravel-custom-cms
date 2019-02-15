@@ -39,6 +39,10 @@ function admin_url($url=''){
 	return url($prefix . '/'. $url);
 }
 
+function storage_url($path=''){
+	return url(config('cms.storage_path', 'storage')) . (strlen($path) > 0 ? '/' . $path : '');
+}
+
 function admin_prefix($path=''){
 	return config('cms.admin.prefix', 'p4n3lb04rd') . (strlen($path) > 0 ? '/' . $path : '');
 }
