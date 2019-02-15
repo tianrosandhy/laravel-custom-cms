@@ -128,9 +128,9 @@ class UserManagementController extends AdminBaseController
 
 	protected function sendUserInfoMail($instance){
 		$mail = new MainMail();
-		$mail->setSubject('Your registration to '. config('cms.site_title').' admin panel has been approved.');
+		$mail->setSubject('Your registration to '. setting('site.title').' admin panel has been approved.');
 		$mail->setTitle('Registration Acceptance Information');
-		$mail->setContent('Hi, '. $instance->name .', your registration to admin panel of '. config('cms.site_title') .' has been approved by admin. Now you can login with the given priviledge. Click the button below if you want to go now.');
+		$mail->setContent('Hi, '. $instance->name .', your registration to admin panel of '. setting('site.title') .' has been approved by admin. Now you can login with the given priviledge. Click the button below if you want to go now.');
 		$mail->addButton([
 			'label' => 'Login to Admin Panel',
 			'url' => admin_url('')

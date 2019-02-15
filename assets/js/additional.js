@@ -1,10 +1,11 @@
+var removedDiv;
 $(function(){
 	$("body").on("click", ".delete-button", function(e){
 		e.preventDefault();
 		delete_url = $(this).attr('href');
 		delete_url = delete_url || $(this).attr('data-target');
-		target = $(this).closest('.close-target');
-		deletePrompt(delete_url, target);
+		removedDiv = $(this).closest('.close-target');
+		deletePrompt(delete_url);
 	});
 
 	//menu shown for pages
@@ -167,7 +168,7 @@ function loadTinyMce(){
 function error_handling(resp){
 	if(resp.errors){
 		$.each(resp.errors, function(k, v){
-			swal('Error', v[0], 'error');
+			swal('error', [v[0]]);
 		});
 	}
 
@@ -176,31 +177,21 @@ function error_handling(resp){
 	}
 
 	if(resp.type && resp.message){
-		swal('Error', resp.message, 'error');
+		swal('error', [resp.message]);
 	}
 	else{
-		swal('Server Error', 'Sorry, we cannot process your last request', 'error');
+		swal('error', ['Sorry, we cannot process your last request']);
 	}
 }
 
 
 
-function deletePrompt(url, removedDiv){
-	swal({
-	  title: "Are you sure?",
-	  text: "Once deleted, you will not be able to recover the data.",
-	  icon: "warning",
-	  buttons: true,
-	  dangerMode: true,
-	})
-	.then((willDelete) => {
-	  if (willDelete) {
-	  	ajaxUrlProcess(url, removedDiv);
-	  }
-	});
+function deletePrompt(url){
+	output = '<p>Are you sure? Once deleted, you will not be able to recover the data</p><button class="btn btn-primary" data-dismiss="modal">Cancel</button> <button class="btn btn-danger" onclick="ajaxUrlProcess(\''+url+'\')">Yes, Delete</button>';
+	swal('Delete Confirmation', [output]);
 }
 
-function ajaxUrlProcess(url, removedDiv, ajax_type){
+function ajaxUrlProcess(url, ajax_type){
 	ajax_type = ajax_type || 'POST';
 
 	$.ajax({
@@ -212,7 +203,7 @@ function ajaxUrlProcess(url, removedDiv, ajax_type){
 		},
 		success : function(resp){
 			if(resp.type == 'success'){
-				swal('Success', resp.message, 'success');
+				swal('success', [resp.message]);
 				if(removedDiv != undefined){
 					removedDiv.fadeOut(300);
 					setTimeout(function(){
@@ -224,7 +215,7 @@ function ajaxUrlProcess(url, removedDiv, ajax_type){
 				}
 			}
 			else if(resp.type == 'error'){
-				swal('Error', resp.message, 'error');
+				swal('error', [resp.message]);
 			}
 		},
 		error : function(resp){
