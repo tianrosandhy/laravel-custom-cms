@@ -21,7 +21,7 @@ if(!isset($name)){
 					@if(strlen($val) > 0)
 						<div class="uploaded">
 							@if(ImageService::pathExists($val))
-							<img src="{{ Storage::url($val) }}" style="height:60px;">
+							<img src="{{ storage_url($val) }}" style="height:60px;">
 							@else
 							<img src="{{ admin_asset('img/broken-image.jpg') }}" alt="Broken Image" style="height:100px;">
 							@endif

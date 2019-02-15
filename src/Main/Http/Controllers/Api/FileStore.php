@@ -20,7 +20,7 @@ class FileStore extends AdminBaseController
 		$path = $this->request->file->storeAs('files', $fileName);
 
 		$data = [
-			'path' => Storage::url(str_replace('\\', '/', $path)),
+			'path' => storage_url(str_replace('\\', '/', $path)),
 			'filename' => $fileName,
 		];
 

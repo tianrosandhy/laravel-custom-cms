@@ -15,7 +15,7 @@ class ImageServices extends ImageRepository
     public function urlExists($url){
     	$path = $this->publicToPath($url);
     	$pathExists = Storage::exists($path);
-    	if($pathExists && ($url == Storage::url($path))){ //mencegah inputan dari URL lain
+    	if($pathExists && ($url == storage_url($path))){ //mencegah inputan dari URL lain
     		return true;
     	}
     	return false;

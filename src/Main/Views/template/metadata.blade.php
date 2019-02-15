@@ -30,6 +30,6 @@
 <link rel="stylesheet" href="{{ admin_asset('vendor/tinymce/skins/lightgray/skin.min.css') }}">
 <link rel="stylesheet" href="{{ admin_asset('vendor/timepicker/jquery.timepicker.min.css') }}">
 <link class="main-stylesheet" href="{!! admin_asset('css/additional.css') !!}" rel="stylesheet" type="text/css" />
-<link rel="icon" type="image/png" href="{{ Storage::url(thumbnail(setting('admin.favicon'), 'small')) }}" />
+<link rel="icon" type="image/png" href="{{ storage_url(thumbnail(setting('admin.favicon'), 'small')) }}" />
 @stack ('style')
 @stack ('styles')

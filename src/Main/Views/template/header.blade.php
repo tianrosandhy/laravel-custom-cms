@@ -35,7 +35,7 @@
           <li class="dropdown dropdown-user nav-item">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link">
               <span class="avatar avatar-online">
-                <img src="{{ (strlen(admin_data('image')) == 0) ? admin_asset('img/default-user.png') : (ImageService::pathExists(admin_data('image')) ? Storage::url(ImageService::getName(admin_data('image'), 'cropped')) : admin_asset('img/default-user.png')) }}" alt="" data-src="{{ (strlen(admin_data('image')) == 0) ? admin_asset('img/default-user.png') : (ImageService::pathExists(admin_data('image')) ? Storage::url(ImageService::getName(admin_data('image'), 'cropped')) : admin_asset('img/default-user.png')) }}" width="32" height="32" alt="avatar">
+                <img src="{{ (strlen(admin_data('image')) == 0) ? admin_asset('img/default-user.png') : (ImageService::pathExists(admin_data('image')) ? storage_url(ImageService::getName(admin_data('image'), 'cropped')) : admin_asset('img/default-user.png')) }}" alt="" data-src="{{ (strlen(admin_data('image')) == 0) ? admin_asset('img/default-user.png') : (ImageService::pathExists(admin_data('image')) ? storage_url(ImageService::getName(admin_data('image'), 'cropped')) : admin_asset('img/default-user.png')) }}" width="32" height="32" alt="avatar">
                 <i></i>
               </span>
               <span class="user-name">{{ admin_data('name') }}</span>

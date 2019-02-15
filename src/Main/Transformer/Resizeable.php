@@ -35,7 +35,7 @@ trait Resizeable
 		}
 		foreach($data as $key => $row){
 			if(Storage::exists($row)){
-				$out[$key] = Storage::url($row);
+				$out[$key] = storage_url($row);
 			}
 			else{
 				if($fallback){
@@ -68,7 +68,7 @@ trait Resizeable
 	public function getThumbnaiLUrl($field, $thumb='', $fallback=true){
 		$thumb = $this->getThumbnail($field, $thumb);
 		if(Storage::exists($thumb)){
-			$url = Storage::url($thumb);
+			$url = storage_url($thumb);
 			return str_replace("\\", '/', $url);
 		}
 		else{

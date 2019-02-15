@@ -8,7 +8,7 @@
 		<div class="register-container full-height sm-p-t-30">
 			<div class="d-flex justify-content-center flex-column full-height">
 				<div class="logo">
-					<img src="{{ Storage::url(setting('admin.logo', config('cms.admin.logo'))) }}" alt="">
+					<img src="{{ storage_url(setting('admin.logo', config('cms.admin.logo'))) }}" alt="">
 				</div>
 
 				<form id="form-register" class="p-t-15" role="form" novalidate="novalidate" method="post">

@@ -230,16 +230,23 @@ function thumbnail($url, $get='', $fallback=true){
 			}
 		}
 	}
+
+
 	$cropurl = $filename . '-cropped.'.$extension;
 	if(ImageService::urlExists($cropurl)){
 		$out['cropped'] = $cropurl;
 	}
 	else{
-		if($fallback){
-			$out[$alias] = $out['origin'];
+		if(ImageService::pathExists($cropurl)){
+			$out['cropped'] = $cropurl;
 		}
 		else{
-			$out[$alias] = false;
+			if($fallback){
+				$out['cropped'] = $out['origin'];
+			}
+			else{
+				$out['cropped'] = false;
+			}
 		}
 	}
 
