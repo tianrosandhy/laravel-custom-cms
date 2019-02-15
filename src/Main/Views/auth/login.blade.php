@@ -16,7 +16,7 @@
             <div class="card-header no-border">
                 <div class="card-title text-xs-center">
                     <div class="p-1">
-                    	@include ('main::template.components.logo')
+                        @include ('main::template.components.logo')
                     </div>
                 </div>
                 <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Login to Admin Panel</span></h6>
@@ -24,7 +24,7 @@
             <div class="card-body collapse in">
                 <div class="card-block">
                     <form class="form-horizontal form-simple" action="" novalidate method="post">
-                    	{{ csrf_field() }}
+                        {{ csrf_field() }}
                         <fieldset class="form-group position-relative has-icon-left mb-0">
                             <input type="email" class="form-control form-control-lg input-lg" id="user-name" placeholder="Your Email" maxlength="50" required name="email">
                             <div class="form-control-position">
@@ -52,8 +52,10 @@
             </div>
             <div class="card-footer">
                 <div>
+                    @if(config('cms.admin.register'))
                     <p class="float-sm-left text-xs-center m-0"><a href="#" data-toggle="modal" data-target="#resendModal" class="card-link">Resend Validation Email</a></p>
                     <p class="float-sm-right text-xs-center m-0">Dont have an account? <a href="{{ admin_url('register') }}" class="card-link">Register</a></p>
+                    @endif
                 </div>
             </div>
         </div>

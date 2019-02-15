@@ -20,7 +20,7 @@ $(function(){
 	$(document).on('change', '.listen_uploaded_image', function(){
 		hash = $(this).attr('data-hash');
 		val = $(this).val();
-		$(".uploaded-holder[data-hash='"+hash+"']").html('<strong>Uploaded Image : </strong><div class="uploaded"><img src="'+ STORAGE_URL + '/' + val+'" style="height:60px;"><span class="remove-asset" data-hash="'+hash+'">&times;</span></div>');
+		$(".uploaded-holder[data-hash='"+hash+"']").html('<strong>Uploaded Image : </strong><div class="uploaded"><img src="'+ STORAGE_URL + '/' + val+'" style="height:100px;"><span class="remove-asset" data-hash="'+hash+'">&times;</span></div>');
 	});
 
 	$(document).on('change', '.listen_uploaded_image_multiple', function(){
@@ -30,8 +30,7 @@ $(function(){
 
 		htmlPaste = '';
 		$.each(imgs, function(k, v){
-			console.log(k, v);
-			htmlPaste += '<div class="uploaded"><img src="'+ STORAGE_URL + '/' + v+'" style="height:60px;"><span class="remove-asset-multiple" data-hash="'+hash+'" data-value="'+v+'">&times;</span></div>';
+			htmlPaste += '<div class="uploaded"><img src="'+ STORAGE_URL + '/' + v+'" style="height:100px;"><span class="remove-asset-multiple" data-hash="'+hash+'" data-value="'+v+'">&times;</span></div>';
 		});
 
 		$(".uploaded-holder[data-hash='"+hash+"']").html(htmlPaste);
@@ -235,7 +234,6 @@ function refreshDropzone(){
 				    this.on("error", function(file, err, xhr){
 						this.removeAllFiles();
 						error_handling(err);
-				    	console.log(err);
 				    });
 				}
 			});		
@@ -274,7 +272,6 @@ function refreshDropzone(){
 				    this.on("error", function(file, err, xhr){
 						this.removeAllFiles();
 						error_handling(err);
-				    	console.log(err);
 				    });
 				}
 			});		
@@ -312,7 +309,6 @@ function refreshDropzone(){
 				    this.on("error", function(file, err, xhr){
 						this.removeAllFiles();
 						error_handling(err);
-				    	console.log(err);
 				    });
 				}
 			});		
@@ -355,7 +351,6 @@ function refreshDropzone(){
 				    this.on("error", function(file, err, xhr){
 						this.removeAllFiles();
 						error_handling(err);
-				    	console.log(err);
 				    });
 				}
 			});		

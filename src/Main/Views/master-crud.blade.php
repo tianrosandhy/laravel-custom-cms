@@ -19,50 +19,48 @@ if(!isset($multi_language)){
 
 <form action="" method="post">
 	{{ csrf_field() }}
-	<div class="panel panel-default">
-		<div class="panel-body">
+	<div class="card card-block">
 
-			<div class="row">
-				<?php $width = 0; ?>
-				@foreach($forms->structure as $row)
-					@if($row->hide_form == true)
-						@php continue; @endphp
-					@endif
-					<?php
-					$width += $row->form_column;
-					if($width > 12){ //kalo lebarnya lebih dari 12 kolom, langsung tutup
-						$width = 0;
-						echo '</div><div class="row">'; //bikin baris baru
-					}
-					?>
-					<div class="col-md-{{ $row->form_column }} col-sm-12">
-						<div class="form-group">
-							<label for="{{ $row->input_attribute['id'] }}">{{ $row->name }}</label>
-							@if($multi_language)
-								@include ('main::inc.dynamic_input_multilanguage')
-							@else
-								@include ('main::inc.dynamic_input_singlelanguage')
-							@endif
-						</div>
+		<div class="row">
+			<?php $width = 0; ?>
+			@foreach($forms->structure as $row)
+				@if($row->hide_form == true)
+					@php continue; @endphp
+				@endif
+				<?php
+				$width += $row->form_column;
+				if($width > 12){ //kalo lebarnya lebih dari 12 kolom, langsung tutup
+					$width = 0;
+					echo '</div><div class="row">'; //bikin baris baru
+				}
+				?>
+				<div class="col-md-{{ $row->form_column }} col-sm-12">
+					<div class="form-group custom-form-group searchable">
+						<label for="{{ $row->input_attribute['id'] }}" class="text-uppercase">{{ $row->name }}</label>
+						@if($multi_language)
+							@include ('main::inc.dynamic_input_multilanguage')
+						@else
+							@include ('main::inc.dynamic_input_singlelanguage')
+						@endif
 					</div>
-					<?php
-					if($width == 12){
-						$width = 0;
-						echo '</div><div class="row">'; //bikin baris baru
-					}
-					?>
-				@endforeach
-			</div>
-
-			@if(isset($additional_field))
-			{!! $additional_field !!}
-			@endif
-
-			<div class="padd">
-				<button class="btn btn-primary">Save</button>
-			</div>
-			
+				</div>
+				<?php
+				if($width == 12){
+					$width = 0;
+					echo '</div><div class="row">'; //bikin baris baru
+				}
+				?>
+			@endforeach
 		</div>
+
+		@if(isset($additional_field))
+		{!! $additional_field !!}
+		@endif
+
+		<div class="padd">
+			<button class="btn btn-primary">Save</button>
+		</div>
+			
 	</div>
 </form>
 
