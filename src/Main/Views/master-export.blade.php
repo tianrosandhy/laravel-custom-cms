@@ -8,12 +8,12 @@ if(!isset($custom_field)){
 		<tr>
 			@foreach($skeleton->structure as $structure)
 			@if(!$structure->hide_table)
-			<th>{{ $structure->name }}</th>
+			<th>{{ strlen($structure->name) > 50 ? '' : $structure->name }}</th>
 			@endif
 			@endforeach
 
 			@foreach($custom_field as $field_name)
-			<th>{{ $field_name }}</th>
+			<th>{{ ucfirst($field_name) }}</th>
 			@endforeach
 		</tr>
 	</thead>
