@@ -65,7 +65,7 @@ trait Resizeable
 		return thumbnail($image_data, $thumb);
 	}
 
-	public function getThumbnaiLUrl($field, $thumb='', $fallback=true){
+	public function getThumbnailUrl($field, $thumb='', $fallback=true){
 		$thumb = $this->getThumbnail($field, $thumb);
 		if(Storage::exists($thumb)){
 			$url = storage_url($thumb);
@@ -79,4 +79,18 @@ trait Resizeable
 		return false;
 	}
 
+
+	public function imageThumbnail($field_name, $thumb='', $height=80){
+		$thumbnail = $this->getThumbnailUrl($field_name, $thumb);
+		return '<img src="'.$thumbnail.'" style="height:'.$height.'px">';
+	}
+
+	public function imageThumbnails($field_name, $thumb='', $height=80){
+		$thumbnails = $this->getThumbnailsUrl($field_name, $thumb);
+		$out = '';
+		foreach($thumbnails as $path){
+			$out .= '<img src="'.$path.'" style="height:'.$height.'px"> ';
+		}
+		return $out;
+	}
 }
