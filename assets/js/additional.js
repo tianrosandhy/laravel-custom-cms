@@ -133,6 +133,9 @@ function loadTinyMce(){
 		toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
 		image_advtab: true,
 //		images_upload_url : BASE_URL + '/api/store-images',
+		relative_urls : false,
+		remove_script_host : false,
+		convert_urls : true,
 
 		images_upload_handler: function (blobInfo, success, failure) {
 			var xhr, formData;

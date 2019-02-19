@@ -33,7 +33,7 @@ class ImageStore extends AdminBaseController
 		$data = $this->index();
 		//tinymce needs "location" json field
 		return [
-			'location' => $data
+			'location' => storage_url($data)
 		];
 	}
 
