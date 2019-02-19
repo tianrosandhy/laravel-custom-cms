@@ -1,6 +1,6 @@
 @if(method_exists($model, 'scopeGetTranslate'))
 <div class="padd">
-	<div class="language-switcher pull-right">
+	<div class="language-switcher pull-left">
 	@foreach(config('cms.lang.available') as $lang)
 		<a href="#" data-lang="{{ $lang }}" class="btn btn-sm btn-info {{ isset($reload) ? ($reload ? 'btn-lang-switcher reload' : 'btn-lang-static') : 'btn-lang-static' }} {!! $lang == current_lang() ? 'active' : '' !!}">{{ strtoupper($lang) }}</a>
 	@endforeach

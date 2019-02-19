@@ -69,14 +69,6 @@ class DefaultSetting extends Command
             ],
 
             [
-                'param' => 'theme',
-                'name' => 'Admin Theme (pages/klorofil)',
-                'description' => 'Admin theme used',
-                'default_value' => 'pages',
-                'type' => 'text',
-                'group' => 'admin',
-            ],
-            [
                 'param' => 'title',
                 'name' => 'Site Title',
                 'description' => '',

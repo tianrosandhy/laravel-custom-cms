@@ -5,7 +5,7 @@
 <h3>My Profile</h3>
 
 <div class="card card-block">
-	<form action="" method="post">
+	<form action="" method="post" autocomplete="off">
 		{{ csrf_field() }}
 		<div class="row">
 			<div class="col-sm-8">
@@ -15,7 +15,7 @@
 				</div>
 				<div class="form-group custom-form-group searchable">
 					<label>Email</label>
-					<input type="email" name="email" class="form-control" value="{{ admin_data('email') }}">
+					<input type="email" name="email" class="form-control" value="{{ admin_data('email') }}" autocomplete="off">
 				</div>
 
 				<div class="change-pass">
@@ -24,11 +24,11 @@
 				<div class="pass-toggle" style="display:none; padding:1em 0;">
 					<div class="form-group custom-form-group searchable">
 						<label>Password</label>
-						<input type="password" name="password" class="form-control" placeholder="Keep blank if you dont want to change">
+						<input data-password type="text" name="password" class="form-control" placeholder="Keep blank if you dont want to change" autocomplete="off">
 					</div>
 					<div class="form-group custom-form-group searchable">
 						<label>Repeat Password</label>
-						<input type="password" name="password_confirmation" class="form-control">
+						<input data-password type="text" name="password_confirmation" class="form-control">
 					</div>
 				</div>
 
@@ -55,6 +55,8 @@ $(function(){
 	$(".btn-change-pass").on('click', function(){
 		$(".pass-toggle").slideDown();
 		$(".btn-change-pass").slideUp();
+
+		$("input[data-password]").attr('type', 'password');
 	});
 });
 </script>

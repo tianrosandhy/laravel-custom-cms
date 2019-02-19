@@ -17,7 +17,7 @@
 		@foreach($lists as $row)
 		<tr class="close-target">
 			<td>{{ $row->name }}</td>
-			<td><a href="" class="btn btn-default btn-show-permission" data-target="{{ admin_url('setting/show-permission/'.$row->id) }}">Show Permissions</a></td>
+			<td><a href="" class="btn btn-default btn-secondary btn-show-permission" data-target="{{ admin_url('setting/show-permission/'.$row->id) }}">Show Permissions</a></td>
 			<td>
 				<a href="" class="btn btn-primary edit-permission" data-target="{{ url()->route('admin.permission.update', ['id' => $row->id]) }}" data-title="{{ $row->name }}">Edit</a>
 				<a href="{{ url()->route('admin.permission.delete', ['id' => $row->id]) }}" class="btn btn-danger delete-button" >Delete</a>

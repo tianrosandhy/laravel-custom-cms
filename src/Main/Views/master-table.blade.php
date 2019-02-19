@@ -4,17 +4,15 @@
 
 <h3>{!! $title !!}</h3>
 
-@include ('main::inc.lang-switcher', [
-	'model' => $datatable->model,
-	'reload' => true
-])
 
 <div class="padd">
 	@if(Route::has('admin.'.$hint.'.store'))
+	@if(has_access('admin.'.$hint.'.'))
 	<div class="pull-left float-xs-left">
 		<a href="{{ url()->route('admin.'.$hint.'.store') }}" class="btn btn-primary">Add Data</a>
 		<a href="{{ url()->route('admin.'.$hint.'.delete', ['id' => 0]) }}" class="btn btn-danger batchbox multi-delete">Delete All Selected</a>
 	</div>
+	@endif
 	@endif
 
 	@if(Route::has('admin.'.$hint.'.export') && config('module-setting.'.$hint.'.export_excel'))
