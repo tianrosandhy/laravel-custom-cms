@@ -61,7 +61,7 @@ class Processor
 	}
 
 	public function checkerFormat($row, $pk='id'){
-		return '<input type="checkbox" data-id="'.$row->{$pk}.'" name="multi_check['.$row->{$pk}.']" class="multichecker_datatable">';
+		return '<input type="checkbox" data-id="'.$row->{$pk}.'" name="multi_check['.$row->{$pk}.']" class="multichecker_datatable"><span style="color:transparent; position:absolute;">'.$row->{$pk}.'</span>';
 	}
 
 	public function validateRequest(){
