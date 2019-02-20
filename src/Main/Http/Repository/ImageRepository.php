@@ -156,16 +156,22 @@ class ImageRepository
 
 
     public function publicToPath($public_url=''){
-    	$explode = explode('/storage/', $public_url);
-		if(count($explode) == 2){
-			$filename = $explode[1];
-		}
-		else{
-			$explode = explode('/', $public_url);
-			$filename = $explode[(count($explode)-1)];
-		}
+    	if(strpos($public_url, 'http://') !== false || strpos($public_url, 'https://') !== false){
+	    	$explode = explode('/storage/', $public_url);
+			if(count($explode) == 2){
+				$filename = $explode[1];
+			}
+			else{
+				$explode = explode('/', $public_url);
+				$filename = $explode[(count($explode)-1)];
+			}
 
-		return $filename;
+			return $filename;
+    	}
+    	else{
+    		//if no "http" or "https" detected, then it must be a path already
+    		return $public_url;
+    	}
     }
 
 }

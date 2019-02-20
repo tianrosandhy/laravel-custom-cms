@@ -76,19 +76,8 @@ $(function(){
 
 	$(".multi-delete").on('click', function(e){
 		e.preventDefault();
-		swal({
-		  title: "Run batch delete?",
-		  text: "Once deleted, you will not be able to recover the data.",
-		  icon: "warning",
-		  buttons: true,
-		  dangerMode: true,
-		})
-		.then((willDelete) => {
-		  if (willDelete) {
-		  	runRemoveBatch();
-		  }
-		});
-
+		output = '<p>Are you sure? Once deleted, you will not be able to recover the data</p><button class="btn btn-primary" data-dismiss="modal">Cancel</button> <button class="btn btn-danger" onclick="runRemoveBatch()">Yes, Delete</button>';
+		swal('Run Batch Delete?', [output]);
 	});
 });
 
@@ -131,23 +120,23 @@ function runRemoveBatch(){
 			},
 			success : function(resp){
 				if(resp.type == 'success'){
-					swal('Success', resp.message, 'success');
+					swal('success', [resp.message]);
 					//refresh datatable
 					tb_data.ajax.reload();
 					$("#checker_all_datatable").prop('checked', false);
 					$(".batchbox").slideUp();
 				}
 				else{
-					swal('Error', resp.message, 'error');
+					swal('error', [resp.message]);
 				}
 			},
 			error : function(resp){
-				swal('Error', 'Sorry, we cannot process your request now.', 'error');
+				swal('error', ['Sorry, we cannot process your request now.']);
 			}
 		});			
 	}
 	else{
-		swal('Error', 'No data selected', 'error');
+		swal('error', ['No data selected']);
 	}
 
 
