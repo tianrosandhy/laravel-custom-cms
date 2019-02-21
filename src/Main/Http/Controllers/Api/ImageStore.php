@@ -12,6 +12,7 @@ class ImageStore extends AdminBaseController
 
 	public function index(){
 		$validate = self::validateInput();
+		$validate->validate();
 
 		//kalo sudah oke, proses
 		$repo = new ImageRepository();
@@ -30,6 +31,11 @@ class ImageStore extends AdminBaseController
 	}
 
 	public function tinyMce(){
+		$validator = self::validateInput();
+		if($validator->fails()){
+			return [$validator->errors()->first()];
+		}
+
 		$data = $this->index();
 		//tinymce needs "location" json field
 		return [
@@ -45,8 +51,9 @@ class ImageStore extends AdminBaseController
 			'file.mimetypes' => 'Please upload valid image only',
 			'file.mimes' => 'Please upload image file only',
 			'file.max' => 'Sorry, image size is too large'
-		])->validate();
+		]);
 		
+		return $validate;
 	}
 
 
