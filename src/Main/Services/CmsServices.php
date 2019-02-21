@@ -143,7 +143,7 @@ DATA =>
             //buang nama route terakhir
             $trim = explode('.', $data['route']);
             unset($trim[count($trim)-1]);
-            $trimmed = implode('.', $trim);
+            $trimmed = implode('.', $trim).'.';
             if(strpos($current_route_name, $trimmed) !== false){
                 $active = true;
             }
