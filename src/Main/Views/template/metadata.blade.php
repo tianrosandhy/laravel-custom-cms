@@ -10,6 +10,7 @@
 <meta content="tianrosandhy" name="author" />
 
 <link rel="stylesheet" type="text/css" href="{{ admin_asset('vendor/pace/pace.css') }}">
+<script src="{{ admin_asset('vendor/pace/pace.min.js') }}" type="text/javascript"></script>
 <!-- Vendor CSS -->
 <link rel="stylesheet" type="text/css" href="{{ admin_asset('css/bootstrap.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ admin_asset('fonts/icomoon.css') }}">
@@ -22,7 +23,6 @@
 <link rel="stylesheet" type="text/css" href="{{ admin_asset('css/core/menu/menu-types/vertical-overlay-menu.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ admin_asset('css/core/colors/palette-gradient.css') }}">
 <!-- END Vendor CSS-->
-
 <link rel="stylesheet" href="{!! admin_asset('vendor/select2/css/select2.min.css') !!}">
 <link rel="stylesheet" href="{!! admin_asset('vendor/switchery/css/switchery.min.css') !!}">
 <link rel="stylesheet" href="{!! admin_asset('vendor/bootstrap-tag/bootstrap-tagsinput.css') !!}">
@@ -31,5 +31,8 @@
 <link rel="stylesheet" href="{{ admin_asset('vendor/timepicker/jquery.timepicker.min.css') }}">
 <link class="main-stylesheet" href="{!! admin_asset('css/additional.css') !!}" rel="stylesheet" type="text/css" />
 <link rel="icon" type="image/png" href="{{ storage_url(thumbnail(setting('admin.favicon'), 'small')) }}" />
+<!-- jquery -->
+<script src="{{ admin_asset('js/core/libraries/jquery.min.js') }}" type="text/javascript"></script>
+
 @stack ('style')
 @stack ('styles')

@@ -1,7 +1,4 @@
 <!-- BEGIN VENDOR JS-->
-<script src="{{ admin_asset('vendor/pace/pace.min.js') }}" type="text/javascript"></script>
-
-<script src="{{ admin_asset('js/core/libraries/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ admin_asset('js/tether.min.js') }}" type="text/javascript"></script>
 <script src="{{ admin_asset('js/core/libraries/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ admin_asset('js/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
