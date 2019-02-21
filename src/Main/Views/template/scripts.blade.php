@@ -34,6 +34,9 @@ $(function(){
 		@if($errors->any())
 			var err_list = [];
 			@foreach($errors->all() as $error)
+				@php
+				$error = str_replace('.'.config('cms.lang.default'), '', $error);
+				@endphp
 				err_list.push('{{ $error }}');
 			@endforeach
 			swal('error', err_list);
