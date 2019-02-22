@@ -86,6 +86,12 @@ trait BasicCrud
 		$back = 'admin.'.$this->hint().'.index';
 
 		$data = $this->repo->show($id);
+		if(empty($data)){
+			return back()->withErrors([
+				'error' => 'Data not found'
+			]);
+		}
+
 		$multi_language = isset($this->multi_language) ? $this->multi_language : false;
 		$additional_field = $this->additionalField($data);
 
