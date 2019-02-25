@@ -22,6 +22,10 @@ trait BasicCrud
 		return '';
 	}
 
+	public function prependField($data=null){
+		return '';
+	}
+
 	protected function modelTableListing(){
 		$model = $this->repo->model;
         return $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
@@ -37,11 +41,13 @@ trait BasicCrud
 		$back = 'admin.'.$this->hint().'.index'; //back url
 		$multi_language = isset($this->multi_language) ? $this->multi_language : false;
 		$additional_field = $this->additionalField();
+		$prepend_field = $this->prependField();
 		return view('main::master-crud', compact(
 			'title',
 			'forms',
 			'back',
 			'multi_language',
+			'prepend_field',
 			'additional_field'
 		));
 	}
@@ -93,6 +99,7 @@ trait BasicCrud
 		}
 
 		$multi_language = isset($this->multi_language) ? $this->multi_language : false;
+		$prepend_field = $this->prependField($data);
 		$additional_field = $this->additionalField($data);
 
 		return view('main::master-crud', compact(
@@ -101,6 +108,7 @@ trait BasicCrud
 			'back',
 			'data',
 			'multi_language',
+			'prepend_field',
 			'additional_field'
 		));
 	}
@@ -148,6 +156,11 @@ trait BasicCrud
 
 	//ini method utk hard delete
 	//soft delete menyusul
+
+	public function afterDelete($id=0){
+		return true;
+	}
+
 	public function delete($id=0){
 		if($id == 0 && $this->request->list_id && is_array($this->request->list_id)){
 			//batch remove checker
@@ -167,6 +180,7 @@ trait BasicCrud
 			foreach($datas as $row){
 				foreach($this->image_field() as $fld){
 					$this->removeImage($row, $fld);
+					$this->afterDelete($row->id);
 				}
 				\CMS::log($row, 'ADMIN DELETE DATA');
 				$deleted_ids[] = $row->id;
@@ -190,6 +204,7 @@ trait BasicCrud
 			//remove image based on image fields 
 			foreach($this->image_field() as $fld){
 				$this->removeImage($data, $fld);
+				$this->afterDelete($id);
 			}
 			$this->repo->delete($id);
 
