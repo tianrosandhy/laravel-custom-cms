@@ -20,6 +20,9 @@ if(!isset($multi_language)){
 <form action="" method="post">
 	{{ csrf_field() }}
 	<div class="card card-block">
+		@if(isset($prepend_field))
+		{!! $prepend_field !!}
+		@endif
 
 		<div class="row">
 			<?php $width = 0; ?>
@@ -35,7 +38,7 @@ if(!isset($multi_language)){
 				}
 				?>
 				<div class="col-md-{{ $row->form_column }} col-sm-12">
-					<div class="form-group custom-form-group searchable">
+					<div class="form-group custom-form-group {!! $row->input_type == 'radio' ? 'radio-box' : '' !!}">
 						<label for="{{ $row->input_attribute['id'] }}" class="text-uppercase">{{ $row->name }}</label>
 						@if($multi_language)
 							@include ('main::inc.dynamic_input_multilanguage')
@@ -65,3 +68,30 @@ if(!isset($multi_language)){
 </form>
 
 @stop
+
+@push ('script')
+<script>
+$(function(){
+	$('.radio-box').each(function(){
+		setFormGroupBg($(this).find('input:checked'));
+	});
+
+	$(document).on('change', '.radio-box input:checked', function(){
+		setFormGroupBg($(this));
+	});
+});
+
+function setFormGroupBg(instance){
+	boxval = instance.val();
+	if(boxval == 0){
+		instance.closest('.radio-box').addClass('danger');
+		instance.closest('.radio-box').removeClass('success');
+	}
+	else if(boxval == 1){
+		instance.closest('.radio-box').addClass('success');
+		instance.closest('.radio-box').removeClass('danger');
+	}
+
+}
+</script>
+@endpush

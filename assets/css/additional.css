@@ -280,7 +280,7 @@ table th{
 
 .batchbox{display:none;}
 
-.custom-form-group.searchable{
+.custom-form-group{
 	margin-top:.5em;
 	margin-bottom:1em;
 	background:#fff;
@@ -288,7 +288,7 @@ table th{
 	border-radius:5px;
 	border:1px solid #ddd;
 }
-.custom-form-group.searchable label{
+.custom-form-group label{
 	margin:0;
 	padding:0 1em;
 	font-size:.75rem;
@@ -296,9 +296,33 @@ table th{
 	font-weight:bold;
 }
 
-.custom-form-group.searchable input, .custom-form-group.searchable select{
+.custom-form-group input, .custom-form-group select{
 	border:none;
 }
+
+.custom-form-group.radio-box{
+	transition:.3s ease;
+	-moz-transition:.3s ease;
+	-o-transition:.3s ease;
+	-webkit-transition:.3s ease;
+	-ms-transition:.3s ease;
+}
+
+.custom-form-group.radio-box.success{
+	background:#00A67D;
+	color:#fff;
+}
+
+.custom-form-group.radio-box.danger{
+	background:#d00;
+	color:#fff;
+}
+
+.custom-form-group.radio-box.success label, .custom-form-group.radio-box.danger label{
+	color:#fff;
+}
+
+
 
 #checker_all_datatable{
 	position:relative;

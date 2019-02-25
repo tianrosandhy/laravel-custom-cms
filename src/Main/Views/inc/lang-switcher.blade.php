@@ -4,7 +4,6 @@
 		position:fixed;
 		top:100px;
 		right:0;
-		width:150px;
 		text-align:right;
 		padding:.5em;
 		z-index:999;
