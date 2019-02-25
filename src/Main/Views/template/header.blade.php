@@ -16,7 +16,7 @@
           <li class="nav-item hidden-sm-down"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5">         </i></a></li>
         </ul>
         <ul class="nav navbar-nav float-xs-right">
-          @if(config('cms.lang'))
+          @if(config('cms.lang.active'))
           <li class="dropdown dropdown-language nav-item"><a id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link">
             @if(current_lang() == 'en')
             <i class="flag-icon flag-icon-gb"></i>

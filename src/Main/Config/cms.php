@@ -1,8 +1,5 @@
 <?php
 return [
-	'site_title' => 'CMS Maxsol',
-	'site_description' => 'Lorem ipsum dolor sit amet',
-
 	'max_filesize' => [
 		//sekalipun sudah dilimit (dalam MB), tapi kalau dari servernya cuma support dibawah X MB, yg dipakai adalah nilai terkecil
 		'image' => 2,
@@ -27,10 +24,7 @@ return [
 		'logo' => 'theme/img/logo_maxsol.png',
 		'register' => true,
 		'components' => [
-			'notification' => false,
 			'userinfo' => true,
-			'quickview' => false,
-			'search' => false
 		],
 		'email_receiver' => 'tianrosandhy@gmail.com',
 
