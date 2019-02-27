@@ -70,6 +70,7 @@
 
     @include ('main::auth.partials.resend-validation')
     @include ('main::auth.partials.reset-password')
+    @include ('main::template.modal')
 
     @include ('main::template.scripts')
   </body>

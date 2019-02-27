@@ -45,6 +45,7 @@
 		</div>
 
 
+    @include ('main::template.modal')
 
     @include ('main::template.scripts')
   </body>
