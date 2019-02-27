@@ -61,8 +61,45 @@ class CrudRepository{
 		return $data->get();
 	}
 
+	public function filterPaginate($param=[], $orderBy='id', $flow='DESC', $per_page=10){
+		$data = $this->model;
+		if(count($param) > 0){
+			foreach($param as $key => $prm){
+				if(count($prm) == 1){
+					$data = $data->where($key, $prm);
+				}
+				elseif(count($prm) == 2){
+					$data = $data->where($prm[0], $prm[1]);
+				}
+				elseif(count($prm) == 3){
+					$data = $data->where($prm[0], $prm[1], $prm[2]);
+				}
+			}
+		}
+		$data = $data->orderBy($orderBy, $flow);
+		return $data->paginate($per_page);
+	}
+
 	public function filterFirst($param=[], $orderBy='id'){
 		return $this->filter($param, $orderBy)->first();
+	}
+
+	public function filterDelete($param=[]){
+		$data = $this->model;
+		if(count($param) > 0){
+			foreach($param as $key => $prm){
+				if(count($prm) == 1){
+					$data = $data->where($key, $prm);
+				}
+				elseif(count($prm) == 2){
+					$data = $data->where($prm[0], $prm[1]);
+				}
+				elseif(count($prm) == 3){
+					$data = $data->where($prm[0], $prm[1], $prm[2]);
+				}
+			}
+		}
+		return $data->delete();
 	}
 
 	public function insert($param){
