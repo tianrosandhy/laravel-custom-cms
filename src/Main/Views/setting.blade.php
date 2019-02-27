@@ -4,33 +4,10 @@
 
 @push ('style')
 <style>
-	/*klorofil specific styling*/
-	
-	body.klorofil li.nav-item{
-		padding-top:.5em;
-		padding-left:.5em;
-	}
-
-	body.klorofil li.nav-item a{
-		display:block;
-		padding:.5em 1em;
-		background:#d7d7d7;
-		color:#000;
-		transition:.3s ease;
-		-moz-transition:.3s ease;
-		-o-transition:.3s ease;
-		-webkit-transition:.3s ease;
-		-ms-transition:.3s ease;
-		text-transform:uppercase;
-	}
-
-	body.klorofil li.nav-item a.active{
+	pre.language{
 		background:#222;
 		color:#fff;
-	}
-
-	body.klorofil .delete-button{
-		cursor:pointer;
+		padding:1em;
 	}
 </style>
 @endpush
@@ -38,54 +15,57 @@
 @section ('content')
 <h3>Settings</h3>
 
-@if(has_access('admin.setting.update'))
-<div class="card">
-	<div class="card-block">
-
-		<form action="{{ url()->route('admin.setting.update') }}" method="post">
-			{{ csrf_field() }}
-			<ul class="nav nav-tabs nav-tabs-fillup d-none d-md-flex d-lg-flex d-xl-flex" role="tablist">
-				@foreach($settings as $group => $data)
-				<li class="nav-item">
-					<a href="#" class="nav-link {{ $loop->iteration == 1 ? 'active' : '' }}" data-toggle="tab" data-target="#slide-{{ $group }}"><span>{{ strtoupper($group) }}</span></a>
-				</li>
-				@endforeach
-			</ul>
-
-
-			<div class="tab-content">
-				@foreach($settings as $group => $data)
-				<div class="tab-pane slide-left {{ $loop->iteration == 1 ? 'show active' : '' }}" id="slide-{{ $group }}">
-					@foreach($data as $row)
-					<div class="form-group pos-rel close-target mt-2">
-						@if(has_access('admin.setting.delete'))
-						<span class="btn btn-danger close-btn delete-button" data-id="{{ $row->id }}" data-target="{{ url()->route('admin.setting.delete', ['id' => $row->id]) }}">&times;</span>
-						@endif
-						<label>{{ ucwords($row->name) }} - <small><mark>setting('{{ $row->group }}.{{ $row->param }}')</mark></small></label>
-						@if($row->type == 'text')
-						<input type="text" name="value[{{ $row->id }}]" value="{{ $row->default_value }}" class="form-control">
-						@elseif($row->type == 'textarea')
-						<textarea name="value[{{ $row->id }}]" class="form-control">{!! $row->default_value !!}</textarea>
-						@elseif($row->type == 'image')
-							@include ('main::inc.dropzone', [
-								'name' => 'value['.$row->id.']',
-								'value' => $row->default_value,
-								'horizontal' => true
-							])
-						@endif
-					</div>
-					@endforeach
-				</div>
-				@endforeach
-			</div>
-
-			<div>
-				<button class="btn btn-primary">Update Setting</button>
-			</div>
-		</form>
-		
-	</div>
+@if(session('artisan'))
+<div style="margin:1em 0;">
+	<strong>Artisan Command Result</strong>
+	<pre class="language"><code class="language">{!! session('artisan') !!}</code></pre>
 </div>
+@endif
+
+@if(has_access('admin.setting.update'))
+
+<form action="{{ url()->route('admin.setting.update') }}" method="post">
+	{{ csrf_field() }}
+	<ul class="nav nav-tabs nav-tabs-fillup d-none d-md-flex d-lg-flex d-xl-flex" role="tablist">
+		@foreach($settings as $group => $data)
+		<li class="nav-item">
+			<a href="#" class="nav-link {{ $loop->iteration == 1 ? 'active' : '' }}" data-toggle="tab" data-target="#slide-{{ $group }}"><span>{{ strtoupper($group) }}</span></a>
+		</li>
+		@endforeach
+	</ul>
+
+
+	<div class="tab-content">
+		@foreach($settings as $group => $data)
+		<div class="tab-pane slide-left card card-block {{ $loop->iteration == 1 ? 'show active' : '' }}" id="slide-{{ $group }}">
+			@foreach($data as $row)
+			<div class="form-group custom-form-group searchable pos-rel close-target mt-2">
+				@if(has_access('admin.setting.delete'))
+				<span class="btn btn-danger close-btn delete-button" data-id="{{ $row->id }}" data-target="{{ url()->route('admin.setting.delete', ['id' => $row->id]) }}">&times;</span>
+				@endif
+				<label>{{ ucwords($row->name) }} - <small><mark>setting('{{ $row->group }}.{{ $row->param }}')</mark></small></label>
+				@if($row->type == 'text')
+				<input type="text" name="value[{{ $row->id }}]" value="{{ $row->default_value }}" class="form-control">
+				@elseif($row->type == 'textarea')
+				<textarea name="value[{{ $row->id }}]" class="form-control">{!! $row->default_value !!}</textarea>
+				@elseif($row->type == 'image')
+					@include ('main::inc.dropzone', [
+						'name' => 'value['.$row->id.']',
+						'value' => $row->default_value,
+						'horizontal' => true
+					])
+				@endif
+			</div>
+			@endforeach
+		</div>
+		@endforeach
+	</div>
+
+	<div>
+		<button class="btn btn-primary">Update Setting</button>
+	</div>
+</form>
+		
 @endif
 
 
@@ -97,14 +77,13 @@
 
 @if(has_access('admin.setting.store'))
 <!-- Add new Setting -->
-<div class="panel panel-default">
-	<div class="panel-heading separator">
-		<div class="panel-title">
+<div class="card">
+	<div class="card-header">
+		<div class="card-heading">
 			Add New Setting Data
 		</div>
 	</div>
-	<div class="panel-body">
-		<br>
+	<div class="card-block">
 		<form action="" method="post">
 			{{ csrf_field() }}
 			<div class="row">
@@ -178,6 +157,28 @@
 		</form>		
 	</div>
 
+</div>
+@endif
+
+@if(has_access('admin.maintenance.artisan'))
+<div class="card card-block">
+	<h4>Artisan Runner</h4>
+	<form action="{{ route('admin.maintenance.artisan') }}" method="post">
+		{{ csrf_field() }}
+		<div class="alert alert-warning">
+			<strong>Danger Zone.</strong>
+			Make sure you know what are you really doing here. For development only
+		</div>
+		<div class="input-group">
+			<div class="input-group-addon">
+				php artisan
+			</div>
+			<input type="text" name="key" class="form-control" placeholder="Put your artisan command here">
+			<div class="input-group-btn">
+				<button class="btn btn-danger">Run Command</button>
+			</div>
+		</div>
+	</form>
 </div>
 @endif
 

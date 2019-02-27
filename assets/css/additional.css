@@ -65,11 +65,12 @@ textarea{
 
 .close-btn{
 	position:absolute;
-	right:0;
+	top:.25em;
+	right:.25em;
 	padding:0;
 	width:20px;
 	height:20px;
-	line-height: 20px;
+	line-height: 17px;
 	text-align: center;
 	border-radius:50%;
 }
