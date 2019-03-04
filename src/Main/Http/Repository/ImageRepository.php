@@ -36,7 +36,16 @@ class ImageRepository
         return $finalpath;
 	}
 
-	public function handleUpload($file, $path=''){
+	public function testFile($file){
+		try{
+			Image::make($file);
+			return true;
+		}catch(\Exception $e){
+			return false;
+		}
+	}
+
+	public function handleUpload($file, $path='', $filetype='jpg'){
 		$thumbs = config('image.thumbs');
 		$image = Image::make($file);
 
@@ -44,10 +53,16 @@ class ImageRepository
 
 
         if(is_string($file)){
-        	//kalo by url path, method getClientOriginalExtension ga bisa dipake
-        	$pch = explode('/', $file);
-        	$filename = $pch[count($pch)-1];
-        	$ext = getExtension($filename);
+        	if(strlen($file) < 255){
+	        	//kalo by url path, method getClientOriginalExtension ga bisa dipake
+	        	$pch = explode('/', $file);
+	        	$filename = $pch[count($pch)-1];
+	        	$ext = getExtension($filename);
+        	}
+        	else{
+        		//set file langsung ke default extension. 
+        		$ext = $filetype;
+        	}
         }
         else{
 	        $filename = $file->getClientOriginalName(); //kalo mw nyimpen by filename
@@ -71,7 +86,7 @@ class ImageRepository
 		//save file asli
         Storage::put($finalpath, (string)$image);
         //save thumbnail
-        self::generateThumbnail($file, $path.$filename);
+        self::generateThumbnail($file, $path.$filename, $filetype);
 
         return $finalpath;
 	}
@@ -101,9 +116,14 @@ class ImageRepository
 	}
 
 
-	protected function generateThumbnail($file, $finalpath){
+	protected function generateThumbnail($file, $finalpath, $filetype="jpg"){
 		if(is_string($file)){
-			$extension = getExtension($file);
+			if(strlen($file) < 255){			
+				$extension = getExtension($file);
+			}
+			else{
+				$extension = $filetype;
+			}
 		}
 		else{
 			$extension = $file->getClientOriginalExtension();

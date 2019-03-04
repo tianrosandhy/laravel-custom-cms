@@ -19,7 +19,7 @@ class ImageStore extends AdminBaseController
 
 		//kalo ada parameter path, handle upload ke path folder ybs
         $path = '';
-        if(isset($this->request->path)){
+        if($this->request->path){
             $path = $this->request->path;
             //Garis miring ga diizinkan
             $path = str_replace('/', '', $path);
@@ -28,6 +28,42 @@ class ImageStore extends AdminBaseController
         $handle = $repo->handleUpload($this->request->file, $path);
 		
 		return str_replace('\\', '/', $handle);
+	}
+
+	public function cropper(){
+		$image = $this->request->image;
+		if(empty($image)){
+			return [
+				'type' => 'error',
+				'message' => 'Invalid file'
+			];
+		}
+
+		//test file
+		$test = (new ImageRepository)->testFile($image);
+		if(!$test){
+			return [
+				'type' => 'error',
+				'message' => 'Invalid file. Please upload image type only'
+			];
+		}
+
+		//hajar
+		$path = '';
+        if($this->request->path){
+            $path = $this->request->path;
+            //Garis miring ga diizinkan
+            $path = str_replace('/', '', $path);
+            $path = str_replace('\\', '', $path);
+        }
+		$file = (new ImageRepository)->handleUpload($image, $path);
+		$final = str_replace('\\', '/', $file);
+		return [
+			'type' => 'success',
+			'path' => $final,
+			'url' => storage_url($final),
+			'div_target' => $this->request->target
+		];
 	}
 
 	public function tinyMce(){

@@ -4,6 +4,7 @@ Route::post('api/store-tinymce', 'Api\ImageStore@tinyMce');
 Route::post('api/remove-images', 'Api\ImageStore@removeImages');
 Route::post('api/store-files', 'Api\FileStore@index');
 Route::post('api/remove-files', 'Api\FileStore@removeImages');
+Route::post('api/cropper', 'Api\ImageStore@cropper')->name('api.cropper');
 
 
 //datatable

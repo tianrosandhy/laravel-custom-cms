@@ -1,5 +1,6 @@
 @extends ("main::master")
 @include ('main::assets.dropzone')
+@include ('main::assets.cropper')
 <?php
 if(!isset($multi_language)){
 	$multi_language = false; //default fallback
