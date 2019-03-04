@@ -23,7 +23,8 @@ class DataStructure
 		$update_validation,
 		$slug_target,
 		$value_source,
-		$imagedir_path;
+		$imagedir_path,
+		$cropper_ratio;
 
 	public function __construct(Application $app){
 		//manage default value
@@ -38,6 +39,7 @@ class DataStructure
 		$this->slug_target = false;
 		$this->value_source = false;
 		$this->imagedir_path = false;
+		$this->cropper_ratio = [300, 300];
 	}
 
 
@@ -152,7 +154,8 @@ class DataStructure
 			'file',
 			'file_multiple',
 			'date',
-			'time'
+			'time',
+			'cropper'
 		];
 
 		if(!in_array($type, $lists)){
@@ -220,7 +223,10 @@ class DataStructure
         return $this;
     }
 
-
+    public function cropperRatio($x=300, $y=300){
+    	$this->cropper_ratio = [$x, $y];
+    	return $this;
+    }
 
 
 

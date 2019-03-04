@@ -174,7 +174,7 @@ DATA =>
 
         $out = '';
 
-        if(in_array($input->input_type, ['select', 'select_multiple', 'image', 'image_multiple', 'file', 'file_multiple', 'date', 'radio', 'checkbox'])){
+        if(in_array($input->input_type, ['select', 'select_multiple', 'image', 'image_multiple', 'file', 'file_multiple', 'date', 'radio', 'checkbox', 'cropper'])){
             //untuk input2 yg ga butuh multi language, langsung tampilkan default
             return self::getOutput($input, $attr, $oldVal);
         }
@@ -281,6 +281,20 @@ DATA =>
                     $out .= '<option value="'.$idd.'" '. (in_array($idd, $oldVal) ? 'selected' : '') .'>'.$vall.'</option>';
                 }
                 $out .='</select>';
+            }
+            if($input->input_type == 'cropper'){
+                $cfg = [
+                    'value' => $oldVal,
+                    'name' => $input->input_attribute['name'],
+                    'horizontal' => true,
+                    'x_ratio' => $input->cropper_ratio[0],
+                    'y_ratio' => $input->cropper_ratio[1]
+                ];
+
+                if($input->imagedir_path){
+                    $cfg['path'] = $input->imagedir_path;
+                }
+                $out = view('main::inc.cropper', $cfg);
             }
             if($input->input_type == 'image'){
                 $cfg = [

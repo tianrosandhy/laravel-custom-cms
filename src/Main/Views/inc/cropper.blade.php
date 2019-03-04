@@ -9,6 +9,10 @@ if(!isset($name)){
 if(!isset($path)){
 	$path = null;
 }
+
+if(!isset($horizontal)){
+	$horizontal = false;
+}
 ?>
 <div style="padding:0 .5em" data-hash="{{ $name }}-{{ $hash }}">
 	<input type="hidden" data-hash="{{ $name }}-{{ $hash }}" name="{{ $name }}" class="listen_uploaded_image" value="{{ isset($value) ? $value : '' }}">
@@ -20,6 +24,11 @@ if(!isset($path)){
 		</label>
 	</div>
 
+	@if($horizontal)
+	<div class="row">
+		<div class="col-sm-6">
+	@endif
+
 	<div class="cropper-exec" data-id="{{ $name }}-{{ $hash }}" style="display:none;">
 		<img src="" class="cropper-image" data-id="{{ $name }}-{{ $hash }}" data-x-ratio="{{ $x_ratio }}" data-y-ratio="{{ $y_ratio }}">
 		<div align="center">
@@ -27,6 +36,11 @@ if(!isset($path)){
 			<a href="#" class="btn btn-sm btn-info cropper-runner" data-target="{{ $name }}-{{ $hash }}" data-upload="{{ route('api.cropper', ['path' => $path]) }}"><i class="fa fa-crop"></i> Crop</a>
 		</div>
 	</div>
+
+	@if($horizontal)
+		</div>
+		<div class="col-sm-6">
+	@endif
 
 	<div class="uploaded-holder" data-hash="{{ $name }}-{{ $hash }}">
 		@if(isset($value))
@@ -43,5 +57,10 @@ if(!isset($path)){
 			@endif
 		@endif
 	</div>		
+
+	@if($horizontal)
+		</div>
+	</div>
+	@endif
 
 </div>
