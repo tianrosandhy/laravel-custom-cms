@@ -16,6 +16,17 @@ textarea{
 	margin-bottom:0;
 }
 
+.mce-fullscreen{
+	z-index:9999!important;
+}
+
+
+.select2-selection{
+	display:block;
+}
+.select2-selection .select2-selection--multiple, .select2-container--default .select2-selection--multiple{
+	border:none!important;
+}
 
 /*Uploaded Holder*/
 .uploaded-holder .uploaded{
