@@ -13,6 +13,7 @@ class Settings extends Migration
      */
     public function up()
     {
+        $this->down();
         Schema::create('settings_structure', function (Blueprint $table) {
             $table->increments('id');
             $table->string('param');
@@ -22,15 +23,6 @@ class Settings extends Migration
             $table->string('type')->nullable();
             $table->string('group')->nullable();
             $table->timestamps();
-        });
-
-        Schema::create('settings', function(Blueprint $table){
-        	$table->increments('id');
-        	$table->integer('id_user');
-        	$table->string('param');
-        	$table->text('value');
-            $table->text('options');
-        	$table->timestamps();
         });
     }
 
@@ -42,6 +34,5 @@ class Settings extends Migration
     public function down()
     {
         Schema::dropIfExists('settings_structure');
-        Schema::dropIfExists('settings');
     }
 }

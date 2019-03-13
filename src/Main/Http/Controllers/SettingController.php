@@ -117,28 +117,6 @@ class SettingController extends AdminBaseController
 
 
 
-
-
-
-	public function maintenance(){
-		return view('main::maintenance');
-	}
-
-	public function postMaintenance(){
-		$file = Storage::exists('SITE.MAINTENANCE');
-		if($file){
-			Storage::delete('SITE.MAINTENANCE');
-			$msg = 'Maintenance mode has been disabled';
-			\CMS::log([], 'SITE MAINTENANCE DISABLED');
-		}
-		else{
-			Storage::put('SITE.MAINTENANCE', '');
-			$msg = 'Maintenance mode has been enabled';
-			\CMS::log([], 'SITE MAINTENANCE ENABLED');
-		}
-		return back()->with('success', $msg);
-	}
-
 	public function postArtisan(){
 		//simple artisan command
 		$key = $this->request->key;

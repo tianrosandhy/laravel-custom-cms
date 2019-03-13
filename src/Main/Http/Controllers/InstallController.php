@@ -70,7 +70,7 @@ class InstallController extends Controller{
 		]);
 
 		#buat admin baru
-        self::createUser($this->request->email, $this->request->email, $this->request->password);
+        self::createUser($this->request->name, $this->request->email, $this->request->password);
         (new SetRole)->actionRunner();
         (new DefaultSetting)->actionRunner($this->request->title, $this->request->description);
 
