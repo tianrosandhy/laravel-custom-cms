@@ -1,6 +1,7 @@
 <!-- BEGIN VENDOR JS-->
 <script src="{{ admin_asset('js/tether.min.js') }}" type="text/javascript"></script>
 <script src="{{ admin_asset('js/core/libraries/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ admin_asset('vendor/bootstrap-datetimepicker/moment.js') }}"></script>
 <script src="{{ admin_asset('js/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ admin_asset('js/unison.min.js') }}" type="text/javascript"></script>
 <script src="{{ admin_asset('js/core/app.js') }}" type="text/javascript"></script>
@@ -11,7 +12,7 @@
 <script src="{!! admin_asset('js/modernizr.custom.js') !!}" type="text/javascript"></script>
 <script src="{!! admin_asset('vendor/select2/js/select2.min.js') !!}"></script>
 <script src="{!! admin_asset('vendor/switchery/js/switchery.min.js') !!}"></script>
-<script src="{!! admin_asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}"></script>
+<script src="{!! admin_asset('vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') !!}"></script>
 <script src="{!! admin_asset('vendor/bootstrap-tag/bootstrap-tagsinput.min.js') !!}"></script>
 
 <script src="{{ admin_asset('vendor/tinymce/tinymce.min.js') }}"></script>

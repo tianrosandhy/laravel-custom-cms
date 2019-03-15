@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="{!! admin_asset('vendor/select2/css/select2.min.css') !!}">
 <link rel="stylesheet" href="{!! admin_asset('vendor/switchery/css/switchery.min.css') !!}">
 <link rel="stylesheet" href="{!! admin_asset('vendor/bootstrap-tag/bootstrap-tagsinput.css') !!}">
-<link rel="stylesheet" href="{!! admin_asset('vendor/bootstrap-datepicker/css/datepicker.css') !!}">
+<link rel="stylesheet" href="{!! admin_asset('vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css') !!}">
 <link rel="stylesheet" href="{{ admin_asset('vendor/tinymce/skins/lightgray/skin.min.css') }}">
 <link rel="stylesheet" href="{{ admin_asset('vendor/timepicker/jquery.timepicker.min.css') }}">
 <link class="main-stylesheet" href="{!! admin_asset('css/additional.css') !!}" rel="stylesheet" type="text/css" />

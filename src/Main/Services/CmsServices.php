@@ -352,6 +352,10 @@ DATA =>
             if($input->input_type == 'time'){
                 $out = '<input type="text" data-mask="00:00" value="'.(strlen($oldVal) > 0 ? date('H:i', strtotime($oldVal)) : '') .'" '.$attr.' data-timepicker>';
             }
+
+            if($input->input_type == 'datetime'){
+                $out = '<input type="text" data-mask="0000-00-00 00:00:00" value="'.(strlen($oldVal) > 0 ? date('Y-m-d', strtotime($oldVal)) : '') .'" '.$attr.' data-datepicker>';
+            }
         }
 
         if(!$as_single){

@@ -155,7 +155,8 @@ class DataStructure
 			'file_multiple',
 			'date',
 			'time',
-			'cropper'
+			'cropper',
+			'datetime',
 		];
 
 		if(!in_array($type, $lists)){

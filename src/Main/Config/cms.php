@@ -18,7 +18,7 @@ return [
 	//overwrite default CMS route lists target here.
 	//source : vendor/tianrosandhy/cms/src/Main/Routes/...
 	'controller' => [
-
+		
 	],
 
 	'admin' => [
