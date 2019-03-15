@@ -17,6 +17,10 @@
 		width:100%!important;
 		height:auto!important;
 	}
+
+	.uploaded-holder{
+		padding:.5em;
+	}
 </style>
 @endpush
 

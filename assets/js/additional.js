@@ -61,11 +61,20 @@ $(function(){
 
 	//datepicker
 	$("[data-datepicker]").each(function(){
-		$(this).datepicker({
-			startView : 2,
-			format : 'yyyy-mm-dd'
+		$(this).datetimepicker({
+			viewMode : 'years',
+			format : 'YYYY-MM-DD'
 		});
 	});
+	
+	//datepicker
+	$("[data-datetimepicker]").each(function(){
+		$(this).datetimepicker({
+			viewMode : 'years',
+			format : 'YYYY-MM-DD HH:mm:ss'
+		});
+	});
+	
 
     //timepicker
     $('[data-timepicker]').timepicker({
