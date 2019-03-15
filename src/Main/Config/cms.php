@@ -27,8 +27,9 @@ return [
 		'minified' => true,
 		'jquery_version' => 1, //1 or 3 only
 		'logo' => 'theme/img/logo_maxsol.png',
-		'register' => true,
 		'components' => [
+			'register' => true,
+			'forgot_password' => true,
 			'userinfo' => true,
 		],
 		'email_receiver' => 'tianrosandhy@gmail.com',

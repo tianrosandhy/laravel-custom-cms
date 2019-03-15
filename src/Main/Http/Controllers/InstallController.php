@@ -108,7 +108,7 @@ class InstallController extends Controller{
 	}
 
 
-	protected function createUser($email, $username, $password){
+	protected function createUser($username, $email, $password){
 		DB::table('users')->insert([
             'name' => $username,
             'email' => $email,

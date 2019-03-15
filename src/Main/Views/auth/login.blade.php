@@ -44,7 +44,10 @@
                                     <label for="remember-me"> Remember Me</label>
                                 </fieldset>
                             </div>
+                            @if(config('cms.admin.components.forgot_password'))
                             <div class="col-md-6 col-xs-12 text-xs-center text-md-right"><a href="#" data-toggle="modal" data-target="#resetPasswordModal" class="card-link">Forgot Password?</a></div>
+                            @endif
+
                         </fieldset>
                         <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="icon-unlock2"></i> Log In</button>
                     </form>
@@ -52,7 +55,7 @@
             </div>
             <div class="card-footer">
                 <div>
-                    @if(config('cms.admin.register'))
+                    @if(config('cms.admin.components.register', config('cms.admin.register')))
                     <p class="float-sm-left text-xs-center m-0"><a href="#" data-toggle="modal" data-target="#resendModal" class="card-link">Resend Validation Email</a></p>
                     <p class="float-sm-right text-xs-center m-0">Dont have an account? <a href="{{ admin_url('register') }}" class="card-link">Register</a></p>
                     @endif
