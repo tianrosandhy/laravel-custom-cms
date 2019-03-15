@@ -6,9 +6,13 @@ use Module\Main\Http\Controllers\AdminBaseController;
 use Validator;
 use Storage;
 use Module\Main\Http\Repository\ImageRepository;
+use Illuminate\Http\Request;
 
-class ImageStore extends AdminBaseController
+class ImageStore extends Controller
 {
+	public function __construct(Request $req){
+		$this->request = $req;
+	}
 
 	public function index(){
 		$validate = self::validateInput();
