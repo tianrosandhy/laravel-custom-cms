@@ -47,8 +47,10 @@ $(function(){
 		});
 
 		//init datepicker
-		$(".datepicker").datepicker({
-			format : 'yyyy-mm-dd'
+		$(".datepicker").datetimepicker({
+			format : 'YYYY-MM-DD'
+		}).on('change blur', function(e){
+			tb_data.ajax.reload();
 		});
 	}, 500);
 
