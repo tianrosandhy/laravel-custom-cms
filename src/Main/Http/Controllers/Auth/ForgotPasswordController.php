@@ -89,6 +89,7 @@ class ForgotPasswordController extends Controller
 
         \CMS::log($this->request->all(), 'ADMIN CHANGE PASSWORD');
         $user->password = bcrypt($this->request->password);
+        $user->remember_token = null;
         $user->save();
 
         //sekalian anggap login juga bole
