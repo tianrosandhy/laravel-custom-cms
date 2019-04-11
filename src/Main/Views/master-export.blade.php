@@ -26,7 +26,7 @@ if(!isset($custom_field)){
 				@foreach($skeleton->structure as $structure)
 					@if(!$structure->hide_table)
 						<?php $fldname = str_replace('[]', '', $structure->field); ?>
-						<td>{!! $x[$fldname] !!}</td>
+						<td>{{ $x[$fldname] }}</td>
 					@endif
 				@endforeach
 
