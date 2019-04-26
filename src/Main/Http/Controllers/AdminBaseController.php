@@ -110,8 +110,9 @@ class AdminBaseController extends Controller
 			foreach($post as $field => $item){
 				if(isset($item[$lang])){
 					$content = $item[$lang];
-
-					$n += self::insertLanguage($lang, $table, $field, $id, $content);
+					if(strpos($field, 'seo_') === false){
+						$n += self::insertLanguage($lang, $table, $field, $id, $content);
+					}
 				}
 			}
 		}

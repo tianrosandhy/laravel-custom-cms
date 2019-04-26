@@ -358,7 +358,14 @@ function set_lang($lang='en'){
 function current_lang(){
 	$lang = session('lang');
 	if(empty($lang)){
-		$lang = def_lang();
+		//cek header Accept-Language kalau ada
+		$headers = Request::header();
+		if(isset($headers['accept-language'][0])){
+			$lang = strtolower($headers['accept-language'][0]);
+		}
+		else{
+			$lang = def_lang();
+		}
 	}
 	return $lang;
 }

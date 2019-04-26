@@ -42,13 +42,18 @@ trait BasicCrud
 		$multi_language = isset($this->multi_language) ? $this->multi_language : false;
 		$additional_field = $this->additionalField();
 		$prepend_field = $this->prependField();
+		$seo = '';
+		if(method_exists($this, 'seoFields')){
+			$seo = $this->seoFields();
+		}
 		return view('main::master-crud', compact(
 			'title',
 			'forms',
 			'back',
 			'multi_language',
 			'prepend_field',
-			'additional_field'
+			'additional_field',
+			'seo'
 		));
 	}
 
@@ -61,6 +66,7 @@ trait BasicCrud
 
 		//multiple values / relational type can be freely managed here
 		$this->afterCrud($instance);
+		$this->storeSeo($instance);
 		if($this->multi_language){
 			$this->storeLanguage($instance);
 		}
@@ -101,6 +107,10 @@ trait BasicCrud
 		$multi_language = isset($this->multi_language) ? $this->multi_language : false;
 		$prepend_field = $this->prependField($data);
 		$additional_field = $this->additionalField($data);
+		$seo = '';
+		if(method_exists($this, 'seoFields')){
+			$seo = $this->seoFields($data);
+		}
 
 		return view('main::master-crud', compact(
 			'title',
@@ -109,7 +119,8 @@ trait BasicCrud
 			'data',
 			'multi_language',
 			'prepend_field',
-			'additional_field'
+			'additional_field',
+			'seo'
 		));
 	}
 
@@ -123,7 +134,8 @@ trait BasicCrud
 
 		//multiple values / relational type input is not processed here
 		$instance = $this->updateQuery($id);
-
+		//store SEO data
+		$this->storeSeo($instance);
 		//multiple values / relational type can be freely managed here
 		$this->afterCrud($instance);
 

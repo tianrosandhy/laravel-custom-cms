@@ -33,6 +33,7 @@ trait Translator
 				->where('lang', $lang)
 				->where('field', $field)
 				->first();
+
 			if(!empty($getLang)){
 				return $getLang->content;
 			}

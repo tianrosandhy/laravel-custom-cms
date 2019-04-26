@@ -61,6 +61,10 @@ if(!isset($multi_language)){
 		{!! $additional_field !!}
 		@endif
 
+		@if(isset($seo))
+		{!! $seo !!}
+		@endif
+
 		<div class="padd">
 			<button class="btn btn-primary">Save</button>
 		</div>
