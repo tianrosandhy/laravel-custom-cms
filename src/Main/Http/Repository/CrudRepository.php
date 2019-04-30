@@ -43,12 +43,14 @@ class CrudRepository{
 		if(count($param) > 0){
 			foreach($param as $key => $prm){
 				if(count($prm) == 1){
-					$data = $data->where($key, $prm);
+					$data = $this->operatorManagement($data, $key, $prm);
 				}
 				elseif(count($prm) == 2){
-					$data = $data->where($prm[0], $prm[1]);
+					$prm = array_values($prm);
+					$data = $this->operatorManagement($data, $prm[0], $prm[1]);
 				}
 				elseif(count($prm) == 3){
+					$prm = array_values($prm);
 					$data = $data->where($prm[0], $prm[1], $prm[2]);
 				}
 			}
@@ -60,6 +62,101 @@ class CrudRepository{
 		}
 		return $data->get();
 	}
+
+	public function operatorManagement($output, $field, $value){
+		//append nama tabelnya biar SQL valid
+		$field = $output->getModel()->getTable() . '.'.$field;
+
+		if(strpos($value, 'like(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$output = $output->where($field, 'like', '%'.$value.'%');
+		}
+		elseif(strpos($value, 'endlike(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$output = $output->where($field, 'like', $value.'%');
+		}
+		elseif(strpos($value, 'startlike(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$output = $output->where($field, 'like', '%'.$value);
+		}
+		elseif(strpos($value, 'not(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$output = $output->where($field, '<>', $value);
+		}
+		elseif(strpos($value, 'bt(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$output = $output->where($field, '>', $value);
+		}
+		elseif(strpos($value, 'lt(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$output = $output->where($field, '<', $value);
+		}
+		elseif(strpos($value, 'bte(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$output = $output->where($field, '>=', $value);
+		}
+		elseif(strpos($value, 'lte(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$output = $output->where($field, '<=', $value);
+		}
+		elseif(strpos($value, 'between(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$exploded_value = explode('|', $value);
+			if(count($exploded_value) == 2){
+				if(strtotime($exploded_value[0]) && strtotime($exploded_value[1])){
+					$output = $output->whereBetween($field, [
+						date('Y-m-d', strtotime($exploded_value[0])),
+						date('Y-m-d', strtotime($exploded_value[1])),
+					]);
+				}
+				else{
+					$output = $output->whereBetween($field, $exploded_value);
+				}
+			}
+		}
+		elseif(strpos($value, 'notbetween(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$exploded_value = explode('|', $value);
+			if(count($exploded_value) == 2){
+				if(strtotime($exploded_value[0]) && strtotime($exploded_value[1])){
+					$output = $output->whereBetween($field, [
+						date('Y-m-d', strtotime($exploded_value[0])),
+						date('Y-m-d', strtotime($exploded_value[1])),
+					]);
+				}
+				else{
+					$output = $output->whereNotBetween($field, $exploded_value);
+				}
+			}
+		}
+		elseif(strpos($value, 'in(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$vlists = explode('|', $value);
+			$output = $output->whereIn($field, $vlists);
+		}
+		elseif(strpos($value, 'notin(') !== false){
+			$value = $this->getStringBetween($value, '(', ')');
+			$vlists = explode('|', $value);
+			$output = $output->whereNotIn($field, $vlists);
+		}
+		elseif($value == '(null)'){
+			$output = $output->whereNull($field);
+		}
+		else{
+			$output = $output->where($field, $value);
+		}
+		return $output;
+	}
+
+	public function getStringBetween($str,$from,$to, $withFromAndTo = false){
+       $sub = substr($str, strpos($str,$from)+strlen($from),strlen($str));
+       if ($withFromAndTo)
+         return $from . substr($sub,0, strrpos($sub,$to)) . $to;
+       else
+         return substr($sub,0, strrpos($sub,$to));
+    }
+
+
 
 	public function filterPaginate($param=[], $orderBy='id', $flow='DESC', $per_page=10){
 		$data = $this->model;
