@@ -16,6 +16,10 @@ class CrudRepository{
 		}
 	}
 
+	public function getModel(){
+		return $this->model;
+	}
+
 	public function with($args){
 		$this->model = $this->model->with($args);
 		return $this;
@@ -41,19 +45,7 @@ class CrudRepository{
 	public function filter($param=[], $orderBy='id', $skip=0, $take=0, $flow='DESC'){
 		$data = $this->model;
 		if(count($param) > 0){
-			foreach($param as $key => $prm){
-				if(count($prm) == 1){
-					$data = $this->operatorManagement($data, $key, $prm);
-				}
-				elseif(count($prm) == 2){
-					$prm = array_values($prm);
-					$data = $this->operatorManagement($data, $prm[0], $prm[1]);
-				}
-				elseif(count($prm) == 3){
-					$prm = array_values($prm);
-					$data = $data->where($prm[0], $prm[1], $prm[2]);
-				}
-			}
+			$data = $this->paramManagement($data, $param);
 		}
 		$data = $data->orderBy($orderBy, $flow);
 		if($take > 0){
@@ -61,6 +53,23 @@ class CrudRepository{
 			$data = $data->take($take);
 		}
 		return $data->get();
+	}
+
+	public function paramManagement($obj, $param=[]){
+		foreach($param as $key => $prm){
+			if(count($prm) == 1){
+				$obj = $this->operatorManagement($obj, $key, $prm);
+			}
+			elseif(count($prm) == 2){
+				$prm = array_values($prm);
+				$obj = $this->operatorManagement($obj, $prm[0], $prm[1]);
+			}
+			elseif(count($prm) == 3){
+				$prm = array_values($prm);
+				$obj = $obj->where($prm[0], $prm[1], $prm[2]);
+			}
+		}
+		return $obj;
 	}
 
 	public function operatorManagement($output, $field, $value){
@@ -161,17 +170,7 @@ class CrudRepository{
 	public function filterPaginate($param=[], $orderBy='id', $flow='DESC', $per_page=10){
 		$data = $this->model;
 		if(count($param) > 0){
-			foreach($param as $key => $prm){
-				if(count($prm) == 1){
-					$data = $data->where($key, $prm);
-				}
-				elseif(count($prm) == 2){
-					$data = $data->where($prm[0], $prm[1]);
-				}
-				elseif(count($prm) == 3){
-					$data = $data->where($prm[0], $prm[1], $prm[2]);
-				}
-			}
+			$data = $this->paramManagement($data, $param);
 		}
 		$data = $data->orderBy($orderBy, $flow);
 		return $data->paginate($per_page);
@@ -184,17 +183,7 @@ class CrudRepository{
 	public function filterDelete($param=[]){
 		$data = $this->model;
 		if(count($param) > 0){
-			foreach($param as $key => $prm){
-				if(count($prm) == 1){
-					$data = $data->where($key, $prm);
-				}
-				elseif(count($prm) == 2){
-					$data = $data->where($prm[0], $prm[1]);
-				}
-				elseif(count($prm) == 3){
-					$data = $data->where($prm[0], $prm[1], $prm[2]);
-				}
-			}
+			$data = $this->paramManagement($data, $param);
 		}
 		return $data->delete();
 	}
