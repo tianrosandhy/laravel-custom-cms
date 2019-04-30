@@ -140,11 +140,18 @@ class Processor
 			$flow = $this->request->order[0]['dir'];
 		}
 
+		$filter = $this->manageFilter($filter);
+
 		$repo = new CrudRepository($this->model);
 		$this->raw_data = $repo->filter($filter, $orderBy, $this->start, $this->length, $flow);
 
 		$virtual_raw = $repo->filter($filter);
 		$this->query_count = $virtual_raw->count();
+	}
+
+	public function manageFilter($old_filter=[]){
+		//diolah lagi secara custom jika diperlukan
+		return $old_filter;
 	}
 
 

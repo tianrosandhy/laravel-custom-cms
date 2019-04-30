@@ -30,7 +30,11 @@ class BlankSkeleton extends DataTable
 
 	}
 
-
+	//manage custom filtering if required
+	public function manageFilter($old_filter=[]){
+		//diolah lagi secara custom jika diperlukan
+		return $old_filter;
+	}
 
 	
 	//MANAGE OUTPUT DATATABLE FORMAT PER BARIS

@@ -66,7 +66,10 @@ trait BasicCrud
 
 		//multiple values / relational type can be freely managed here
 		$this->afterCrud($instance);
-		$this->storeSeo($instance);
+		if(method_exists($this, 'storeSeo')){
+			$this->storeSeo($instance);
+		}
+
 		if($this->multi_language){
 			$this->storeLanguage($instance);
 		}
@@ -135,7 +138,9 @@ trait BasicCrud
 		//multiple values / relational type input is not processed here
 		$instance = $this->updateQuery($id);
 		//store SEO data
-		$this->storeSeo($instance);
+		if(method_exists($this, 'storeSeo')){
+			$this->storeSeo($instance);
+		}
 		//multiple values / relational type can be freely managed here
 		$this->afterCrud($instance);
 
