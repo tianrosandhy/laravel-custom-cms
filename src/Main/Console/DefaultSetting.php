@@ -44,14 +44,6 @@ class DefaultSetting extends Command
     public function actionRunner($title=null, $description=null){
         $data = [
             [
-                'param' => 'login_background',
-                'name' => 'Admin Login Background',
-                'description' => 'Image background used for admin login page',
-                'default_value' => '',
-                'type' => 'image',
-                'group' => 'admin',
-            ],
-            [
                 'param' => 'logo',
                 'name' => 'Admin Image Logo',
                 'description' => 'Image logo used for admin page',
@@ -93,11 +85,11 @@ class DefaultSetting extends Command
                 'group' => 'site',
             ],
             [
-                'param' => 'logo',
-                'name' => 'Site Image Logo',
-                'description' => 'Image logo used for site',
-                'default_value' => null,
-                'type' => 'image',
+                'param' => 'keywords',
+                'name' => 'Site Keywords',
+                'description' => '',
+                'default_value' => '',
+                'type' => 'text',
                 'group' => 'site',
             ],
             [
@@ -107,7 +99,90 @@ class DefaultSetting extends Command
                 'default_value' => null,
                 'type' => 'image',
                 'group' => 'site',
-            ],      
+            ],
+            [
+                'param' => 'image',
+                'name' => 'Site SEO Image',
+                'description' => 'Default SEO Image for site',
+                'default_value' => null,
+                'type' => 'image',
+                'group' => 'site',
+            ],
+            [
+                'param' => 'phone',
+                'name' => 'Site Phone Number',
+                'description' => 'Site Phone Number / Call Center',
+                'default_value' => '(0896) 2222 4614',
+                'type' => 'text',
+                'group' => 'site',
+            ],
+            [
+                'param' => 'mail_receiver',
+                'name' => 'Website Email Receiver',
+                'description' => 'All functional site email receiver',
+                'default_value' => 'tianrosandhy@gmail.com',
+                'type' => 'text',
+                'group' => 'site'
+            ],
+
+            [
+                'param' => 'facebook',
+                'name' => 'Facebook Link',
+                'description' => 'Your facebook URL',
+                'default_value' => 'https://facebook.com/tianEXE',
+                'type' => 'text',
+                'group' => 'social'
+            ],
+            [
+                'param' => 'twitter',
+                'name' => 'Twitter Link',
+                'description' => 'Your twitter URL',
+                'default_value' => 'https://twitter.com/tianrosandhy',
+                'type' => 'text',
+                'group' => 'social'
+            ],
+            [
+                'param' => 'instagram',
+                'name' => 'Instagram Link',
+                'description' => 'Your instagram URL',
+                'default_value' => 'https://instagram.com/tianrosandhy',
+                'type' => 'text',
+                'group' => 'social'
+            ],
+            [
+                'param' => 'youtube',
+                'name' => 'Youtube Link',
+                'description' => 'Your youtube URL',
+                'default_value' => '',
+                'type' => 'text',
+                'group' => 'social'
+            ],
+            [
+                'param' => 'whatsapp',
+                'name' => 'Whatsapp Number',
+                'description' => 'Your whatsapp phone number',
+                'default_value' => '6289622224614',
+                'type' => 'text',
+                'group' => 'social'
+            ],
+            [
+                'param' => 'appstore',
+                'name' => 'Apple App Store URL',
+                'description' => 'Your Apple App Store URL',
+                'default_value' => '',
+                'type' => 'text',
+                'group' => 'social'
+            ],
+            [
+                'param' => 'playstore',
+                'name' => 'Google Playstore URL',
+                'description' => 'Your Google Playstore URL',
+                'default_value' => '',
+                'type' => 'text',
+                'group' => 'social'
+            ],
+
+
 
         ];
 

@@ -55,6 +55,19 @@ class CrudRepository{
 		return $data->get();
 	}
 
+	//shortcode get active only data
+	public function filterActive($additional=[], $orderBy='id', $skip=0, $take=0, $flow='DESC'){
+		$real_filter = [
+			['is_active', '=', 1]
+		];
+		if(count($additional) > 0){
+			foreach($additional as $add){
+				$real_filter[] = $add;
+			}
+		}
+		return $this->filter($real_filter, $orderBy, $skip, $take, $flow);
+	}
+
 	public function paramManagement($obj, $param=[]){
 		foreach($param as $key => $prm){
 			if(count($prm) == 1){

@@ -41,16 +41,26 @@ trait Seo
 
 	}
 
-	public function generateSeoTags($instance, $config=[]){
-		if(method_exists($this, 'outputTranslate') && config('cms.lang.active')){
-			$seo = $instance->outputTranslate('seo');
+	public function generateSeoTags($config=[], $instance=null){
+		if(!empty($instance)){
+			if(method_exists($instance, 'outputTranslate') && config('cms.lang.active')){
+				$seo = $instance->outputTranslate('seo');
+			}
+			else{
+				$seo = $instance->seo;
+			}
+			$seo = json_decode($seo, true);
 		}
 		else{
-			$seo = $instance->seo;
+			//default SEO variables
+			$seo = [
+				'keyword' => setting('site.keywords'),
+				'description' => setting('site.description'),
+				'image' => setting('site.image'),
+			];
 		}
 
 		$config = array_merge($config, config('seo.default'));
-		$seo = json_decode($seo, true);
 		if($seo){
 			$config = array_merge($config, $seo);
 		}
