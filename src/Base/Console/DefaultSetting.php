@@ -1,9 +1,9 @@
 <?php
 
-namespace Module\Main\Console;
+namespace Module\Base\Console;
 
 use Illuminate\Console\Command;
-use Module\Main\Models\SettingStructure;
+use Module\Base\Models\SettingStructure;
 
 class DefaultSetting extends Command
 {

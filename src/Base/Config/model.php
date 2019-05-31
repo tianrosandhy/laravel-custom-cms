@@ -6,7 +6,7 @@ return [
 	'user' => 'Module\Main\Models\User',
 	'role' => 'Module\Main\Models\Role',
 
-	'setting_structure' => 'Module\Main\Models\SettingStructure',
+	'setting_structure' => 'Module\Base\Models\SettingStructure',
 	'translator' => 'Module\Main\Models\Translator',
 
 ];

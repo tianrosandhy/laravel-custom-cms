@@ -1,6 +1,6 @@
 <?php
 
-namespace Module\Main\Console;
+namespace Module\Base\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -46,9 +46,22 @@ class SetRole extends Command
         //
         $lists = config('permission');
         $out = [];
-        foreach($lists as $data){
-            foreach($data as $title => $lists){
-                $out = array_merge($out, $lists);
+
+        if(empty($lists)){
+            //config blm kebaca -_-
+            try{
+                $lists = include(__DIR__.'/../Config/permission.php');
+            }catch(\Exception $e){
+                //do nothing
+                //kalo masih ga kebaca juga yaudah
+            }
+        }
+
+        if(is_array($lists)){
+            foreach($lists as $data){
+                foreach($data as $title => $lists){
+                    $out = array_merge($out, $lists);
+                }
             }
         }
 

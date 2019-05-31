@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Maxsol CMS Installer</title>
+	<title>TianRosandhy CMS Installer</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -13,7 +13,7 @@
 <div class="container">
 	<center style="padding-top:2em;">
 		@if(!$publish)
-		<img src="{{ asset('maxsol/img/logo_maxsol.png') }}" alt="CMS Maxsol" style="height:40px">
+		<img src="{{ asset('maxsol/img/logo_maxsol.png') }}" alt="CMS TianRosandhy" style="height:40px">
 		@endif
 		<h2>CMS Install</h2>
 	</center>
@@ -21,6 +21,10 @@
 	@if(session('error'))
 	<div class="alert alert-danger">{{ session('error') }}</div>
 	@endif
+	@if(session('success'))
+	<div class="alert alert-success">{{ session('success') }}</div>
+	@endif
+
 	
 	@if(!$has_install)
 		<div class="panel panel-body">
@@ -115,7 +119,8 @@
 		<br>
 		<br>
 	@else
-	<div class="alert alert-danger">The CMS has been installed.</div>
+	<div class="alert alert-info">The CMS has been installed.</div>
+	<a href="{{ route('admin.splash') }}" class="btn btn-success">Go To Admin Panel</a>
 	@endif
 
 </div>

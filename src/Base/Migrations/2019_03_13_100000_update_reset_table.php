@@ -18,6 +18,7 @@ class UpdateResetTable extends Migration
             $table->string('email', 190)->index();
             $table->text('token');
             $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

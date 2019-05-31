@@ -13,32 +13,10 @@ class MainServiceProvider extends ServiceProvider
 	public function boot(){
 		//load migrations table
 		$this->loadMigrationsFrom(realpath(__DIR__."/Migrations"));
-		$this->publishAssets();
 		$this->registerValidator();
-
-		//boot command config
-		if ($this->app->runningInConsole()) {
-	        $this->commands([
-	            Console\DefaultSetting::class,
-	            Console\ModuleScaffold::class,
-	            Console\NewAdmin::class,
-	            Console\SetRole::class,
-	        ]);
-	    }
 	}
 
-	protected function publishAssets(){
-		//register published config
-		$this->publishes([
-			__DIR__.'/Config/cms.php' => config_path('cms.php'),
-			__DIR__.'/Config/seo.php' => config_path('seo.php'),
-			__DIR__.'/Config/permission.php' => config_path('permission.php'),
-			__DIR__.'/Config/model.php' => config_path('model.php'),
-			__DIR__.'/Config/image.php' => config_path('image.php'),
-			__DIR__.'/Config/modules.php' => config_path('modules.php'),
-			__DIR__.'/../../assets' => public_path(config('cms.admin.assets', 'theme')),
-		], 'tianrosandhy-cms');
-	}
+	
 
 	protected function registerValidator(){
 		//create custom validator

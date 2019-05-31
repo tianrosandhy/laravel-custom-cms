@@ -1,4 +1,3 @@
 <?php
-Route::get('/', function(){
-	echo 'Check Installation';
-});
+Route::get('install', 'BaseController@index');
+Route::post('install', 'BaseController@process');
