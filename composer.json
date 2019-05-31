@@ -25,11 +25,7 @@
         "laravel": {
             "providers": [
                 "Module\\Main\\MainServiceProvider"
-            ],
-            "aliases": {
-                "ImageService": "Module\\Main\\Services\\ImageFacades",
-                "CMS" : "Module\\Main\\Services\\CmsFacades"
-            }
+            ]
         }
     }
 }

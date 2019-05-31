@@ -103,9 +103,7 @@ class MainServiceProvider extends ServiceProvider
 		$this->loadViewsFrom(realpath(__DIR__."/Views"), 'main');
 
 		$this->mergeMainConfig();
-		$this->loadModules();
 		$this->registerAlias();
-
 	}
 
 
@@ -121,8 +119,6 @@ class MainServiceProvider extends ServiceProvider
 				require realpath(__DIR__."/Routes/web.php");
 				require realpath(__DIR__."/Routes/api.php");
 			});
-			//installable route
-			require realpath(__DIR__."/Routes/install.php");
 		});
 
 	}
@@ -155,12 +151,7 @@ class MainServiceProvider extends ServiceProvider
 	    );
 	}
 
-	protected function loadModules(){
-	    $listModule = config('modules.load');
-	    foreach($listModule as $mod){
-		    $this->app->register($mod);
-	    }
-	}
+	
 
 
 	protected function registerAlias(){
