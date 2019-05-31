@@ -60,10 +60,15 @@ trait Seo
 			];
 		}
 
-		$config = array_merge($config, config('seo.default'));
+		$config = array_merge(config('seo.default'), $config);
 		if($seo){
-			$config = array_merge($config, $seo);
+			foreach($seo as $prm => $fld){
+				if(!empty($fld)){
+					$config[$prm] = $fld;
+				}
+			}
 		}
 		return view('main::inc.seo', compact('config'))->render();
 	}
+
 }
