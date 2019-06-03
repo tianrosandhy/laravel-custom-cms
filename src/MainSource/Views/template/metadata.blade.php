@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="{!! admin_asset('vendor/bootstrap-tag/bootstrap-tagsinput.css') !!}">
 <link rel="stylesheet" href="{!! admin_asset('vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css') !!}">
 <link rel="stylesheet" href="{{ admin_asset('vendor/timepicker/jquery.timepicker.min.css') }}">
+<link rel="stylesheet" href="{{ admin_asset('vendor/simplebar/simplebar.css') }}">
 <!-- endinject -->
 
 <link rel="stylesheet" href="{{ admin_asset('vendor/datatables.net-bs4/dataTables.bootstrap4.css') }}">

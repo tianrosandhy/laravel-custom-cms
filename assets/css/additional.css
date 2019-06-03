@@ -444,3 +444,20 @@ table th{
 	border-radius:5px;
 	overflow:hidden;
 }
+
+.site-sidebar{
+	position:fixed;
+	height:100%;
+}
+
+@media (min-width:992px){
+	.main-panel{
+		margin-left:257px;
+	}
+	.sidebar .nav{
+		margin-bottom:100px;
+	}
+	.sidebar-icon-only .main-panel{
+		margin-left:70px;
+	}
+}

@@ -1,5 +1,5 @@
 <!-- partial:partials/_sidebar.html -->
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar site-sidebar sidebar-offcanvas" id="sidebar" data-simplebar>
   <ul class="nav">
     @foreach(CMS::navigation() as $group => $data)
     <li class="nav-item {!! $data['active'] ? 'active' : '' !!}">

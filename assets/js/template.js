@@ -57,6 +57,9 @@
     //checkbox and radios
     $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
 
-
+    //initialize sidebar simplebar
+    if($("#sidebar").length > 0){
+      new SimpleBar(document.getElementById('sidebar'));
+    }
   });
 })(jQuery);

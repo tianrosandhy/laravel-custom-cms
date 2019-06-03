@@ -11,6 +11,7 @@
 <script src="{{ admin_asset('vendor/tinymce/jquery.tinymce.min.js') }}"></script>
 <script src="{{ admin_asset('vendor/timepicker/jquery.timepicker.min.js') }}"></script>
 <script src="{{ admin_asset('js/jquery.mask.min.js') }}"></script>
+<script src="{{ admin_asset('vendor/simplebar/simplebar.js') }}"></script>
 <!-- inject:js -->
 <script src="{{ admin_asset('js/off-canvas.js') }}"></script>
 <script src="{{ admin_asset('js/hoverable-collapse.js') }}"></script>

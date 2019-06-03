@@ -54,7 +54,7 @@
 	</div>
 </div>
 
-<div class="card card-block ov">
+<div class="card card-body ov">
 	<table class="table data-table">
 		<thead>
 			<tr>
