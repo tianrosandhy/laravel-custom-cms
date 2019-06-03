@@ -6,4 +6,4 @@ if(strlen(setting('admin.logo')) > 0){
 	}
 }
 ?>
-<img src="{{ $logo_image }}" alt="{{ setting('site.title') }}" style="height:{{ isset($height) ? $height : '35' }}px">
+<img src="{{ $logo_image }}" alt="{{ setting('site.title') }}" style="object-fit:contain;">

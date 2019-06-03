@@ -1,25 +1,23 @@
-<!-- BEGIN VENDOR JS-->
-<script src="{{ admin_asset('js/tether.min.js') }}" type="text/javascript"></script>
-<script src="{{ admin_asset('js/core/libraries/bootstrap.min.js') }}" type="text/javascript"></script>
+<!-- plugins:js -->
+<script src="{{ admin_asset('vendor/base/vendor.bundle.base.js') }}"></script>
 <script src="{{ admin_asset('vendor/bootstrap-datetimepicker/moment.js') }}"></script>
-<script src="{{ admin_asset('js/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
-<script src="{{ admin_asset('js/unison.min.js') }}" type="text/javascript"></script>
-<script src="{{ admin_asset('js/core/app.js') }}" type="text/javascript"></script>
-<script src="{{ admin_asset('js/core/app-menu.js') }}" type="text/javascript"></script>
-<script src="{{ admin_asset('js/jquery.mask.min.js') }}"></script>
-
 <script src="{!! admin_asset('js/jquery-debounce.js') !!}" type="text/javascript"></script>
 <script src="{!! admin_asset('js/modernizr.custom.js') !!}" type="text/javascript"></script>
 <script src="{!! admin_asset('vendor/select2/js/select2.min.js') !!}"></script>
 <script src="{!! admin_asset('vendor/switchery/js/switchery.min.js') !!}"></script>
 <script src="{!! admin_asset('vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') !!}"></script>
 <script src="{!! admin_asset('vendor/bootstrap-tag/bootstrap-tagsinput.min.js') !!}"></script>
-
 <script src="{{ admin_asset('vendor/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ admin_asset('vendor/tinymce/jquery.tinymce.min.js') }}"></script>
 <script src="{{ admin_asset('vendor/timepicker/jquery.timepicker.min.js') }}"></script>
-<script src="{{ admin_asset('vendor/tinymce/themes/modern/theme.min.js') }}"></script>
+<script src="{{ admin_asset('js/jquery.mask.min.js') }}"></script>
+<!-- inject:js -->
+<script src="{{ admin_asset('js/off-canvas.js') }}"></script>
+<script src="{{ admin_asset('js/hoverable-collapse.js') }}"></script>
+<script src="{{ admin_asset('js/template.js') }}"></script>
+
 <script src="{{ admin_asset('js/additional.js?v=1.0.1') }}"></script>
+<!-- endinject -->
 
 <script>
 var CSRF_TOKEN = '{{ csrf_token() }}';

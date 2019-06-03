@@ -24,13 +24,12 @@ return [
 	'admin' => [
 		'prefix' => 'p4n3lb04rd',
 		'assets' => 'admin_theme',
-		'minified' => true,
-		'jquery_version' => 1, //1 or 3 only
-		'logo' => 'theme/img/logo_maxsol.png',
 		'components' => [
 			'register' => true,
 			'forgot_password' => true,
 			'userinfo' => true,
+			'search' => false,
+			'notification' => false,			
 		],
 		'email_receiver' => 'tianrosandhy@gmail.com',
 

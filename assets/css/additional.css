@@ -344,3 +344,46 @@ table th{
 .datepicker{
 	padding:.5rem .75rem;
 }
+
+
+/*new theme additional css*/
+.sidebar .fa{
+	margin-right:.75em;
+}
+
+.sidebar .nav.sub-menu .nav-item::before{
+	display:none;
+}
+
+.sidebar .nav.sub-menu{
+	padding:.25em 0 .25rem 1rem;
+}
+
+.sidebar .nav.sub-menu ul{
+	list-style:none;
+	font-size:.85rem;
+	opacity:.85;
+}
+
+.sidebar .nav.sub-menu ul a.menu-item{
+	padding-left:1em;
+}
+
+.sidebar .nav-link{
+	transition:.3s ease;
+	-moz-transition:.3s ease;
+	-webkit-transition:.3s ease;
+	-ms-transition:.3s ease;
+	background:transparent;
+}
+
+.sidebar .first-submenu a{
+	display:block;
+}
+
+.sidebar .first-submenu:hover a.nav-link{
+	background: rgb(0,0,0);
+	background: -webkit-linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.05) 50%, rgba(0,0,0,0) 100%);
+	background: -o-linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.05) 50%, rgba(0,0,0,0) 100%);
+	background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.05) 50%, rgba(0,0,0,0) 100%);
+}
