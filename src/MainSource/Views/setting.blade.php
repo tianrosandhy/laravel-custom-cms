@@ -37,7 +37,7 @@
 
 	<div class="tab-content">
 		@foreach($settings as $group => $data)
-		<div class="tab-pane slide-left card card-block {{ $loop->iteration == 1 ? 'show active' : '' }}" id="slide-{{ $group }}">
+		<div class="tab-pane slide-left card card-block card-body {{ $loop->iteration == 1 ? 'show active' : '' }}" id="slide-{{ $group }}">
 			@foreach($data as $row)
 			<div class="form-group custom-form-group searchable pos-rel close-target mt-2">
 				@if(has_access('admin.setting.delete'))
@@ -83,7 +83,7 @@
 			Add New Setting Data
 		</div>
 	</div>
-	<div class="card-block">
+	<div class="card-block card-body">
 		<form action="" method="post">
 			{{ csrf_field() }}
 			<div class="row">
@@ -161,7 +161,7 @@
 @endif
 
 @if(has_access('admin.maintenance.artisan'))
-<div class="card card-block">
+<div class="card card-block card-body mt-5">
 	<h4>Artisan Runner</h4>
 	<form action="{{ route('admin.maintenance.artisan') }}" method="post">
 		{{ csrf_field() }}
@@ -170,8 +170,8 @@
 			Make sure you know what are you really doing here. For development only
 		</div>
 		<div class="input-group">
-			<div class="input-group-addon">
-				php artisan
+			<div class="input-group-prepend">
+				<span class="input-group-text">php artisan</span>
 			</div>
 			<input type="text" name="key" class="form-control" placeholder="Put your artisan command here">
 			<div class="input-group-btn">

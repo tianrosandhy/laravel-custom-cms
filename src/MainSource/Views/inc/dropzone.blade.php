@@ -12,7 +12,7 @@ if(!isset($name)){
 		<div style="padding-bottom:.5em;">
 			<span class="label label-default">Maximum Upload Size : {{ number_format((file_upload_max_size(config('cms.max_filesize.image')) / 1024 /1024), 2) }} MB</span>
 		</div>
-        <div class="dropzone dz-clickable mydropzone" data-hash="{{ $hash }}" style="min-height:200px; height:200px;" data-target="{{ admin_url('api/store-images') . ( isset($path) ? '?path='.$path : '' ) }}"></div>
+        <div class="dropzone custom-dropzone dz-clickable mydropzone" data-hash="{{ $hash }}" data-target="{{ admin_url('api/store-images') . ( isset($path) ? '?path='.$path : '' ) }}"></div>
 	</div>
 	<div class="{{ isset($horizontal) ? 'col-sm-6' : 'col-sm-12' }}">
 		<div class="uploaded-holder" data-hash="{{ $hash }}">

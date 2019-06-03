@@ -42,10 +42,6 @@ class RegisterController extends Controller
         $this->request = $req;
     }
 
-    public function redirectTo(){
-        return env('ADMIN_PREFIX');
-    }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -68,10 +64,12 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255|unique:users',
             'real_email' => 'required|strict_mail|max:255|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
+            'toc' => 'required'
         ], [
             'real_email.required' => 'Please fill the email',
             'real_email.strict_mail' => 'The email format is invalid. Please try again',
-            'real_email.unique' => 'Email is already exists'
+            'real_email.unique' => 'Email is already exists',
+            'toc.required' => 'Please accept the terms and conditions'
         ]);
     }
 

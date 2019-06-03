@@ -9,7 +9,7 @@ if(!isset($name)){
 <input type="hidden" data-hash="{{ $hash }}" name="{{ $name }}" class="dropzone_uploaded listen_uploaded_image_multiple" value="{{ isset($value) ? $value : '' }}">
 <div class="row">
 	<div class="{{ isset($horizontal) ? 'col-sm-6' : 'col-sm-12' }}">
-		<div class="dropzone dz-clickable mydropzone-multiple" data-hash="{{ $hash }}" style="min-height:200px; height:200px;" data-target="{{ admin_url('api/store-images') . ( isset($path) ? '?path='.$path : '' ) }}"></div>
+		<div class="dropzone custom-dropzone dz-clickable mydropzone-multiple" data-hash="{{ $hash }}" data-target="{{ admin_url('api/store-images') . ( isset($path) ? '?path='.$path : '' ) }}"></div>
 	</div>
 	<div class="{{ isset($horizontal) ? 'col-sm-6' : 'col-sm-12' }}">
 		<div class="uploaded-holder" data-hash="{{ $hash }}">

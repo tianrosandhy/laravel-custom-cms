@@ -4,7 +4,7 @@
 @section ('content')
 <h3>My Profile</h3>
 
-<div class="card card-block">
+<div class="card card-body">
 	<form action="" method="post" autocomplete="off">
 		{{ csrf_field() }}
 		<div class="row">

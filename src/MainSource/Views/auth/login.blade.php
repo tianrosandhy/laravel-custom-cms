@@ -1,80 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" data-textdirection="ltr" class="loading">
-  <head>
-    @include ('main::template.metadata')
-  </head>
-  <body data-open="click" data-menu="vertical-menu" data-col="1-column" class="vertical-layout vertical-menu 1-column  blank-page blank-page">
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
-    <div class="app-content content container-fluid">
-      <div class="content-wrapper">
-        <div class="content-header row">
-        </div>
-        <div class="content-body">
-<section class="flexbox-container">
-    <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1  box-shadow-2 p-0">
-        <div class="card border-grey border-lighten-3 m-0">
-            <div class="card-header no-border">
-                <div class="card-title text-xs-center">
-                    <div class="p-1">
-                        @include ('main::template.components.logo')
+<head>
+@include ('main::template.metadata')
+</head>
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+          <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
+            <div class="row flex-grow">
+              <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                <div class="auth-form-transparent text-left p-3">
+                  <div class="brand-logo">
+                    @include ('main::template.components.logo')
+                  </div>
+                  <h4>Welcome back!</h4>
+                  <h6 class="font-weight-light">Happy to see you again!</h6>
+
+                  <form class="pt-3" method="post">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <label for="form-email">Email</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend bg-transparent">
+                          <span class="input-group-text bg-transparent border-right-0">
+                            <i class="mdi mdi-account-outline text-primary"></i>
+                          </span>
+                        </div>
+                        <input name="email" type="email" class="form-control form-control-lg border-left-0" id="form-email" placeholder="Email" maxlength="50" required>
+                      </div>
                     </div>
-                </div>
-                <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Login to Admin Panel</span></h6>
-            </div>
-            <div class="card-body collapse in">
-                <div class="card-block">
-                    <form class="form-horizontal form-simple" action="" novalidate method="post">
-                        {{ csrf_field() }}
-                        <fieldset class="form-group position-relative has-icon-left mb-0">
-                            <input type="email" class="form-control form-control-lg input-lg" id="user-name" placeholder="Your Email" maxlength="50" required name="email">
-                            <div class="form-control-position">
-                                <i class="icon-head"></i>
-                            </div>
-                        </fieldset>
-                        <fieldset class="form-group position-relative has-icon-left">
-                            <input type="password" class="form-control form-control-lg input-lg" id="user-password" placeholder="Enter Password" required maxlength=50 name="password">
-                            <div class="form-control-position">
-                                <i class="icon-key3"></i>
-                            </div>
-                        </fieldset>
-                        <fieldset class="form-group row">
-                            <div class="col-md-6 col-xs-12 text-xs-center text-md-left">
-                                <fieldset>
-                                    <input type="checkbox" id="remember-me" value="1" class="chk-remember" name="remember">
-                                    <label for="remember-me"> Remember Me</label>
-                                </fieldset>
-                            </div>
-                            @if(config('cms.admin.components.forgot_password'))
-                            <div class="col-md-6 col-xs-12 text-xs-center text-md-right"><a href="#" data-toggle="modal" data-target="#resetPasswordModal" class="card-link">Forgot Password?</a></div>
-                            @endif
+                    <div class="form-group">
+                      <label for="exampleInputPassword">Password</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend bg-transparent">
+                          <span class="input-group-text bg-transparent border-right-0">
+                            <i class="mdi mdi-lock-outline text-primary"></i>
+                          </span>
+                        </div>
+                        <input name="password" type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password">
+                      </div>
+                    </div>
+                    <div class="my-2 d-flex justify-content-between align-items-center">
+                      <div class="form-check">
+                        <label class="form-check-label text-muted">
+                          <input type="checkbox" class="form-check-input" name="remember">
+                          Keep me signed in
+                        </label>
+                      </div>
+                        @if(config('cms.admin.components.forgot_password'))
+                        <a href="#" data-toggle="modal" data-target="#resetPasswordModal" class="card-link auth-link text-black">Forgot Password?</a>
+                        @endif
+                    </div>
+                    <div class="my-3">
+                      <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">LOGIN</button>
+                    </div>
 
-                        </fieldset>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="icon-unlock2"></i> Log In</button>
-                    </form>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div>
-                    @if(config('cms.admin.components.register', config('cms.admin.register')))
-                    <p class="float-sm-left text-xs-center m-0"><a href="#" data-toggle="modal" data-target="#resendModal" class="card-link">Resend Validation Email</a></p>
-                    <p class="float-sm-right text-xs-center m-0">Dont have an account? <a href="{{ admin_url('register') }}" class="card-link">Register</a></p>
+                    @if(config('cms.admin.components.register'))
+                    <div class="text-center mt-4 font-weight-light">
+                      Don't have an account? <a href="{{ admin_url('register') }}" class="text-primary">Create</a>
+                    </div>
                     @endif
+                  </form>
                 </div>
+              </div>
+              <div class="col-lg-6 login-half-background d-flex flex-row">
+                @if(setting('admin.background'))
+                <img src="{{ storage_url(setting('admin.background')) }}" class="half-banner">
+                @else
+                <img src="{{ admin_asset('img/login-bg.jpg') }}" class="half-banner">
+                @endif
+                <p class="text-white font-weight-medium text-center flex-grow align-self-end copyright">Copyright &copy; {{ date('Y') }}  All rights reserved.</p>
+              </div>
             </div>
+          </div>
+          <!-- content-wrapper ends -->
         </div>
+        <!-- page-body-wrapper ends -->
     </div>
-</section>
-
-        </div>
-      </div>
-    </div>
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
-
-
+    <!-- container-scroller -->
     @include ('main::auth.partials.resend-validation')
     @include ('main::auth.partials.reset-password')
     @include ('main::template.modal')
 
     @include ('main::template.scripts')
-  </body>
+</body>
 </html>
+
+

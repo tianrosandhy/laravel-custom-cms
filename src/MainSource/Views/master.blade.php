@@ -28,7 +28,7 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  @include ('main::template.modal')
   @include ('main::template.scripts')
 </body>
 

@@ -20,7 +20,7 @@ if(!isset($multi_language)){
 
 <form action="" method="post">
 	{{ csrf_field() }}
-	<div class="card card-block">
+	<div class="card card-block card-body">
 		@if(isset($prepend_field))
 		{!! $prepend_field !!}
 		@endif
@@ -66,7 +66,7 @@ if(!isset($multi_language)){
 		@endif
 
 		<div class="padd">
-			<button class="btn btn-primary">Save</button>
+			<button type="submit" class="btn btn-primary">Save</button>
 		</div>
 			
 	</div>

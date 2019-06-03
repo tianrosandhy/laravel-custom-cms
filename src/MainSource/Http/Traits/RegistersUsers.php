@@ -20,7 +20,7 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        if(!config('cms.admin.register')){
+        if(!config('cms.admin.components.register')){
             return redirect(admin_url());
         }
         return view('main::auth.register');

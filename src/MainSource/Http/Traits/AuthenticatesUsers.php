@@ -73,6 +73,9 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request)
     {
         $post = $request->all();
+        $request->validate([
+            $this->username() => 'required|email',
+        ]);
         $post['real_email'] = mail_reformat($post[$this->username()]);
 
         Validator::make($post, [
