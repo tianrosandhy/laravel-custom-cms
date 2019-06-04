@@ -23,8 +23,11 @@ class DataStructure
 		$update_validation,
 		$slug_target,
 		$value_source,
+		$array_source,
 		$imagedir_path,
-		$cropper_ratio;
+		$cropper_ratio,
+		$translate,
+		$view_source;
 
 	public function __construct(Application $app){
 		//manage default value
@@ -38,8 +41,10 @@ class DataStructure
 		$this->input_array = false;
 		$this->slug_target = false;
 		$this->value_source = false;
+		$this->array_source = null;
 		$this->imagedir_path = false;
 		$this->cropper_ratio = [300, 300];
+		$this->translate = true;
 	}
 
 
@@ -75,6 +80,32 @@ class DataStructure
 		return $this;
 	}
 
+	public function autoSlug($target='title', $field='slug', $name='Slug', $col=12){
+		$this->field($field);
+		$this->formColumn($col);
+		$this->name($name);
+		$this->inputType('slug');
+		$this->slugTarget($target);
+		$this->setTranslate(false);
+		return $this;
+	}
+
+	public function dateRange($field, $name, $callback=null){
+		if(strpos($field, '[]') === false){
+			$field = $field.'[]';
+		}
+		$this->field($field);
+		$this->formColumn(12);
+		$this->name($name);
+		$this->inputType('daterange');
+		$this->viewSource('main::inc.daterange-helper');
+		$this->inputAttribute([
+			'data-mask' => '0000-00-00'
+		]);
+		$this->setTranslate(false);
+		$this->arraySource($callback);
+		return $this;
+	}
 
 	public function name($name=''){
 		$this->name = $name;
@@ -157,12 +188,14 @@ class DataStructure
 			'time',
 			'cropper',
 			'datetime',
+			'daterange',
+			'view'
 		];
 
 		if(!in_array($type, $lists)){
 			$type = 'text'; //paling default
 		}
-		if(in_array($type, ['select_multiple', 'image_multiple', 'file_multiple'])){
+		if(in_array($type, ['select_multiple', 'image_multiple', 'file_multiple', 'daterange'])){
 			$this->inputArray();
 		}
 
@@ -219,6 +252,10 @@ class DataStructure
 		return $this;
 	}
 
+	public function arraySource($fn){
+		return $this->array_source = $fn;
+	}
+
     public function setImageDirPath($path=''){
         $this->imagedir_path = $path;
         return $this;
@@ -229,9 +266,15 @@ class DataStructure
     	return $this;
     }
 
+    public function setTranslate($bool=false){
+    	$this->translate = $bool;
+    	return $this;
+    }
 
-
-
+    public function viewSource($target){
+    	$this->view_source = $target;
+    	return $this;
+    }
 
 
 

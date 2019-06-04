@@ -55,6 +55,14 @@ class CrudRepository{
 		return $data->get();
 	}
 
+	protected function modelTableListing(){
+		$model = $this->model;
+        return $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
+	}
+
+
+
+
 	//shortcode get active only data
 	public function filterActive($additional=[], $orderBy='id', $skip=0, $take=0, $flow='DESC'){
 		$real_filter = [
@@ -69,17 +77,24 @@ class CrudRepository{
 	}
 
 	public function paramManagement($obj, $param=[]){
+		$listing = $this->modelTableListing();
 		foreach($param as $key => $prm){
 			if(count($prm) == 1){
-				$obj = $this->operatorManagement($obj, $key, $prm);
+				if(in_array($key, $listing)){
+					$obj = $this->operatorManagement($obj, $key, $prm);
+				}
 			}
 			elseif(count($prm) == 2){
 				$prm = array_values($prm);
-				$obj = $this->operatorManagement($obj, $prm[0], $prm[1]);
+				if(in_array($prm[0], $listing)){
+					$obj = $this->operatorManagement($obj, $prm[0], $prm[1]);
+				}
 			}
 			elseif(count($prm) == 3){
 				$prm = array_values($prm);
-				$obj = $obj->where($prm[0], $prm[1], $prm[2]);
+				if(in_array($prm[0], $listing)){
+					$obj = $obj->where($prm[0], $prm[1], $prm[2]);
+				}
 			}
 		}
 		return $obj;

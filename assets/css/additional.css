@@ -461,3 +461,11 @@ table th{
 		margin-left:70px;
 	}
 }
+
+.language-switcher a{
+	opacity:.5;
+}
+
+.language-switcher a.active{
+	opacity:1;
+}

@@ -140,20 +140,39 @@ class Processor
 			$flow = $this->request->order[0]['dir'];
 		}
 
-		$filter = $this->manageFilter($filter);
+		//gausa pake crud repository
+		$ctx = $this->model;
+		$ctx = (new CrudRepository($this->model))->paramManagement($ctx, $filter);
+		$ctx = $this->additionalSearchFilter($ctx);
 
-		$repo = new CrudRepository($this->model);
-		$this->raw_data = $repo->filter($filter, $orderBy, $this->start, $this->length, $flow);
+		$this->raw_data = $ctx->orderBy($orderBy, $flow)->skip($this->start)->take($this->length)->get();
+		$this->query_count = $ctx->count();
+	}
 
-		$virtual_raw = $repo->filter($filter);
-		$this->query_count = $virtual_raw->count();
+	public function additionalSearchFilter($context){
+		return $context;
+	}
+
+	public function grabColumn($name){
+		$out = [];
+		$posts = $this->request->all();
+		if(isset($posts['columns'])){
+			foreach($posts['columns'] as $row){
+				if(isset($row['search']['value']))
+				$out[$row['data']] = $row['search']['value'];
+			}
+		}
+
+		if(isset($out[$name])){
+			return $out[$name];
+		}
+		return false;
 	}
 
 	public function manageFilter($old_filter=[]){
 		//diolah lagi secara custom jika diperlukan
 		return $old_filter;
 	}
-
 
 
 	public function getResponse(){

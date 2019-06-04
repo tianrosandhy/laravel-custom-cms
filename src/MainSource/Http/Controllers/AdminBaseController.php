@@ -87,6 +87,10 @@ class AdminBaseController extends Controller
 		];
 	}
 
+	public function afterValidation($mode='create'){
+		//
+	}
+
 	public function afterCrud($instance){
 		//
 	}

@@ -31,9 +31,9 @@ class BlankSkeleton extends DataTable
 	}
 
 	//manage custom filtering if required
-	public function manageFilter($old_filter=[]){
-		//diolah lagi secara custom jika diperlukan
-		return $old_filter;
+	public function additionalSearchFilter($context){
+		//$grab = $this->grabColumn('name');
+		return $context;
 	}
 
 	

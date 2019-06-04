@@ -167,16 +167,16 @@ DATA =>
         return [];
     }
 
-    public function inputMultilang($input, $default_value=''){
+    public function inputMultilang($input, $default_value='', $data=null){
         $attr = self::manageAttributes($input);
         $oldVals = old($input->field, $default_value);
         $oldVal = isset($oldVals[config('cms.lang.default')]) ? $oldVals[config('cms.lang.default')] : '';
 
         $out = '';
 
-        if(in_array($input->input_type, ['select', 'select_multiple', 'image', 'image_multiple', 'file', 'file_multiple', 'date', 'radio', 'checkbox', 'cropper'])){
+        if(in_array($input->input_type, ['select', 'select_multiple', 'image', 'image_multiple', 'file', 'file_multiple', 'date', 'radio', 'checkbox', 'cropper', 'view', 'daterange']) || !$input->translate){
             //untuk input2 yg ga butuh multi language, langsung tampilkan default
-            return self::getOutput($input, $attr, $oldVal);
+            return self::getOutput($input, $attr, $oldVal, '', false, $data);
         }
         else{
             //loop input per tipe data bahasa
@@ -184,7 +184,7 @@ DATA =>
                 $ov = isset($oldVals[$lang]) ? $oldVals[$lang] : '';
 
                 $out .= '<div class="input-language" data-lang="'.$lang.'" '. ($lang != config('cms.lang.default') ? 'style="display:none"' : '') .'>';
-                $out .= self::getOutput($input, $attr, $ov, $lang);
+                $out .= self::getOutput($input, $attr, $ov, $lang, false, $data);
                 $out .= '</div>';
             }
         }
@@ -192,17 +192,17 @@ DATA =>
         return $out;
     }
 
-    public function input($input, $default=''){
+    public function input($input, $default='', $data=null){
         //fallback single alias method
-        return $this->inputSinglelang($input, $default);
+        return $this->inputSinglelang($input, $default, $data);
     }
 
-    public function inputSinglelang($input, $default_value=''){
+    public function inputSinglelang($input, $default_value='', $data=null){
         $attr = self::manageAttributes($input);
         $oldVals = old($input->field, $default_value);
         $oldVal = isset($oldVals) ? $oldVals : '';
 
-        return self::getOutput($input, $attr, $oldVal, '', true);
+        return self::getOutput($input, $attr, $oldVal, '', true, $data);
 
     }
 
@@ -226,7 +226,7 @@ DATA =>
     }
 
 
-    protected function getOutput($input, $attr, $oldVal, $lang='', $as_single=false){
+    protected function getOutput($input, $attr, $oldVal, $lang='', $as_single=false, $data=null){
         if(strlen($lang) == 0){
             $lang = config('cms.lang.default');
         }
@@ -235,6 +235,16 @@ DATA =>
             $out = '<input type="'.$input->input_type.'" '.$attr.' value="'.$oldVal.'">';
         }
         else{
+            if($input->input_type == 'view' || $input->input_type == 'daterange'){
+                $out = view($input->view_source, [
+                    'input' => $input,
+                    'attr' => $attr,
+                    'oldVal' => $oldVal,
+                    'lang' => $lang,
+                    'as_single' => $as_single,
+                    'data' => $data
+                ])->render();
+            }
             if($input->input_type == 'slug'){
                 $out = '<input type="text" '.$attr.' data-slug="'.$input->slug_target.'" value="'.$oldVal.'">';
             }

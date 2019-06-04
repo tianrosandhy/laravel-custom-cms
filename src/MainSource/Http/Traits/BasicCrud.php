@@ -60,6 +60,7 @@ trait BasicCrud
 	public function store(){
 		$this->setMode('store');
 		$this->skeleton->formValidation($this->multi_language, 'create');
+		$this->afterValidation('create');
 
 		//multiple values / relational type input is not processed here
 		$instance = $this->storeQuery();
@@ -130,6 +131,7 @@ trait BasicCrud
 	public function update($id=0){
 		$this->setMode('update');
 		$this->skeleton->formValidation($this->multi_language, 'update', $id);
+		$this->afterValidation('update');
 		$show = $this->repo->show($id);
 		if(empty($show)){
 			abort(404);
