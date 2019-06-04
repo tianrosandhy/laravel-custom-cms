@@ -9,6 +9,10 @@ if($row->value_source){
 	$default[def_lang()] = CMS::getDefaultValue($row->value_source, (isset($data->id) ? $data->id : 0));
 }
 if($row->array_source){
+	if(!isset($data)){
+		$data = null;
+	}
+
 	$default[def_lang()] = (call_user_func($row->array_source, $data));
 }
 else{

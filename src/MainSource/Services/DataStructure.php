@@ -253,7 +253,8 @@ class DataStructure
 	}
 
 	public function arraySource($fn){
-		return $this->array_source = $fn;
+		$this->array_source = $fn;
+		return $this;
 	}
 
     public function setImageDirPath($path=''){
