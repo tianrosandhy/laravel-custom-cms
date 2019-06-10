@@ -11,6 +11,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 use Module\Base\Console\DefaultSetting;
 use Module\Base\Console\SetRole;
+use ZipArchive;
 
 class BaseController extends Controller
 {
@@ -59,12 +60,16 @@ class BaseController extends Controller
 
 
 		#pertama : copy folder MainSource ke folder modules
-		$source = __DIR__.'/../../../MainSource';
-		$module_dir = base_path('modules/Main');
-		if(!is_dir($module_dir)){
-			copy_directory($source, $module_dir);
+		$source = __DIR__.'/../../../Main.zip';
+		$module_dir = base_path('modules');
+		if(!is_dir($module_dir.'/Main')){
+			//extract source to directory
+			$zip = new ZipArchive;
+			if($zip->open($source) === true){
+				$zip->extractTo($module_dir);
+				$zip->close();
+			}
 		}
-
 
 		#publish vendor jika belum dijalankan
 		Artisan::call('vendor:publish', [
@@ -77,7 +82,9 @@ class BaseController extends Controller
 		
 		#buat symlink jika blm ada
 		if($this->checkSymlink()){
-			Artisan::call('storage:link');
+			if($this->request->make_symlink){
+				Artisan::call('storage:link');
+			}
 		}
 
 		#buat admin baru

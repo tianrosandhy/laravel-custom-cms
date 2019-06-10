@@ -1,1 +1,0 @@
-<input type="checkbox" data-init-plugin="switchery" data-size="small" class="js-switch" data-id="{{ $id }}" name="{{ $field }}" data-ajax="{{ $url }}" value="1" {{ $value == 1 ? 'checked' : '' }}>
