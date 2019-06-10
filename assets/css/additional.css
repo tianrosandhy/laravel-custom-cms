@@ -469,3 +469,13 @@ table th{
 .language-switcher a.active{
 	opacity:1;
 }
+
+.sidebar .nav.sub-menu .nav-item.active{
+	background:#eee;
+}
+
+.sidebar .nav.sub-menu .nav-item.active li.active a{
+	font-weight:bold;
+	color:#333;
+	text-decoration:underline;
+}

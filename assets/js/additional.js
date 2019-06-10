@@ -8,12 +8,8 @@ $(function(){
 		deletePrompt(delete_url);
 	});
 
-	//menu shown for pages
-	$(".sidebar-menu li.active").parentsUntil('li').parent().addClass('active open').change();
-	//menu shown for klorofil
-	$("ul.sidebar-nav a.active").closest('.collapse').addClass('show');
-	$("ul.sidebar-nav a.active").closest('.collapse').prev('a').addClass('active');
-
+	$(".site-sidebar li.active").parentsUntil('li').parent().addClass('active show').parentsUntil('li').parent().addClass('active show');
+	
 	//richtext management
 	loadTinyMce();
 
