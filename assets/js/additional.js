@@ -1,4 +1,11 @@
 var removedDiv;
+//hide loader
+$(window).on('load', function(){
+	setTimeout(function(){
+		$("#page-loader").fadeOut();
+	}, 400);
+});
+
 $(function(){
 	$("body").on("click", ".delete-button", function(e){
 		e.preventDefault();
@@ -8,7 +15,8 @@ $(function(){
 		deletePrompt(delete_url);
 	});
 
-	$(".site-sidebar li.active").parentsUntil('li').parent().addClass('active show').parentsUntil('li').parent().addClass('active show');
+	$(".site-sidebar li.active").closest('li:not(.active)').addClass('active show').find('.collapse').addClass('show active'); 
+	$(".site-sidebar li.active").closest('li:not(.active)').addClass('active show').find('.collapse').addClass('show active'); 
 	
 	//richtext management
 	loadTinyMce();
