@@ -35,6 +35,11 @@ $(function(){
 		});
 	}
 
+	$(document).on('click', '.closer', function(e){
+		e.preventDefault();
+		$(this).prev('input, select').val('').trigger('change');
+	});
+
 	//switchery init
 	$('body').on('change', ".js-switch", function(){
 		$.ajax({
@@ -90,6 +95,23 @@ $(function(){
         scrollbar: true
     });
 	
+
+    //textarea counter
+	$("[data-textarea]").each(function(){
+		ml = $(this).attr('maxlength');
+		if(typeof ml != 'undefined'){
+			$(this).next('.feedback').html('<strong>'+ml+'</strong> characters remaining');
+		}
+	});
+
+	$(document).on('change keyup', "[data-textarea]", function(){
+		slength = $(this).val().length;
+		limit = parseInt($(this).attr('maxlength') || 300);
+		remaining = limit - slength;
+		$(this).next('.feedback').html('<strong>'+remaining + '</strong> characters remaining');
+	});
+    
+
 
 
 	//lang switcher
